@@ -34,6 +34,88 @@
       </tags>
   </entry>
   <entry>
+    <title>node.js</title>
+    <url>/2022/02/27/node-js/</url>
+    <content><![CDATA[<p>浅浅的学了一下nodejs的使用</p>
+<h1 id="跟着慕课的课程慢慢学的"><a href="#跟着慕课的课程慢慢学的" class="headerlink" title="跟着慕课的课程慢慢学的"></a>跟着慕课的课程慢慢学的</h1><pre><code>`
+console.log(&quot;Web前端开发&quot;);//普通信息
+console.info(&quot;Web前端开发&quot;);//提示信息
+console.error(&quot;Web前端开发&quot;);//错误信息
+console.warn(&quot;Web前端开发&quot;);//警告信息
+//个人理解：搭配if食用效果更佳
+
+var bBody = document.body; //定义一个变量，貌似var这个东西可以定义所有种类变量，然后变量类型取决于放进去的数据
+console.dir(bBody);
+
+var students = [                //你看这儿就是var定义数组，有别于c的定义方法
+    &#123;
+        name: &quot;张三&quot;,
+        email: &quot;zhangsan@163.com&quot;,
+        qq: 12345
+    &#125;,
+    &#123;
+        name: &quot;李四&quot;,
+        email: &quot;lisi@163.com&quot;,
+        qq: 123456
+    &#125;
+];
+console.table(students);//输出表格
+
+console.time(&#39;forTime&#39;);这个和c那个记录时间的函数很想像
+for(var i=0,count = 0;i&lt;99999;i++)&#123;//for循环属于典中典了
+    count++;
+&#125;
+console.timeEnd(&#39;forTime&#39;);
+
+console.group(&#39;前端一组&#39;);//这个类似是开了一个分支的效果
+console.log(&quot;前端一组-1&quot;);
+console.log(&quot;前端一组-2&quot;);
+console.log(&quot;前端一组-3&quot;);
+console.groupEnd();
+
+function testFn()&#123;//定义函数啊，典
+    console.count(&#39;当前函数被调用次数&#39;);
+&#125;
+testFn();
+testFn();
+testFn();
+
+var flag = false;
+console.assert(flag,&#39;当flag为false时才输出!&#39;)//这个应该是个检测函数，检测是否为真;
+</code></pre>
+<p>&#96;</p>
+<p>就学到这儿，再探再报</p>
+<p><img src="https://i0.hdslb.com/bfs/article/d1f5f858ddb52f5de6aa1ab13c2ed63ea23fcce2.jpg@1320w_740h.webp"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2022/2/26</title>
+    <url>/2022/02/26/2022-2-26/</url>
+    <content><![CDATA[<h1 id="老校区摆的不提劲，我直接在龙子湖摆"><a href="#老校区摆的不提劲，我直接在龙子湖摆" class="headerlink" title="老校区摆的不提劲，我直接在龙子湖摆"></a>老校区摆的不提劲，我直接在龙子湖摆</h1><p>今天是交个普通话证的表，顺便陪室友串亲戚了</p>
+<p>然后顺便打了个信管的蓝桥预选赛</p>
+<p>TC我居然没看出来用栈做。。。。</p>
+<p>TH排个序，然后模拟了一个钟头，好在是过了。。。</p>
+<p>TG没看，但是据说是个裸背包，离大谱了</p>
+<p>TF24点，妈耶，我前面的大哥写了二十七个if语句</p>
+<p>总之，寄了，很划，很烂</p>
+<p>顺便放一点小姐姐拍的照片</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/02/98637a929b6fa788.jpg"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/02/08a626c6e3a333ca.jpg"></p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2022/2/24</title>
     <url>/2022/02/24/2022-2-24/</url>
     <content><![CDATA[<h1 id="一日之摆启于晨"><a href="#一日之摆启于晨" class="headerlink" title="一日之摆启于晨"></a>一日之摆启于晨</h1><h2 id="6：00"><a href="#6：00" class="headerlink" title="6：00"></a>6：00</h2><p>上铺放的盒子biaji一声拍地上给我惊醒了，一看表，六点钟，就很离谱，八辈子没起过这么早了。起都起了，洗个衣服吧，这小风吹着，jiojio都冻疼了，预示着又是摆的一天。</p>
@@ -56,7 +138,7 @@
 <h2 id="16：00"><a href="#16：00" class="headerlink" title="16：00"></a>16：00</h2><p>下课一看手机，基辅拿下了</p>
 <p>woc，见证历史了属于是</p>
 <p>这波啊，这波是疯狂星期四了2333</p>
-]]></content>
+<h1 id="这波是见证历史了"><a href="#这波是见证历史了" class="headerlink" title="这波是见证历史了"></a>这波是见证历史了</h1>]]></content>
       <categories>
         <category>日志</category>
       </categories>
