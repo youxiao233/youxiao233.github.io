@@ -36,7 +36,7 @@
   <entry>
     <title>浅学通信网络基础第二章</title>
     <url>/2022/03/14/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="端到端的传输协议"><a href="#端到端的传输协议" class="headerlink" title="端到端的传输协议"></a>端到端的传输协议</h1><p>问题：如何为源节点和目的节点之间建立可靠通道</p>
+    <content><![CDATA[<p><strong>端到端的传输协议</strong><br>问题：如何为源节点和目的节点之间建立可靠通道</p>
 <p>（如何在一条物理链路上进行可靠传输）</p>
 <p>数据链路传输协议</p>
 <pre><code>组帧技术
@@ -62,33 +62,41 @@
 差错控制和流量控制
 </code></pre>
 <hr>
-<p>##组帧技术</p>
-<p>有开始和结束点的一组二进制数，内含校验比特</p>
-<p>###面向字符的组帧技术<br><a href="https://blog.51cto.com/lomomo/115655">SLIP协议</a></p>
+<h1 id="组帧技术"><a href="#组帧技术" class="headerlink" title="组帧技术"></a>组帧技术</h1><p>有开始和结束点的一组二进制数，内含校验比特</p>
+<h2 id="面向字符的组帧技术"><a href="#面向字符的组帧技术" class="headerlink" title="面向字符的组帧技术"></a>面向字符的组帧技术</h2><p><a href="https://blog.51cto.com/lomomo/115655">SLIP协议</a></p>
 <pre><code>物理层传输以字符为基本单元，并形成一定格式的字符串
 
 以END（C0H）和ESC（DBH）进行首位区分
 </code></pre>
-<h3 id="面向比特的组帧技术"><a href="#面向比特的组帧技术" class="headerlink" title="面向比特的组帧技术"></a>面向比特的组帧技术</h3><p>比特插入技术</p>
+<h2 id="面向比特的组帧技术"><a href="#面向比特的组帧技术" class="headerlink" title="面向比特的组帧技术"></a>面向比特的组帧技术</h2><p>比特插入技术</p>
 <pre><code>用一个特殊比特串（Flag），如01^j0(指连续j个1） 
 
 发端出现连续j-1个    “1”，就插入一个零
 
 收端入伙发现j-1个“1”后面是零，就删掉零
 </code></pre>
-<h3 id="采用长度技术的组帧技术"><a href="#采用长度技术的组帧技术" class="headerlink" title="采用长度技术的组帧技术"></a>采用长度技术的组帧技术</h3><p>除以上两种，还用了帧长度来标识如何结束</p>
-<h3 id="差错检测技术"><a href="#差错检测技术" class="headerlink" title="差错检测技术"></a>差错检测技术</h3><p>思路：</p>
+<h2 id="采用长度技术的组帧技术"><a href="#采用长度技术的组帧技术" class="headerlink" title="采用长度技术的组帧技术"></a>采用长度技术的组帧技术</h2><p>除以上两种，还用了帧长度来标识如何结束</p>
+<h2 id="差错检测技术"><a href="#差错检测技术" class="headerlink" title="差错检测技术"></a>差错检测技术</h2><p>思路：</p>
 <p>发端在K个信息后加L个某种规则计算的校验比特</p>
 <p>收端以所得数据进行重新计算L个校验比特与接受的校验比特对比</p>
 <p><a href="https://baike.baidu.com/item/%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C/8090811">奇偶校验</a></p>
-<h3 id="收端自动请求发端重发技术"><a href="#收端自动请求发端重发技术" class="headerlink" title="收端自动请求发端重发技术"></a>收端自动请求发端重发技术</h3><p><a href="https://blog.csdn.net/aaahuahua/article/details/119965804">ARQ协议</a></p>
+<h2 id="收端自动请求发端重发技术"><a href="#收端自动请求发端重发技术" class="headerlink" title="收端自动请求发端重发技术"></a>收端自动请求发端重发技术</h2><p><a href="https://blog.csdn.net/aaahuahua/article/details/119965804">ARQ协议</a></p>
+<p>SN：发送序号，发送帧的序号</p>
+<p>RN：接受序号，希望接受的下一帧序号（停等）或者已接收的最大序号（连续）</p>
 <hr>
-<h2 id="2-3标准数据链路协议"><a href="#2-3标准数据链路协议" class="headerlink" title="2.3标准数据链路协议"></a>2.3标准数据链路协议</h2><p>SDLC（IBM</p>
+<h1 id="标准数据链路协议"><a href="#标准数据链路协议" class="headerlink" title="标准数据链路协议"></a>标准数据链路协议</h1><p>SDLC（IBM</p>
 <p><a href="https://baike.baidu.com/item/HDLC%E5%8D%8F%E8%AE%AE/9441935">HDLC</a>（ISO</p>
 <p>ADCCP（ANSI</p>
 <p>LAPB（CCITT</p>
 <p>以HDLC介绍</p>
-<h3 id="正常响应模式"><a href="#正常响应模式" class="headerlink" title="正常响应模式"></a>正常响应模式</h3><h3 id="异步响应模式"><a href="#异步响应模式" class="headerlink" title="异步响应模式"></a>异步响应模式</h3><h3 id="异步平衡模式"><a href="#异步平衡模式" class="headerlink" title="异步平衡模式"></a>异步平衡模式</h3>]]></content>
+<h2 id="正常响应模式"><a href="#正常响应模式" class="headerlink" title="正常响应模式"></a>正常响应模式</h2><p>参照HDLC</p>
+<h2 id="异步响应模式"><a href="#异步响应模式" class="headerlink" title="异步响应模式"></a>异步响应模式</h2><p>参照HDLC</p>
+<h2 id="异步平衡模式"><a href="#异步平衡模式" class="headerlink" title="异步平衡模式"></a>异步平衡模式</h2><p>参照HDLC</p>
+<h1 id="网络层（子网层）的端到端传输协议"><a href="#网络层（子网层）的端到端传输协议" class="headerlink" title="网络层（子网层）的端到端传输协议"></a>网络层（子网层）的端到端传输协议</h1><h2 id="会话过程的标识"><a href="#会话过程的标识" class="headerlink" title="会话过程的标识"></a>会话过程的标识</h2><p>一条链路通常被若干过程共享，需要对不同目的地&#x2F;源的不同会话过程的分组进行标识</p>
+<p>虚电路方式<br>    使用虚电路号（VC号），每个分组都有一个VC号，不同链路的虚电路好是独立的，每个节点都有一个VC转换表。</p>
+<p>数据报方式<br>    分组头中包含源节点、目的节点地址，以及相同节点中不同会话过程的标识，同一绘画过程中的分组编号（为了解决顺序和丢包问题） ，分组编号用K比特标识，用mod 2^K的方式循环编号。</p>
+<h2 id="网络层的差错控制"><a href="#网络层的差错控制" class="headerlink" title="网络层的差错控制"></a>网络层的差错控制</h2><p>与数据链路类似，使用ARQ的sn，rn和返回式或选择重发式</p>
+]]></content>
   </entry>
   <entry>
     <title>浅学通信网络基础第一章</title>
@@ -124,6 +132,7 @@
 <blockquote>
 <p>三、网络节点交换过程 </p>
 </blockquote>
+<p><a href="https://blog.csdn.net/weixin_30670965/article/details/96123793">数据报和虚电路的优缺点</a> </p>
 <h2 id="1-3协议体系及分层概念"><a href="#1-3协议体系及分层概念" class="headerlink" title="1-3协议体系及分层概念"></a>1-3协议体系及分层概念</h2><p>在信道上一套关于信息的表示、信息传递顺序、信息格式和信息内容等的约定，这一套约定称为通信协议</p>
 <p>分层的基础使“模块”的概念，多个模块形成系统，乘坐服务</p>
 <p>设计简单，易懂，标准化，交互性好，现成模块多，可嵌套，对用户就是黑箱</p>
