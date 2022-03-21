@@ -20,23 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="老校区摆的不提劲，我直接在龙子湖摆今天是交个普通话证的表，顺便陪室友串亲戚了 然后顺便打了个信管的蓝桥预选赛 TC我居然没看出来用栈做。。。。 TH排个序，然后模拟了一个钟头，好在是过了。。。 TG没看，但是据说是个裸背包，离大谱了 TF24点，妈耶，我前面的大哥写了二十七个if语句 总之，寄了，很划，很烂 顺便放一点小姐姐拍的照片">
+  <meta name="description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延直接点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2022&#x2F;2&#x2F;26">
-<meta property="og:url" content="http://example.com/2022/02/26/2022-2-26/index.html">
+<meta property="og:title" content="浅学通信网络基础第三章">
+<meta property="og:url" content="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
 <meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
-<meta property="og:description" content="老校区摆的不提劲，我直接在龙子湖摆今天是交个普通话证的表，顺便陪室友串亲戚了 然后顺便打了个信管的蓝桥预选赛 TC我居然没看出来用栈做。。。。 TH排个序，然后模拟了一个钟头，好在是过了。。。 TG没看，但是据说是个裸背包，离大谱了 TF24点，妈耶，我前面的大哥写了二十七个if语句 总之，寄了，很划，很烂 顺便放一点小姐姐拍的照片">
+<meta property="og:description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延直接点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/02/98637a929b6fa788.jpg">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/02/08a626c6e3a333ca.jpg">
-<meta property="article:published_time" content="2022-02-26T11:21:10.000Z">
-<meta property="article:modified_time" content="2022-02-26T12:19:32.178Z">
+<meta property="article:published_time" content="2022-03-20T09:44:07.000Z">
+<meta property="article:modified_time" content="2022-03-21T07:20:34.101Z">
 <meta property="article:author" content="youxiao">
-<meta property="article:tag" content="划水">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/02/98637a929b6fa788.jpg">
 
-<link rel="canonical" href="http://example.com/2022/02/26/2022-2-26/">
+<link rel="canonical" href="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 
 
 <script id="page-configurations">
@@ -49,7 +46,7 @@
   };
 </script>
 
-  <title>2022/2/26 | 河南农业大学摆烂摸鱼划水阵线</title>
+  <title>浅学通信网络基础第三章 | 河南农业大学摆烂摸鱼划水阵线</title>
   
 
 
@@ -189,7 +186,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/26/2022-2-26/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.png">
@@ -202,7 +199,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          2022/2/26
+          浅学通信网络基础第三章
         </h1>
 
         <div class="post-meta">
@@ -215,17 +212,23 @@
               <span class="post-meta-item-text">发表于</span>
 
             <span class="post-meta-item">
-              
 
-              <time title="创建时间：2022-02-26 19:21:10 / 修改时间：20:19:32" itemprop="dateCreated datePublished" datetime="2022-02-26T19:21:10+08:00">2022-02-26</time>
+              <time title="创建时间：2022-03-20 17:44:07" itemprop="dateCreated datePublished" datetime="2022-03-20T17:44:07+08:00">2022-03-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-21 15:20:34" itemprop="dateModified" datetime="2022-03-21T15:20:34+08:00">2022-03-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                  <a href="/categories/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">通信网络基础</span></a>
                 </span>
             </span>
 
@@ -240,16 +243,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="老校区摆的不提劲，我直接在龙子湖摆"><a href="#老校区摆的不提劲，我直接在龙子湖摆" class="headerlink" title="老校区摆的不提劲，我直接在龙子湖摆"></a>老校区摆的不提劲，我直接在龙子湖摆</h1><p>今天是交个普通话证的表，顺便陪室友串亲戚了</p>
-<p>然后顺便打了个信管的蓝桥预选赛</p>
-<p>TC我居然没看出来用栈做。。。。</p>
-<p>TH排个序，然后模拟了一个钟头，好在是过了。。。</p>
-<p>TG没看，但是据说是个裸背包，离大谱了</p>
-<p>TF24点，妈耶，我前面的大哥写了二十七个if语句</p>
-<p>总之，寄了，很划，很烂</p>
-<p>顺便放一点小姐姐拍的照片</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/02/98637a929b6fa788.jpg"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/02/08a626c6e3a333ca.jpg"></p>
+        <p>网络延时</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>通信网络特点：资源共享</p>
+<p>会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss）</p>
+<p>衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制</p>
+<h2 id="网络时延模型"><a href="#网络时延模型" class="headerlink" title="网络时延模型"></a>网络时延模型</h2><h3 id="处理时延"><a href="#处理时延" class="headerlink" title="处理时延"></a>处理时延</h3><p>一个分组到达节点输入端与其到达输出端之间的时延</p>
+<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>直接点开始发送第一比特到发完最后一比特的时间</p>
+<h3 id="传播时延"><a href="#传播时延" class="headerlink" title="传播时延"></a>传播时延</h3><p>指节点发送第一个比特的时刻到此比特到达接收点的时延</p>
+<pre><code>与电磁波在媒质中传播速度有关，与通信距离成正比，与信道容量本身无关
+传播时延=信道长度/在信道的传播速度
+电磁波在自由空间光速传播，在网络传输中慢一点
+铜线电缆  ：2.3*10^5
+光纤：2.0*10^5
+</code></pre>
+<h3 id="排队时延"><a href="#排队时延" class="headerlink" title="排队时延"></a>排队时延</h3><p>分组进入传输队列到分组实际进入传输的时延；分组进入等待队列到分组进入节点处理的时延</p>
+<hr>
+<p>排队模型：</p>
+<h4 id="到达过程–顾客到达的规则和行为"><a href="#到达过程–顾客到达的规则和行为" class="headerlink" title="到达过程–顾客到达的规则和行为"></a>到达过程–顾客到达的规则和行为</h4><p>到达数目：有限或无限<br>到达间隔：确定或随机<br>到达方式：独立或成批到达</p>
+<h4 id="排队规则"><a href="#排队规则" class="headerlink" title="排队规则"></a>排队规则</h4><p>等待制：系统忙时，顾客在系统中等待<br>损失制：顾客发现系统繁忙，立即离开系统（如日常使用的电话通信系统）<br>服务顺序：FCFS、、LCFS等</p>
+<h4 id="服务过程–服务规则和时间"><a href="#服务过程–服务规则和时间" class="headerlink" title="服务过程–服务规则和时间"></a>服务过程–服务规则和时间</h4><p>服务员个数：无穷、单个或多个<br>服务时间：确定或随机  </p>
+<hr>
+<p>在不同的传输网络中，顾客和服务时间可能各不相同<br>在分组交换网络中，顾客就是分组，服务时间为分组传输时间<br>在电话交换网络中，顾客就是呼叫，服务时间为呼叫持续的时间  </p>
+<h4 id="排队时延的计算"><a href="#排队时延的计算" class="headerlink" title="排队时延的计算"></a>排队时延的计算</h4><p>已知量  </p>
+<pre><code>顾客到达率λ（单位时间进入系统的平均顾客数，也称单位时间内进入的“典型顾客数”，“典型”是时间平均）  
+服务速率μ（制系统忙时单位时间内服务的典型（平均）顾客数）  
+</code></pre>
+<p>求解量  </p>
+<pre><code>系统中平均顾客数N（他是在等待队列中和正接受服务的顾客数之和的平均数）  
+每个顾客的平均时延T（即每个顾客等待所花的时间加上服务时间至和的平均值）
+</code></pre>
 
     </div>
 
@@ -259,7 +281,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%88%92%E6%B0%B4/" rel="tag"># 划水</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
           </div>
 
         
@@ -268,13 +290,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/02/24/2022-2-24/" rel="prev" title="2022/2/24">
-      <i class="fa fa-chevron-left"></i> 2022/2/24
+    <a href="/2022/03/14/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E7%AB%A0/" rel="prev" title="浅学通信网络基础第二章">
+      <i class="fa fa-chevron-left"></i> 浅学通信网络基础第二章
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/02/27/node-js/" rel="next" title="node.js">
-      node.js <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -333,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%81%E6%A0%A1%E5%8C%BA%E6%91%86%E7%9A%84%E4%B8%8D%E6%8F%90%E5%8A%B2%EF%BC%8C%E6%88%91%E7%9B%B4%E6%8E%A5%E5%9C%A8%E9%BE%99%E5%AD%90%E6%B9%96%E6%91%86"><span class="nav-number">1.</span> <span class="nav-text">老校区摆的不提劲，我直接在龙子湖摆</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%97%B6%E5%BB%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">网络时延模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">处理时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">传输时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">传播时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.4.</span> <span class="nav-text">排队时延</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B0%E8%BE%BE%E8%BF%87%E7%A8%8B%E2%80%93%E9%A1%BE%E5%AE%A2%E5%88%B0%E8%BE%BE%E7%9A%84%E8%A7%84%E5%88%99%E5%92%8C%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">到达过程–顾客到达的规则和行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">排队规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%BF%87%E7%A8%8B%E2%80%93%E6%9C%8D%E5%8A%A1%E8%A7%84%E5%88%99%E5%92%8C%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">服务过程–服务规则和时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">排队时延的计算</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
