@@ -34,6 +34,55 @@
       </tags>
   </entry>
   <entry>
+    <title>隐写的一点点积累</title>
+    <url>/2022/05/05/%E8%A7%A3%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E7%A7%AF%E7%B4%AF/</url>
+    <content><![CDATA[<h1 id="隐写啊……阿巴阿巴阿巴"><a href="#隐写啊……阿巴阿巴阿巴" class="headerlink" title="隐写啊……阿巴阿巴阿巴"></a>隐写啊……阿巴阿巴阿巴</h1><p>写了一些些题目，有一点收获，但是我的记忆只有不到一周（逃<br>不写下来就又忘了，特此浅写一点点来给自己看  </p>
+<h2 id="丢010里看看呗"><a href="#丢010里看看呗" class="headerlink" title="丢010里看看呗"></a>丢010里看看呗</h2><p>010起手，主要看文件类型、文件完整性还有隐藏在十六进制代码里面的信息<br>建议直接ctrl+F flag 因为所有题都是这样（逃<br>这样可以方便寻找方向  </p>
+<h2 id="有个叫做lsb的东西"><a href="#有个叫做lsb的东西" class="headerlink" title="有个叫做lsb的东西"></a>有个叫做lsb的东西</h2><p>貌似是最低有效位隐写，虽然不知道原理是啥吧，但是能写<br>一般的，丢到stegsolve里面，看看各个通道的图层<br>哪个通道的最低位有异常，那大概是那个通道用于lsb了<br>然后就用DATA extract给整一下lsb<br>（不想整图，等到我成为学长时候在整具体的）  </p>
+<h2 id="有个调整png显示大小的"><a href="#有个调整png显示大小的" class="headerlink" title="有个调整png显示大小的"></a>有个调整png显示大小的</h2><p>一般就是CRC不对劲时候（win能打开，linux打不开时候也是）<br>去找找有无关于图片大小的提示，改一下，看看能不能显示出特殊信息<br>或者弄个脚本呗，暴力枚举大小，通过crc正确性进行判断  </p>
+<h2 id="还有个啥来着？"><a href="#还有个啥来着？" class="headerlink" title="还有个啥来着？"></a>还有个啥来着？</h2><p>记一些奇怪的插件  </p>
+<h3 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h3><p>基础，好用，感觉不对劲直接扔kali里跑个binwalk<br>大概率能发现群友奇怪的成分（雾<br>然后用下面这个</p>
+<h3 id="foremost"><a href="#foremost" class="headerlink" title="foremost"></a>foremost</h3><p>用于分离文件，禁止文件贴贴，可以拿到藏起来的文件  </p>
+<h3 id="zsteg"><a href="#zsteg" class="headerlink" title="zsteg"></a>zsteg</h3><p>很吊的linux脚本，直接zsteg -a<br>管他啥通道隐写啊，全部给你整出来，你按需拿取即可<br>适合一把梭玩家（逃</p>
+<h3 id="snow-exe"><a href="#snow-exe" class="headerlink" title="snow.exe"></a>snow.exe</h3><p>没明白</p>
+<h3 id="破解压缩包密码也算隐写（不是"><a href="#破解压缩包密码也算隐写（不是" class="headerlink" title="破解压缩包密码也算隐写（不是"></a>破解压缩包密码也算隐写（不是</h3>]]></content>
+      <categories>
+        <category>杂七杂八的东西</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>四月总结</title>
+    <url>/2022/04/30/%E5%9B%9B%E6%9C%88%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="四月是寄的一月"><a href="#四月是寄的一月" class="headerlink" title="四月是寄的一月"></a>四月是寄的一月</h1><h2 id="4-9蓝桥省赛"><a href="#4-9蓝桥省赛" class="headerlink" title="4.9蓝桥省赛"></a>4.9蓝桥省赛</h2><p>学校是封的<br>比赛是教室开的<br>题目是看不懂的<br>人是麻的  </p>
+<h2 id="麻辣香锅"><a href="#麻辣香锅" class="headerlink" title="麻辣香锅"></a>麻辣香锅</h2><p>麻辣香锅一时爽，一直吃一直爽  </p>
+<h2 id="4-10-解封"><a href="#4-10-解封" class="headerlink" title="4.10  解封"></a>4.10  解封</h2><h2 id="分流"><a href="#分流" class="headerlink" title="分流"></a>分流</h2><p>选了物联网，不过反正要run的，都行吧</p>
+<h2 id="4-21给蓝桥官网联习系统干破防了"><a href="#4-21给蓝桥官网联习系统干破防了" class="headerlink" title="4.21给蓝桥官网联习系统干破防了"></a>4.21给蓝桥官网联习系统干破防了</h2><p>什么牛马东西，错了就给个错误，没有反馈，题解也都很烂，还是我的luogu友好  </p>
+<h2 id="4-22开始整misc玩"><a href="#4-22开始整misc玩" class="headerlink" title="4.22开始整misc玩"></a>4.22开始整misc玩</h2><h2 id="4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"><a href="#4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃" class="headerlink" title="4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"></a>4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃</h2><h2 id="4-28蓝桥结果出来了，浅拿省一，按下不表"><a href="#4-28蓝桥结果出来了，浅拿省一，按下不表" class="headerlink" title="4.28蓝桥结果出来了，浅拿省一，按下不表"></a>4.28蓝桥结果出来了，浅拿省一，按下不表</h2><h2 id="4-30写下这个东西"><a href="#4-30写下这个东西" class="headerlink" title="4.30写下这个东西"></a>4.30写下这个东西</h2>]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http协议浅尝</title>
+    <url>/2022/04/29/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/</url>
+    <content><![CDATA[<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>用户访问https:&#x2F;<a href="http://www.baidu.com/index.html%E9%93%BE%E6%8E%A5%E5%90%8E">www.baidu.com/index.html链接后</a><br>1.浏览器分析超链接中的URL<br>2.浏览器请求解析目标<a href="http://www.baidu.com的ip地址/">www.baidu.com的IP地址</a><br>3.DNS将解析出的IP220.181.38.148返回浏览器<br>4.浏览器与服务器建立TCP（80端口）链接<br>5.浏览器请求文档： GET&#x2F;index.html<br>6.服务器给出响应，将文档index.html发送给浏览器<br>7.释放TCP链接<br>8.浏览器显示index.html中的内容  </p>
+<h2 id="非持久性连接"><a href="#非持久性连接" class="headerlink" title="非持久性连接"></a>非持久性连接</h2><p>http0.9和http1.0会有<br>对于请求web页含有多个其他文档对象的连接情况，小笼包低下</p>
+<h2 id="持久性连接"><a href="#持久性连接" class="headerlink" title="持久性连接"></a>持久性连接</h2><p>可以进行多次请求和响应，服务器响应后不立即释放连接，可继续进行请求  </p>
+]]></content>
+      <categories>
+        <category>知识储备</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浅学通信网络基础第三章</title>
     <url>/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/</url>
     <content><![CDATA[<p>网络延时</p>
@@ -41,7 +90,7 @@
 <p>会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss）</p>
 <p>衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制</p>
 <h2 id="网络时延模型"><a href="#网络时延模型" class="headerlink" title="网络时延模型"></a>网络时延模型</h2><h3 id="处理时延"><a href="#处理时延" class="headerlink" title="处理时延"></a>处理时延</h3><p>一个分组到达节点输入端与其到达输出端之间的时延</p>
-<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>直接点开始发送第一比特到发完最后一比特的时间</p>
+<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>指节点开始发送第一比特到发完最后一比特的时间</p>
 <h3 id="传播时延"><a href="#传播时延" class="headerlink" title="传播时延"></a>传播时延</h3><p>指节点发送第一个比特的时刻到此比特到达接收点的时延</p>
 <pre><code>与电磁波在媒质中传播速度有关，与通信距离成正比，与信道容量本身无关
 传播时延=信道长度/在信道的传播速度
@@ -65,7 +114,15 @@
 <pre><code>系统中平均顾客数N（他是在等待队列中和正接受服务的顾客数之和的平均数）  
 每个顾客的平均时延T（即每个顾客等待所花的时间加上服务时间至和的平均值）
 </code></pre>
-]]></content>
+<h1 id="Little定理"><a href="#Little定理" class="headerlink" title="Little定理"></a>Little定理</h1><p>顾客到达率λ<br>系统中平均顾客数N<br>每个顾客的平均时延T</p>
+<h2 id="公式-N-x3D-λT"><a href="#公式-N-x3D-λT" class="headerlink" title="公式  N&#x3D;λT"></a>公式  N&#x3D;λT</h2><p>系统的用户数&#x3D;用户平均到达率*平均时延<br>1.他关心的只是排队系统的三个统计平均量，对某个过程的具体时间以及排队规则不做要求<br>2.公式中三个统计平均量必须是针对一个顾客群体而言的，也就是只要这三个统计平均量是针对同一个顾客群体定义，其间就存在Little公式</p>
+<p><img src="https://imgtu.com/i/qnr3QI"><br><img src="/"><br><img src="/">  </p>
+<h1 id="M-x2F-M-x2F-m型排队系统的表征"><a href="#M-x2F-M-x2F-m型排队系统的表征" class="headerlink" title="M&#x2F;M&#x2F;m型排队系统的表征"></a>M&#x2F;M&#x2F;m型排队系统的表征</h1><h2 id="排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E"><a href="#排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E" class="headerlink" title="排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E"></a>排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E</h2><h3 id="A-表示到达时间间隔分布"><a href="#A-表示到达时间间隔分布" class="headerlink" title="A 表示到达时间间隔分布"></a>A 表示到达时间间隔分布</h3><h3 id="B-服务时间分布"><a href="#B-服务时间分布" class="headerlink" title="B 服务时间分布"></a>B 服务时间分布</h3><p>A，B包含：<br>M：指数分布<br>D：确定性分布<br>Ek：爱尔兰分布<br>G：一般分布</p>
+<h3 id="C-服务员个数"><a href="#C-服务员个数" class="headerlink" title="C 服务员个数"></a>C 服务员个数</h3><h3 id="D-服务系统容量"><a href="#D-服务系统容量" class="headerlink" title="D 服务系统容量"></a>D 服务系统容量</h3><p>包括正被服务和等待的用户<br>缺省时默认为无穷大</p>
+<h3 id="服务规则"><a href="#服务规则" class="headerlink" title="服务规则"></a>服务规则</h3><p>先来先服务（FCFS）<br>后来先服务（LCFS）<br>随即服务（SIRO）<br>缺省时默认FCFS  </p>
+<h2 id="M-x2F-M-x2F-1型"><a href="#M-x2F-M-x2F-1型" class="headerlink" title="M&#x2F;M&#x2F;1型"></a>M&#x2F;M&#x2F;1型</h2><p>到达是poisson过程，到达率是λ<br>允许排无限长的队（系统缓存无限）<br>服务过程为指数过程，服务速率为μ（平均服务时间为1&#x2F;μ）<br>服务员为1个，到达过程与服务过程互相独立<br>稳态概率为Pn &#x3D;（ρ^n）*（1-ρ） n&#x3D;0，1，2……<br>（也就是有n个客户的概率和系统状态的稳态概率）<br>ρ&#x3D;λ&#x2F;μ 反映了繁忙程度（litte）<br>空闲概率：P0 &#x3D;（1-ρ）<br>排队概率为ρ<br>平均用户数为</p>
+<h3 id="N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ"><a href="#N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ" class="headerlink" title="N&#x3D;∑(∞,n&#x3D;0)nPn &#x3D; ∑(∞,n&#x3D;0)nρ*(1-ρ)"></a>N&#x3D;∑(∞,n&#x3D;0)n<em>Pn &#x3D; ∑(∞,n&#x3D;0)n</em>ρ*(1-ρ)</h3><h3 id="x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ"><a href="#x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ" class="headerlink" title="&#x3D;ρ*(1-ρ)Σ(∞,n-0)nρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)"></a>&#x3D;ρ*(1-ρ)<em>Σ(∞,n-0)n</em>ρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)</h3><p>（我再码公式是孙子）<br><img src="/"><br>（是不是很像上一课的litte例子？）</p>
+<h2 id="M-x2F-M-x2F-m-x2F-m型"><a href="#M-x2F-M-x2F-m-x2F-m型" class="headerlink" title="M&#x2F;M&#x2F;m&#x2F;m型"></a>M&#x2F;M&#x2F;m&#x2F;m型</h2><h2 id="M-x2F-G-x2F"><a href="#M-x2F-G-x2F" class="headerlink" title="M&#x2F;G&#x2F;"></a>M&#x2F;G&#x2F;</h2>]]></content>
       <categories>
         <category>通信网络基础</category>
       </categories>

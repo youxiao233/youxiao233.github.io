@@ -20,18 +20,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延直接点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
+  <meta name="description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延指节点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅学通信网络基础第三章">
 <meta property="og:url" content="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
 <meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
-<meta property="og:description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延直接点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
+<meta property="og:description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延指节点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgtu.com/i/qnr3QI">
+<meta property="og:image" content="http://example.com/">
+<meta property="og:image" content="http://example.com/">
+<meta property="og:image" content="http://example.com/">
 <meta property="article:published_time" content="2022-03-20T09:44:07.000Z">
-<meta property="article:modified_time" content="2022-03-21T07:20:34.101Z">
+<meta property="article:modified_time" content="2022-03-22T09:17:17.298Z">
 <meta property="article:author" content="youxiao">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgtu.com/i/qnr3QI">
 
 <link rel="canonical" href="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 
@@ -220,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 15:20:34" itemprop="dateModified" datetime="2022-03-21T15:20:34+08:00">2022-03-21</time>
+                <time title="修改时间：2022-03-22 17:17:17" itemprop="dateModified" datetime="2022-03-22T17:17:17+08:00">2022-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,7 +253,7 @@
 <p>会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss）</p>
 <p>衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制</p>
 <h2 id="网络时延模型"><a href="#网络时延模型" class="headerlink" title="网络时延模型"></a>网络时延模型</h2><h3 id="处理时延"><a href="#处理时延" class="headerlink" title="处理时延"></a>处理时延</h3><p>一个分组到达节点输入端与其到达输出端之间的时延</p>
-<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>直接点开始发送第一比特到发完最后一比特的时间</p>
+<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>指节点开始发送第一比特到发完最后一比特的时间</p>
 <h3 id="传播时延"><a href="#传播时延" class="headerlink" title="传播时延"></a>传播时延</h3><p>指节点发送第一个比特的时刻到此比特到达接收点的时延</p>
 <pre><code>与电磁波在媒质中传播速度有关，与通信距离成正比，与信道容量本身无关
 传播时延=信道长度/在信道的传播速度
@@ -272,7 +277,15 @@
 <pre><code>系统中平均顾客数N（他是在等待队列中和正接受服务的顾客数之和的平均数）  
 每个顾客的平均时延T（即每个顾客等待所花的时间加上服务时间至和的平均值）
 </code></pre>
-
+<h1 id="Little定理"><a href="#Little定理" class="headerlink" title="Little定理"></a>Little定理</h1><p>顾客到达率λ<br>系统中平均顾客数N<br>每个顾客的平均时延T</p>
+<h2 id="公式-N-x3D-λT"><a href="#公式-N-x3D-λT" class="headerlink" title="公式  N&#x3D;λT"></a>公式  N&#x3D;λT</h2><p>系统的用户数&#x3D;用户平均到达率*平均时延<br>1.他关心的只是排队系统的三个统计平均量，对某个过程的具体时间以及排队规则不做要求<br>2.公式中三个统计平均量必须是针对一个顾客群体而言的，也就是只要这三个统计平均量是针对同一个顾客群体定义，其间就存在Little公式</p>
+<p><img src="https://imgtu.com/i/qnr3QI"><br><img src="/"><br><img src="/">  </p>
+<h1 id="M-x2F-M-x2F-m型排队系统的表征"><a href="#M-x2F-M-x2F-m型排队系统的表征" class="headerlink" title="M&#x2F;M&#x2F;m型排队系统的表征"></a>M&#x2F;M&#x2F;m型排队系统的表征</h1><h2 id="排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E"><a href="#排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E" class="headerlink" title="排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E"></a>排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E</h2><h3 id="A-表示到达时间间隔分布"><a href="#A-表示到达时间间隔分布" class="headerlink" title="A 表示到达时间间隔分布"></a>A 表示到达时间间隔分布</h3><h3 id="B-服务时间分布"><a href="#B-服务时间分布" class="headerlink" title="B 服务时间分布"></a>B 服务时间分布</h3><p>A，B包含：<br>M：指数分布<br>D：确定性分布<br>Ek：爱尔兰分布<br>G：一般分布</p>
+<h3 id="C-服务员个数"><a href="#C-服务员个数" class="headerlink" title="C 服务员个数"></a>C 服务员个数</h3><h3 id="D-服务系统容量"><a href="#D-服务系统容量" class="headerlink" title="D 服务系统容量"></a>D 服务系统容量</h3><p>包括正被服务和等待的用户<br>缺省时默认为无穷大</p>
+<h3 id="服务规则"><a href="#服务规则" class="headerlink" title="服务规则"></a>服务规则</h3><p>先来先服务（FCFS）<br>后来先服务（LCFS）<br>随即服务（SIRO）<br>缺省时默认FCFS  </p>
+<h2 id="M-x2F-M-x2F-1型"><a href="#M-x2F-M-x2F-1型" class="headerlink" title="M&#x2F;M&#x2F;1型"></a>M&#x2F;M&#x2F;1型</h2><p>到达是poisson过程，到达率是λ<br>允许排无限长的队（系统缓存无限）<br>服务过程为指数过程，服务速率为μ（平均服务时间为1&#x2F;μ）<br>服务员为1个，到达过程与服务过程互相独立<br>稳态概率为Pn &#x3D;（ρ^n）*（1-ρ） n&#x3D;0，1，2……<br>（也就是有n个客户的概率和系统状态的稳态概率）<br>ρ&#x3D;λ&#x2F;μ 反映了繁忙程度（litte）<br>空闲概率：P0 &#x3D;（1-ρ）<br>排队概率为ρ<br>平均用户数为</p>
+<h3 id="N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ"><a href="#N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ" class="headerlink" title="N&#x3D;∑(∞,n&#x3D;0)nPn &#x3D; ∑(∞,n&#x3D;0)nρ*(1-ρ)"></a>N&#x3D;∑(∞,n&#x3D;0)n<em>Pn &#x3D; ∑(∞,n&#x3D;0)n</em>ρ*(1-ρ)</h3><h3 id="x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ"><a href="#x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ" class="headerlink" title="&#x3D;ρ*(1-ρ)Σ(∞,n-0)nρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)"></a>&#x3D;ρ*(1-ρ)<em>Σ(∞,n-0)n</em>ρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)</h3><p>（我再码公式是孙子）<br><img src="/"><br>（是不是很像上一课的litte例子？）</p>
+<h2 id="M-x2F-M-x2F-m-x2F-m型"><a href="#M-x2F-M-x2F-m-x2F-m型" class="headerlink" title="M&#x2F;M&#x2F;m&#x2F;m型"></a>M&#x2F;M&#x2F;m&#x2F;m型</h2><h2 id="M-x2F-G-x2F"><a href="#M-x2F-G-x2F" class="headerlink" title="M&#x2F;G&#x2F;"></a>M&#x2F;G&#x2F;</h2>
     </div>
 
     
@@ -293,7 +306,10 @@
     <a href="/2022/03/14/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E7%AB%A0/" rel="prev" title="浅学通信网络基础第二章">
       <i class="fa fa-chevron-left"></i> 浅学通信网络基础第二章
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/" rel="next" title="http协议浅尝">
+      http协议浅尝 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -352,7 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%97%B6%E5%BB%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">网络时延模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">处理时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">传输时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">传播时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.4.</span> <span class="nav-text">排队时延</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B0%E8%BE%BE%E8%BF%87%E7%A8%8B%E2%80%93%E9%A1%BE%E5%AE%A2%E5%88%B0%E8%BE%BE%E7%9A%84%E8%A7%84%E5%88%99%E5%92%8C%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">到达过程–顾客到达的规则和行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">排队规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%BF%87%E7%A8%8B%E2%80%93%E6%9C%8D%E5%8A%A1%E8%A7%84%E5%88%99%E5%92%8C%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">服务过程–服务规则和时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">排队时延的计算</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%97%B6%E5%BB%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">网络时延模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">处理时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">传输时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">传播时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.4.</span> <span class="nav-text">排队时延</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B0%E8%BE%BE%E8%BF%87%E7%A8%8B%E2%80%93%E9%A1%BE%E5%AE%A2%E5%88%B0%E8%BE%BE%E7%9A%84%E8%A7%84%E5%88%99%E5%92%8C%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">到达过程–顾客到达的规则和行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">排队规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%BF%87%E7%A8%8B%E2%80%93%E6%9C%8D%E5%8A%A1%E8%A7%84%E5%88%99%E5%92%8C%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">服务过程–服务规则和时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">排队时延的计算</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Little%E5%AE%9A%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">Little定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F-N-x3D-%CE%BBT"><span class="nav-number">2.1.</span> <span class="nav-text">公式  N&#x3D;λT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#M-x2F-M-x2F-m%E5%9E%8B%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%A1%A8%E5%BE%81"><span class="nav-number">3.</span> <span class="nav-text">M&#x2F;M&#x2F;m型排队系统的表征</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F-A-x2F-B-x2F-C-x2F-D-x2F-E"><span class="nav-number">3.1.</span> <span class="nav-text">排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E8%A1%A8%E7%A4%BA%E5%88%B0%E8%BE%BE%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94%E5%88%86%E5%B8%83"><span class="nav-number">3.1.1.</span> <span class="nav-text">A 表示到达时间间隔分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%9C%8D%E5%8A%A1%E6%97%B6%E9%97%B4%E5%88%86%E5%B8%83"><span class="nav-number">3.1.2.</span> <span class="nav-text">B 服务时间分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E6%9C%8D%E5%8A%A1%E5%91%98%E4%B8%AA%E6%95%B0"><span class="nav-number">3.1.3.</span> <span class="nav-text">C 服务员个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E5%AE%B9%E9%87%8F"><span class="nav-number">3.1.4.</span> <span class="nav-text">D 服务系统容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%A7%84%E5%88%99"><span class="nav-number">3.1.5.</span> <span class="nav-text">服务规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M-x2F-M-x2F-1%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">M&#x2F;M&#x2F;1型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#N-x3D-%E2%88%91-%E2%88%9E-n-x3D-0-nPn-x3D-%E2%88%91-%E2%88%9E-n-x3D-0-n%CF%81-1-%CF%81"><span class="nav-number">3.2.1.</span> <span class="nav-text">N&#x3D;∑(∞,n&#x3D;0)nPn &#x3D; ∑(∞,n&#x3D;0)nρ*(1-ρ)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x3D-%CF%81-1-%CF%81-%CE%A3-%E2%88%9E-n-0-n%CF%81-n-1-x3D-%CF%81-x2F-1-%CF%81-x3D-%CE%BB-x2F-%CE%BC-%CE%BB"><span class="nav-number">3.2.2.</span> <span class="nav-text">&#x3D;ρ*(1-ρ)Σ(∞,n-0)nρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M-x2F-M-x2F-m-x2F-m%E5%9E%8B"><span class="nav-number">3.3.</span> <span class="nav-text">M&#x2F;M&#x2F;m&#x2F;m型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M-x2F-G-x2F"><span class="nav-number">3.4.</span> <span class="nav-text">M&#x2F;G&#x2F;</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -368,14 +384,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

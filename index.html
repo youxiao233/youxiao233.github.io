@@ -344,6 +344,235 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/05/%E8%A7%A3%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E7%A7%AF%E7%B4%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/05/%E8%A7%A3%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E7%A7%AF%E7%B4%AF/" class="post-title-link" itemprop="url">隐写的一点点积累</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-05-05 15:20:12 / 修改时间：15:55:58" itemprop="dateCreated datePublished" datetime="2022-05-05T15:20:12+08:00">2022-05-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E4%B8%9C%E8%A5%BF/" itemprop="url" rel="index"><span itemprop="name">杂七杂八的东西</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="隐写啊……阿巴阿巴阿巴"><a href="#隐写啊……阿巴阿巴阿巴" class="headerlink" title="隐写啊……阿巴阿巴阿巴"></a>隐写啊……阿巴阿巴阿巴</h1><p>写了一些些题目，有一点收获，但是我的记忆只有不到一周（逃<br>不写下来就又忘了，特此浅写一点点来给自己看  </p>
+<h2 id="丢010里看看呗"><a href="#丢010里看看呗" class="headerlink" title="丢010里看看呗"></a>丢010里看看呗</h2><p>010起手，主要看文件类型、文件完整性还有隐藏在十六进制代码里面的信息<br>建议直接ctrl+F flag 因为所有题都是这样（逃<br>这样可以方便寻找方向  </p>
+<h2 id="有个叫做lsb的东西"><a href="#有个叫做lsb的东西" class="headerlink" title="有个叫做lsb的东西"></a>有个叫做lsb的东西</h2><p>貌似是最低有效位隐写，虽然不知道原理是啥吧，但是能写<br>一般的，丢到stegsolve里面，看看各个通道的图层<br>哪个通道的最低位有异常，那大概是那个通道用于lsb了<br>然后就用DATA extract给整一下lsb<br>（不想整图，等到我成为学长时候在整具体的）  </p>
+<h2 id="有个调整png显示大小的"><a href="#有个调整png显示大小的" class="headerlink" title="有个调整png显示大小的"></a>有个调整png显示大小的</h2><p>一般就是CRC不对劲时候（win能打开，linux打不开时候也是）<br>去找找有无关于图片大小的提示，改一下，看看能不能显示出特殊信息<br>或者弄个脚本呗，暴力枚举大小，通过crc正确性进行判断  </p>
+<h2 id="还有个啥来着？"><a href="#还有个啥来着？" class="headerlink" title="还有个啥来着？"></a>还有个啥来着？</h2><p>记一些奇怪的插件  </p>
+<h3 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h3><p>基础，好用，感觉不对劲直接扔kali里跑个binwalk<br>大概率能发现群友奇怪的成分（雾<br>然后用下面这个</p>
+<h3 id="foremost"><a href="#foremost" class="headerlink" title="foremost"></a>foremost</h3><p>用于分离文件，禁止文件贴贴，可以拿到藏起来的文件  </p>
+<h3 id="zsteg"><a href="#zsteg" class="headerlink" title="zsteg"></a>zsteg</h3><p>很吊的linux脚本，直接zsteg -a<br>管他啥通道隐写啊，全部给你整出来，你按需拿取即可<br>适合一把梭玩家（逃</p>
+<h3 id="snow-exe"><a href="#snow-exe" class="headerlink" title="snow.exe"></a>snow.exe</h3><p>没明白</p>
+<h3 id="破解压缩包密码也算隐写（不是"><a href="#破解压缩包密码也算隐写（不是" class="headerlink" title="破解压缩包密码也算隐写（不是"></a>破解压缩包密码也算隐写（不是</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/30/%E5%9B%9B%E6%9C%88%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/30/%E5%9B%9B%E6%9C%88%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">四月总结</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-04-30 09:58:19 / 修改时间：10:10:57" itemprop="dateCreated datePublished" datetime="2022-04-30T09:58:19+08:00">2022-04-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="四月是寄的一月"><a href="#四月是寄的一月" class="headerlink" title="四月是寄的一月"></a>四月是寄的一月</h1><h2 id="4-9蓝桥省赛"><a href="#4-9蓝桥省赛" class="headerlink" title="4.9蓝桥省赛"></a>4.9蓝桥省赛</h2><p>学校是封的<br>比赛是教室开的<br>题目是看不懂的<br>人是麻的  </p>
+<h2 id="麻辣香锅"><a href="#麻辣香锅" class="headerlink" title="麻辣香锅"></a>麻辣香锅</h2><p>麻辣香锅一时爽，一直吃一直爽  </p>
+<h2 id="4-10-解封"><a href="#4-10-解封" class="headerlink" title="4.10  解封"></a>4.10  解封</h2><h2 id="分流"><a href="#分流" class="headerlink" title="分流"></a>分流</h2><p>选了物联网，不过反正要run的，都行吧</p>
+<h2 id="4-21给蓝桥官网联习系统干破防了"><a href="#4-21给蓝桥官网联习系统干破防了" class="headerlink" title="4.21给蓝桥官网联习系统干破防了"></a>4.21给蓝桥官网联习系统干破防了</h2><p>什么牛马东西，错了就给个错误，没有反馈，题解也都很烂，还是我的luogu友好  </p>
+<h2 id="4-22开始整misc玩"><a href="#4-22开始整misc玩" class="headerlink" title="4.22开始整misc玩"></a>4.22开始整misc玩</h2><h2 id="4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"><a href="#4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃" class="headerlink" title="4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"></a>4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃</h2><h2 id="4-28蓝桥结果出来了，浅拿省一，按下不表"><a href="#4-28蓝桥结果出来了，浅拿省一，按下不表" class="headerlink" title="4.28蓝桥结果出来了，浅拿省一，按下不表"></a>4.28蓝桥结果出来了，浅拿省一，按下不表</h2><h2 id="4-30写下这个东西"><a href="#4-30写下这个东西" class="headerlink" title="4.30写下这个东西"></a>4.30写下这个东西</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/29/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/29/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/" class="post-title-link" itemprop="url">http协议浅尝</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-04-29 00:17:15 / 修改时间：01:05:48" itemprop="dateCreated datePublished" datetime="2022-04-29T00:17:15+08:00">2022-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87/" itemprop="url" rel="index"><span itemprop="name">知识储备</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>用户访问https:&#x2F;<a target="_blank" rel="noopener" href="http://www.baidu.com/index.html%E9%93%BE%E6%8E%A5%E5%90%8E">www.baidu.com/index.html链接后</a><br>1.浏览器分析超链接中的URL<br>2.浏览器请求解析目标<a target="_blank" rel="noopener" href="http://www.baidu.com的ip地址/">www.baidu.com的IP地址</a><br>3.DNS将解析出的IP220.181.38.148返回浏览器<br>4.浏览器与服务器建立TCP（80端口）链接<br>5.浏览器请求文档： GET&#x2F;index.html<br>6.服务器给出响应，将文档index.html发送给浏览器<br>7.释放TCP链接<br>8.浏览器显示index.html中的内容  </p>
+<h2 id="非持久性连接"><a href="#非持久性连接" class="headerlink" title="非持久性连接"></a>非持久性连接</h2><p>http0.9和http1.0会有<br>对于请求web页含有多个其他文档对象的连接情况，小笼包低下</p>
+<h2 id="持久性连接"><a href="#持久性连接" class="headerlink" title="持久性连接"></a>持久性连接</h2><p>可以进行多次请求和响应，服务器响应后不立即释放连接，可继续进行请求  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -379,7 +608,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 15:20:34" itemprop="dateModified" datetime="2022-03-21T15:20:34+08:00">2022-03-21</time>
+                <time title="修改时间：2022-03-22 17:17:17" itemprop="dateModified" datetime="2022-03-22T17:17:17+08:00">2022-03-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -407,7 +636,7 @@
 <p>会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss）</p>
 <p>衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制</p>
 <h2 id="网络时延模型"><a href="#网络时延模型" class="headerlink" title="网络时延模型"></a>网络时延模型</h2><h3 id="处理时延"><a href="#处理时延" class="headerlink" title="处理时延"></a>处理时延</h3><p>一个分组到达节点输入端与其到达输出端之间的时延</p>
-<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>直接点开始发送第一比特到发完最后一比特的时间</p>
+<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>指节点开始发送第一比特到发完最后一比特的时间</p>
 <h3 id="传播时延"><a href="#传播时延" class="headerlink" title="传播时延"></a>传播时延</h3><p>指节点发送第一个比特的时刻到此比特到达接收点的时延</p>
 <pre><code>与电磁波在媒质中传播速度有关，与通信距离成正比，与信道容量本身无关
 传播时延=信道长度/在信道的传播速度
@@ -431,7 +660,15 @@
 <pre><code>系统中平均顾客数N（他是在等待队列中和正接受服务的顾客数之和的平均数）  
 每个顾客的平均时延T（即每个顾客等待所花的时间加上服务时间至和的平均值）
 </code></pre>
-
+<h1 id="Little定理"><a href="#Little定理" class="headerlink" title="Little定理"></a>Little定理</h1><p>顾客到达率λ<br>系统中平均顾客数N<br>每个顾客的平均时延T</p>
+<h2 id="公式-N-x3D-λT"><a href="#公式-N-x3D-λT" class="headerlink" title="公式  N&#x3D;λT"></a>公式  N&#x3D;λT</h2><p>系统的用户数&#x3D;用户平均到达率*平均时延<br>1.他关心的只是排队系统的三个统计平均量，对某个过程的具体时间以及排队规则不做要求<br>2.公式中三个统计平均量必须是针对一个顾客群体而言的，也就是只要这三个统计平均量是针对同一个顾客群体定义，其间就存在Little公式</p>
+<p><img src="https://imgtu.com/i/qnr3QI"><br><img src="/"><br><img src="/">  </p>
+<h1 id="M-x2F-M-x2F-m型排队系统的表征"><a href="#M-x2F-M-x2F-m型排队系统的表征" class="headerlink" title="M&#x2F;M&#x2F;m型排队系统的表征"></a>M&#x2F;M&#x2F;m型排队系统的表征</h1><h2 id="排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E"><a href="#排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E" class="headerlink" title="排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E"></a>排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E</h2><h3 id="A-表示到达时间间隔分布"><a href="#A-表示到达时间间隔分布" class="headerlink" title="A 表示到达时间间隔分布"></a>A 表示到达时间间隔分布</h3><h3 id="B-服务时间分布"><a href="#B-服务时间分布" class="headerlink" title="B 服务时间分布"></a>B 服务时间分布</h3><p>A，B包含：<br>M：指数分布<br>D：确定性分布<br>Ek：爱尔兰分布<br>G：一般分布</p>
+<h3 id="C-服务员个数"><a href="#C-服务员个数" class="headerlink" title="C 服务员个数"></a>C 服务员个数</h3><h3 id="D-服务系统容量"><a href="#D-服务系统容量" class="headerlink" title="D 服务系统容量"></a>D 服务系统容量</h3><p>包括正被服务和等待的用户<br>缺省时默认为无穷大</p>
+<h3 id="服务规则"><a href="#服务规则" class="headerlink" title="服务规则"></a>服务规则</h3><p>先来先服务（FCFS）<br>后来先服务（LCFS）<br>随即服务（SIRO）<br>缺省时默认FCFS  </p>
+<h2 id="M-x2F-M-x2F-1型"><a href="#M-x2F-M-x2F-1型" class="headerlink" title="M&#x2F;M&#x2F;1型"></a>M&#x2F;M&#x2F;1型</h2><p>到达是poisson过程，到达率是λ<br>允许排无限长的队（系统缓存无限）<br>服务过程为指数过程，服务速率为μ（平均服务时间为1&#x2F;μ）<br>服务员为1个，到达过程与服务过程互相独立<br>稳态概率为Pn &#x3D;（ρ^n）*（1-ρ） n&#x3D;0，1，2……<br>（也就是有n个客户的概率和系统状态的稳态概率）<br>ρ&#x3D;λ&#x2F;μ 反映了繁忙程度（litte）<br>空闲概率：P0 &#x3D;（1-ρ）<br>排队概率为ρ<br>平均用户数为</p>
+<h3 id="N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ"><a href="#N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ" class="headerlink" title="N&#x3D;∑(∞,n&#x3D;0)nPn &#x3D; ∑(∞,n&#x3D;0)nρ*(1-ρ)"></a>N&#x3D;∑(∞,n&#x3D;0)n<em>Pn &#x3D; ∑(∞,n&#x3D;0)n</em>ρ*(1-ρ)</h3><h3 id="x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ"><a href="#x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ" class="headerlink" title="&#x3D;ρ*(1-ρ)Σ(∞,n-0)nρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)"></a>&#x3D;ρ*(1-ρ)<em>Σ(∞,n-0)n</em>ρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)</h3><p>（我再码公式是孙子）<br><img src="/"><br>（是不是很像上一课的litte例子？）</p>
+<h2 id="M-x2F-M-x2F-m-x2F-m型"><a href="#M-x2F-M-x2F-m-x2F-m型" class="headerlink" title="M&#x2F;M&#x2F;m&#x2F;m型"></a>M&#x2F;M&#x2F;m&#x2F;m型</h2><h2 id="M-x2F-G-x2F"><a href="#M-x2F-G-x2F" class="headerlink" title="M&#x2F;G&#x2F;"></a>M&#x2F;G&#x2F;</h2>
       
     </div>
 
@@ -898,307 +1135,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/27/node-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/27/node-js/" class="post-title-link" itemprop="url">node.js</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-02-27 13:26:05 / 修改时间：13:42:57" itemprop="dateCreated datePublished" datetime="2022-02-27T13:26:05+08:00">2022-02-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>浅浅的学了一下nodejs的使用</p>
-<h1 id="跟着慕课的课程慢慢学的"><a href="#跟着慕课的课程慢慢学的" class="headerlink" title="跟着慕课的课程慢慢学的"></a>跟着慕课的课程慢慢学的</h1><pre><code>`
-console.log(&quot;Web前端开发&quot;);//普通信息
-console.info(&quot;Web前端开发&quot;);//提示信息
-console.error(&quot;Web前端开发&quot;);//错误信息
-console.warn(&quot;Web前端开发&quot;);//警告信息
-//个人理解：搭配if食用效果更佳
-
-var bBody = document.body; //定义一个变量，貌似var这个东西可以定义所有种类变量，然后变量类型取决于放进去的数据
-console.dir(bBody);
-
-var students = [                //你看这儿就是var定义数组，有别于c的定义方法
-    &#123;
-        name: &quot;张三&quot;,
-        email: &quot;zhangsan@163.com&quot;,
-        qq: 12345
-    &#125;,
-    &#123;
-        name: &quot;李四&quot;,
-        email: &quot;lisi@163.com&quot;,
-        qq: 123456
-    &#125;
-];
-console.table(students);//输出表格
-
-console.time(&#39;forTime&#39;);这个和c那个记录时间的函数很想像
-for(var i=0,count = 0;i&lt;99999;i++)&#123;//for循环属于典中典了
-    count++;
-&#125;
-console.timeEnd(&#39;forTime&#39;);
-
-console.group(&#39;前端一组&#39;);//这个类似是开了一个分支的效果
-console.log(&quot;前端一组-1&quot;);
-console.log(&quot;前端一组-2&quot;);
-console.log(&quot;前端一组-3&quot;);
-console.groupEnd();
-
-function testFn()&#123;//定义函数啊，典
-    console.count(&#39;当前函数被调用次数&#39;);
-&#125;
-testFn();
-testFn();
-testFn();
-
-var flag = false;
-console.assert(flag,&#39;当flag为false时才输出!&#39;)//这个应该是个检测函数，检测是否为真;
-</code></pre>
-<p>&#96;</p>
-<p>就学到这儿，再探再报</p>
-<p><img src="https://i0.hdslb.com/bfs/article/d1f5f858ddb52f5de6aa1ab13c2ed63ea23fcce2.jpg@1320w_740h.webp"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/26/2022-2-26/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/26/2022-2-26/" class="post-title-link" itemprop="url">2022/2/26</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-02-26 19:21:10 / 修改时间：20:19:32" itemprop="dateCreated datePublished" datetime="2022-02-26T19:21:10+08:00">2022-02-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="老校区摆的不提劲，我直接在龙子湖摆"><a href="#老校区摆的不提劲，我直接在龙子湖摆" class="headerlink" title="老校区摆的不提劲，我直接在龙子湖摆"></a>老校区摆的不提劲，我直接在龙子湖摆</h1><p>今天是交个普通话证的表，顺便陪室友串亲戚了</p>
-<p>然后顺便打了个信管的蓝桥预选赛</p>
-<p>TC我居然没看出来用栈做。。。。</p>
-<p>TH排个序，然后模拟了一个钟头，好在是过了。。。</p>
-<p>TG没看，但是据说是个裸背包，离大谱了</p>
-<p>TF24点，妈耶，我前面的大哥写了二十七个if语句</p>
-<p>总之，寄了，很划，很烂</p>
-<p>顺便放一点小姐姐拍的照片</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/02/98637a929b6fa788.jpg"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/02/08a626c6e3a333ca.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/24/2022-2-24/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/24/2022-2-24/" class="post-title-link" itemprop="url">2022/2/24</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-
-              <time title="创建时间：2022-02-24 10:53:10" itemprop="dateCreated datePublished" datetime="2022-02-24T10:53:10+08:00">2022-02-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 15:03:33" itemprop="dateModified" datetime="2022-02-25T15:03:33+08:00">2022-02-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一日之摆启于晨"><a href="#一日之摆启于晨" class="headerlink" title="一日之摆启于晨"></a>一日之摆启于晨</h1><h2 id="6：00"><a href="#6：00" class="headerlink" title="6：00"></a>6：00</h2><p>上铺放的盒子biaji一声拍地上给我惊醒了，一看表，六点钟，就很离谱，八辈子没起过这么早了。起都起了，洗个衣服吧，这小风吹着，jiojio都冻疼了，预示着又是摆的一天。</p>
-<h2 id="7：00"><a href="#7：00" class="headerlink" title="7：00"></a>7：00</h2><p>郑州的公交车离谱啊，早饭差点晃出来。</p>
-<p>然后我又看着三号楼的课，一头扎推广楼里面去了。（笑）</p>
-<p>一进教室，可恶，电路原理，昨天摆烂看选秀，没有预习。不过来都来了，这不睡会儿？看两眼书，继续摆！</p>
-<h2 id="8：00"><a href="#8：00" class="headerlink" title="8：00"></a>8：00</h2><p>电路原理课</p>
-<h2 id="9：40"><a href="#9：40" class="headerlink" title="9：40"></a>9：40</h2><p>可恶，煎饼果子背叛了我，才两节课就饿了，摆了摆了，吃点吃点，小卖部续一波命，不然后面集中不了注意力了。</p>
-<h2 id="10：00"><a href="#10：00" class="headerlink" title="10：00"></a>10：00</h2><p>思修课是要好好听的吧</p>
-<p>老师：这就是这样的一个很好的那个东西，所以我们应该好好培养一个这样的那个素养</p>
-<p>我：？？？？？？</p>
-<p>这老师也是绝了，滔滔不绝讲着莫名其妙的话（要是知识点多，我肯定听啊）</p>
-<p>摆吧，写写博客干点啥的</p>
-<p>整一个大本钟下送快递</p>
-<p>上面摆下面寄</p>
-<p>去找找有没有题可以写去</p>
-<h2 id="12：40"><a href="#12：40" class="headerlink" title="12：40"></a>12：40</h2><p>这波啊，这波是错峰吃饭</p>
-<p>woc？大帝要打乌克兰了？</p>
-<p>mark一下，下午再看</p>
-<h2 id="16：00"><a href="#16：00" class="headerlink" title="16：00"></a>16：00</h2><p>下课一看手机，基辅拿下了</p>
-<p>woc，见证历史了属于是</p>
-<p>这波啊，这波是疯狂星期四了2333</p>
-<h1 id="这波是见证历史了"><a href="#这波是见证历史了" class="headerlink" title="这波是见证历史了"></a>这波是见证历史了</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1265,14 +1206,14 @@ console.assert(flag,&#39;当flag为false时才输出!&#39;)//这个应该是个�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
