@@ -182,7 +182,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.png">
@@ -196,7 +196,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/21/hello-world/" class="post-title-link" itemprop="url">欢迎回来，我的朋友</a>
+            <a href="/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/" class="post-title-link" itemprop="url">团队主页的部署2</a>
         </h2>
 
         <div class="post-meta">
@@ -209,16 +209,19 @@
               <span class="post-meta-item-text">发表于</span>
 
             <span class="post-meta-item">
+              
 
-              <time title="创建时间：2022-02-21 12:56:10" itemprop="dateCreated datePublished" datetime="2022-02-21T12:56:10+08:00">2022-02-21</time>
+              <time title="创建时间：2022-06-25 14:42:02 / 修改时间：18:06:06" itemprop="dateCreated datePublished" datetime="2022-06-25T14:42:02+08:00">2022-06-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-03 13:24:33" itemprop="dateModified" datetime="2022-03-03T13:24:33+08:00">2022-03-03</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%A2%E9%98%9F%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">团队工作</span></a>
+                </span>
+            </span>
 
           
 
@@ -231,16 +234,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这里是河南农业大学摆烂摸鱼划水指挥部指战中心</p>
-<h2 id="我们摆烂"><a href="#我们摆烂" class="headerlink" title="我们摆烂"></a>我们摆烂</h2><p>走路太累，人们摆烂不走，运河铁道，引擎轰鸣处，车到山前必有路</p>
-<p>计算太累，人类摆烂不算，电子计算机横空出世，二进制递归，光明未来我改写</p>
-<p>天空不可触及，人类摆烂不学飞，机翼略处，火箭穿云至上，一览九霄上</p>
-<p>太虚苍莽，唯有摆烂破沧桑，世事难为，且看开摆创辉煌！</p>
-<h2 id="我们划水"><a href="#我们划水" class="headerlink" title="我们划水"></a>我们划水</h2><p>哪有什么星辰大海？都是人类多年划水，以梦为浆，划开一片新天。</p>
-<h2 id="我们摸鱼"><a href="#我们摸鱼" class="headerlink" title="我们摸鱼"></a>我们摸鱼</h2><p>渔猎生活开启了人类的历史</p>
-<p>摸鱼是人类万事的开始</p>
-<p>学会摸鱼，才能摆脱悲惨的尘世</p>
-<p>超脱物外，成为真正的自己</p>
+          <h1 id="上次耻辱过后，一不做二不休，直接重装系统"><a href="#上次耻辱过后，一不做二不休，直接重装系统" class="headerlink" title="上次耻辱过后，一不做二不休，直接重装系统"></a>上次耻辱过后，一不做二不休，直接重装系统</h1><p>学长的oj就无了（）<br>不过以后再说这个<br>这波需要重新配置一下服务器了  </p>
+<h2 id="第一步的话是基础配置"><a href="#第一步的话是基础配置" class="headerlink" title="第一步的话是基础配置"></a>第一步的话是基础配置</h2><h3 id="配个ip"><a href="#配个ip" class="headerlink" title="配个ip"></a>配个ip</h3><p>然后发现腾讯云的服务器已经配好ip了（不过考虑人家是物理机，应该没啥问题）  </p>
+<h3 id="配个yum"><a href="#配个yum" class="headerlink" title="配个yum"></a>配个yum</h3><p>然后发现他默认用的是腾讯云家的yum<br>不用自己配，真好（逃    </p>
+<h3 id="开个ssh服务"><a href="#开个ssh服务" class="headerlink" title="开个ssh服务"></a>开个ssh服务</h3><p>yum list installed | grep openssh-server<br>看一看有没有安装ssh<br>然后发现是有的，那么打开他<br>cd &#x2F;etc&#x2F;ssh<br>vim sshd.conf<br>把 Port 和ListenAddress 的注释删掉<br>permitrootlogin yes 注释删掉<br>passwordAuthentication yes 注释删掉<br>然后是sudo service sshd start<br>完事  </p>
+<h3 id="关个防火墙"><a href="#关个防火墙" class="headerlink" title="关个防火墙"></a>关个防火墙</h3><p>systemctl stop firewalld.service  </p>
+<p>Xshall能连上，还不错  </p>
+<h2 id="第二部是装docker"><a href="#第二部是装docker" class="headerlink" title="第二部是装docker"></a>第二部是装docker</h2><p>先塞一个yum 源<br>yum-config-manager –add-repo <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br>然后安装<br>yum install docker-ce<br>启动<br>sudo systemctl start docker<br>开启自启动<br>sudo systemctl enable docker<br>输入docker version  之后显示了版本信息，安装成功  </p>
+<h2 id="第三步，上传我的东西"><a href="#第三步，上传我的东西" class="headerlink" title="第三步，上传我的东西"></a>第三步，上传我的东西</h2><p>因为之前吧xshall下载回来了，我们直接用方便的rz  </p>
+<p>先试试nginx能不能用，上次耻辱下线就是因为nginx死活不行<br>先拉取nginx<br>docker pull nginx<br>docker run -dit –name&#x3D;nginx -p 80:80 nginx<br>这里我找到一个点，就是之前看的博客里面是没有-t这个参数的<br>但是我的理解中，服务端至少要有一个终端，没有-t就不能交互<br>于是加上-t<br>然后外网访问服务器80端口，能看到nginx的主页<br>我觉得成了<br>可是，我在<br>docker run -dit –name&#x3D;nginx -p 90:80 nginx<br>的时候又出现了问题，无法访问<br>和上次gg时候一样，我吐了啊。。。。<br>在我懵逼至极的时候，我想起来老大之前服务器里面使用的那几个端口<br>我一试，这几个端口都显示了nginx主页<br>我直接人傻了，于是去问郁老大  </p>
+<h1 id="以下内容建议全文背诵"><a href="#以下内容建议全文背诵" class="headerlink" title="以下内容建议全文背诵"></a>以下内容建议全文背诵</h1><p>老大说： </p>
+<pre><code>你是不是腾讯云里面没有设置安全组里的开放端口啊
+</code></pre>
+<p>我：？？？？？？？？？<br>打开，好了（）<br>全体目光向我看齐<br>就这儿，对<br>我宣布个事儿<br>我是个（  ——  ——  ）<br>然后docker run -dit –name&#x3D;nginx -p 14514:80 -v &#x2F;usr&#x2F;html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html nginx<br>可以访问（）<br>我。。。。。。。。。。。。  </p>
+<h1 id="得到的教训是"><a href="#得到的教训是" class="headerlink" title="得到的教训是"></a>得到的教训是</h1><p>欲善其功，先利其器<br>先给自己用的东西整明白再说（）  </p>
 
       
     </div>
@@ -260,7 +267,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/23/newstart/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/23/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.png">
@@ -274,7 +281,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/23/newstart/" class="post-title-link" itemprop="url">新的开始</a>
+            <a href="/2022/06/23/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">团队主页的部署</a>
         </h2>
 
         <div class="post-meta">
@@ -288,14 +295,103 @@
 
             <span class="post-meta-item">
 
-              <time title="创建时间：2022-02-23 14:22:01" itemprop="dateCreated datePublished" datetime="2022-02-23T14:22:01+08:00">2022-02-23</time>
+              <time title="创建时间：2022-06-23 16:07:50" itemprop="dateCreated datePublished" datetime="2022-06-23T16:07:50+08:00">2022-06-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 10:26:42" itemprop="dateModified" datetime="2022-02-24T10:26:42+08:00">2022-02-24</time>
+                <time title="修改时间：2022-06-25 14:42:50" itemprop="dateModified" datetime="2022-06-25T14:42:50+08:00">2022-06-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一开始用的是nginx直接部署<br>过程忘记写在这里了  </p>
+<p>error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Primzahl/p/9261760.html">解决方法</a></p>
+<p> [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</p>
+<p>发现80端口被docker占用（郁老大，你可没说有这啊）<br>所以其实我直接用docker拉取nginx，然后部署就行<br>先搜索安装的nginx镜像  </p>
+<pre><code>docker search nginx
+</code></pre>
+<p>然后找到合适的版本进行拉取  </p>
+<pre><code>docker pull nginx  
+</code></pre>
+<p>拉取后运行nginx容器  </p>
+<pre><code>docker run -di --name=nginx -p 90:80 -v /usr/html:/usr/share/nginx/html nginx 
+# -d 后台运行
+# -i 交互方式运行
+# --name 自定义容器名称
+# -p 端口号映射 90 自定义为外部访问端口：80 为nginx容器对外暴露的端口
+# -v 目录挂载  冒号前为 外部目录，冒号后为 容器内目录；相当于外部目录中的内容会映射同步到容器内
+</code></pre>
+<p>这里就需要上传我的html了，可是呢，好巧不巧，我的xshall安装包他无了，我用的是原始一点的putty（逃<br>于是就不能用rz这种方便快捷的方式了（呜呜呜  </p>
+<p>netstat -ano  查看已使用端口 状态</p>
+<p>docker的操作<br>docker rm + 名字 删除容器<br>docker start 名字 开启某个容器<br>docker run 镜像名字 部署一个容器<br>-p 物理机端口：docker端口  建立一个端口映射<br>–name&#x3D;名字 设置容器名称<br>-d后台运行<br>-i交互式运行<br>-v 物理机目录：docker目录 目录挂载<br>docker stop 名字  停止一个容器  </p>
+<p>机关算尽，无法解决外网不能访问的问题<br>于是决定撅掉郁老大的ubuntu，换成centos7（）<br>这波是耻辱下播（）  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/15/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5%E7%9A%84%E5%BF%A7%E9%83%81%E4%B8%AA%E4%BA%BA%E6%84%9F%E5%8F%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/15/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5%E7%9A%84%E5%BF%A7%E9%83%81%E4%B8%AA%E4%BA%BA%E6%84%9F%E5%8F%97/" class="post-title-link" itemprop="url">凉宫春日的忧郁个人感受（剧透向</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+
+              <time title="创建时间：2022-06-15 23:18:42" itemprop="dateCreated datePublished" datetime="2022-06-15T23:18:42+08:00">2022-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-16 00:00:55" itemprop="dateModified" datetime="2022-06-16T00:00:55+08:00">2022-06-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -303,7 +399,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                  <a href="/categories/%E5%8A%A8%E6%BC%AB%E8%A7%82%E6%84%9F/" itemprop="url" rel="index"><span itemprop="name">动漫观感</span></a>
                 </span>
             </span>
 
@@ -318,14 +414,83 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="可算是把我的博客建出来了"><a href="#可算是把我的博客建出来了" class="headerlink" title="可算是把我的博客建出来了"></a>可算是把我的博客建出来了</h1><p>从刚放寒假就决定要建立这个博客，但因为各种各样的理由，没有搞出来，怪我太慵懒，也怪事情太多了。</p>
-<p>现在好了，我有了这个博客可以用，总体来说还是很不错的。（笑）</p>
-<p>至于这个博客的作用嘛，我还是有一些打算的。</p>
-<p>说起最基本的功能呢，也就是记录一下平时干的事情，写写题解什么的，就当是日记好了。（笑）</p>
-<p>要说还有什么呢？那当然还是收录一些好玩的东西呢。</p>
-<p>我有个朋友打算把他写的科幻小说上传上来，当然也会有些好用的东西可以推荐呢。</p>
-<p>总之这就是建立这个博客最主要的目的了，别的什么倒还没有想过呢，不如一边饮酒一边细细想来吧。（笑）</p>
+          <p>下一个受害者是： 《幸运星》</p>
+<h1 id="是神作！！"><a href="#是神作！！" class="headerlink" title="是神作！！"></a>是神作！！</h1><p>观看时间：2022&#x2F;6&#x2F;15<br>该作品共有两部动画，分别是06年的乱序版和09版<br>后者包含前者部分，所以建议只看09版就行<br>复制粘贴自百度百科<br> 《凉宫春日的忧郁（2009年版）》于2009年4月2日开始播放，全28话（包括2006年版的14话），香港TVB将2009版本译为《凉宫春日的忧郁 1X2》。<br>2007年7月7日，“SOS团官方网站”施行“七夕”活动，《朝日新闻》早报上出现“凉宫春日第2期决定制作！”全页广告。2007年12月18日，“SOS团官方网站”施行“消失”活动，宣布“第2期中止。将以此为基础决定制作全新动画”。但是在2008年8月26日，《少年ACE》公布的却是新动画《小凉宫春日的忧郁》&amp;《喵☆小鹤屋学姐》动画版制作决定。在2009年2月6日发售的《Newtype》3月号上，正式宣布了TV动画“凉宫春日第2期”的制作决定。<br>《凉宫春日的忧郁（2009年版）》于2009年4月2日开始“从头”播放，由十四集新作和2006年版的十四集交叉播出。其中的新作《漫无止境的八月》更是忠实原著情节，以每集更换导演、重新作画及录音的独特表现重演了八次，成功诠释依春日之愿不断重复的暑假。 </p>
+<h2 id="SOS团官网（逃"><a href="#SOS团官网（逃" class="headerlink" title="SOS团官网（逃"></a><a target="_blank" rel="noopener" href="http://www.haruhi.tv/#">SOS团官网（逃</a></h2><p>#个人感受：<br>故事是一男主阿虚（他叫啥来自？）进入高中的视角，围绕凉宫春日同学的古怪行径（特殊能力）而展开的一系列故事<br>包括但不限于：<br>0、卡密sama<br>1、外星人，未来人，超能力者<br>2、可爱大胸萝莉（不是）<br>3、寡言看书眼睛（后来没了）娇小但能打<br>4、有神论<br>5、SOS团！！<br>6、在虚构的故事里寻求真实感的人脑袋一定有问题（逃）  </p>
+<p>相信世界上有外星人、未来人、超能力者的凉宫春日同学有着卡密sama改变世界的力量<br>于是就有了外星人，未来人和超能力者  </p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/19/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/19/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">pwn的浅尝（二）</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-05-19 21:39:01 / 修改时间：21:56:17" itemprop="dateCreated datePublished" datetime="2022-05-19T21:39:01+08:00">2022-05-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pwn/" itemprop="url" rel="index"><span itemprop="name">pwn</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>再水点</p>
+<h1 id="栈溢出利用"><a href="#栈溢出利用" class="headerlink" title="栈溢出利用"></a>栈溢出利用</h1>
       
     </div>
 
@@ -927,276 +1092,6 @@ $ echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/14/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="post-title-link" itemprop="url">浅学通信网络基础第二章</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-
-              <time title="创建时间：2022-03-14 18:47:04" itemprop="dateCreated datePublished" datetime="2022-03-14T18:47:04+08:00">2022-03-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 14:12:43" itemprop="dateModified" datetime="2022-03-21T14:12:43+08:00">2022-03-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">通信网络基础</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>端到端的传输协议</strong><br>问题：如何为源节点和目的节点之间建立可靠通道</p>
-<p>（如何在一条物理链路上进行可靠传输）</p>
-<p>数据链路传输协议</p>
-<pre><code>组帧技术
-
-标识高测光送下来的数据块的起止、特定内容（例如校验比特）的位置
- 
-差错检测技术
-
-发现传输中的错误
-
-请求发端重发技术（ARQ）
-
-消除传输错误
-</code></pre>
-<p>（如何在多条物理链路上进行可靠地数据传输）</p>
-<p>网络层、运输层传输协议  </p>
-<pre><code>网络层的端到端传输协议
-
-会话过程的标识/分组的编号、差错控制、流量控制    
-
-运输层的端到端传输协议
-
-差错控制和流量控制
-</code></pre>
-<hr>
-<h1 id="组帧技术"><a href="#组帧技术" class="headerlink" title="组帧技术"></a>组帧技术</h1><p>有开始和结束点的一组二进制数，内含校验比特</p>
-<h2 id="面向字符的组帧技术"><a href="#面向字符的组帧技术" class="headerlink" title="面向字符的组帧技术"></a>面向字符的组帧技术</h2><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/lomomo/115655">SLIP协议</a></p>
-<pre><code>物理层传输以字符为基本单元，并形成一定格式的字符串
-
-以END（C0H）和ESC（DBH）进行首位区分
-</code></pre>
-<h2 id="面向比特的组帧技术"><a href="#面向比特的组帧技术" class="headerlink" title="面向比特的组帧技术"></a>面向比特的组帧技术</h2><p>比特插入技术</p>
-<pre><code>用一个特殊比特串（Flag），如01^j0(指连续j个1） 
-
-发端出现连续j-1个    “1”，就插入一个零
-
-收端入伙发现j-1个“1”后面是零，就删掉零
-</code></pre>
-<h2 id="采用长度技术的组帧技术"><a href="#采用长度技术的组帧技术" class="headerlink" title="采用长度技术的组帧技术"></a>采用长度技术的组帧技术</h2><p>除以上两种，还用了帧长度来标识如何结束</p>
-<h2 id="差错检测技术"><a href="#差错检测技术" class="headerlink" title="差错检测技术"></a>差错检测技术</h2><p>思路：</p>
-<p>发端在K个信息后加L个某种规则计算的校验比特</p>
-<p>收端以所得数据进行重新计算L个校验比特与接受的校验比特对比</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C/8090811">奇偶校验</a></p>
-<h2 id="收端自动请求发端重发技术"><a href="#收端自动请求发端重发技术" class="headerlink" title="收端自动请求发端重发技术"></a>收端自动请求发端重发技术</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aaahuahua/article/details/119965804">ARQ协议</a></p>
-<p>SN：发送序号，发送帧的序号</p>
-<p>RN：接受序号，希望接受的下一帧序号（停等）或者已接收的最大序号（连续）</p>
-<hr>
-<h1 id="标准数据链路协议"><a href="#标准数据链路协议" class="headerlink" title="标准数据链路协议"></a>标准数据链路协议</h1><p>SDLC（IBM</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/HDLC%E5%8D%8F%E8%AE%AE/9441935">HDLC</a>（ISO</p>
-<p>ADCCP（ANSI</p>
-<p>LAPB（CCITT</p>
-<p>以HDLC介绍</p>
-<h2 id="正常响应模式"><a href="#正常响应模式" class="headerlink" title="正常响应模式"></a>正常响应模式</h2><p>参照HDLC</p>
-<h2 id="异步响应模式"><a href="#异步响应模式" class="headerlink" title="异步响应模式"></a>异步响应模式</h2><p>参照HDLC</p>
-<h2 id="异步平衡模式"><a href="#异步平衡模式" class="headerlink" title="异步平衡模式"></a>异步平衡模式</h2><p>参照HDLC</p>
-<h1 id="网络层（子网层）的端到端传输协议"><a href="#网络层（子网层）的端到端传输协议" class="headerlink" title="网络层（子网层）的端到端传输协议"></a>网络层（子网层）的端到端传输协议</h1><h2 id="会话过程的标识"><a href="#会话过程的标识" class="headerlink" title="会话过程的标识"></a>会话过程的标识</h2><p>一条链路通常被若干过程共享，需要对不同目的地&#x2F;源的不同会话过程的分组进行标识</p>
-<p>虚电路方式<br>    使用虚电路号（VC号），每个分组都有一个VC号，不同链路的虚电路好是独立的，每个节点都有一个VC转换表。</p>
-<p>数据报方式<br>    分组头中包含源节点、目的节点地址，以及相同节点中不同会话过程的标识，同一绘画过程中的分组编号（为了解决顺序和丢包问题） ，分组编号用K比特标识，用mod 2^K的方式循环编号。</p>
-<h2 id="网络层的差错控制"><a href="#网络层的差错控制" class="headerlink" title="网络层的差错控制"></a>网络层的差错控制</h2><p>与数据链路类似，使用ARQ的sn，rn和返回式或选择重发式</p>
-<p>差别：</p>
-<p>使用的位置不同 对于网络中任意两个节点间的传输</p>
-<p>编号方式不同 对分组进行编号，而不是帧</p>
-<p>传输顺序不同 不同分组可能经过不同路径</p>
-<p>时延不同 跟整个网络的状况有关</p>
-<p>差错检测</p>
-<h2 id="网络层流量控制"><a href="#网络层流量控制" class="headerlink" title="网络层流量控制"></a>网络层流量控制</h2><p>使发端减缓发送速度：类似DLC的RNR</p>
-<p>采用许可机制，反馈收端还有多少接受能力</p>
-<h1 id="运输层的端到端传输协议"><a href="#运输层的端到端传输协议" class="headerlink" title="运输层的端到端传输协议"></a>运输层的端到端传输协议</h1><p>TCP</p>
-<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><p>选择重发ARQ</p>
-<p>组适应算法计算平均往返时延</p>
-<p>##流量控制<br>考虑接收者缓存容量大小 使用通知窗口</p>
-<p>网络容量和通过量 使用拥塞窗口</p>
-<p>发送窗口&#x3D;min（通知窗口，使用窗口）</p>
-<p>慢启动、拥塞避免、快重传来进行拥塞控制</p>
-<p>每发送一次，就调整一次发送窗口</p>
-<p>使用门限窗口，拥塞大于门限，降低发送速度来避免拥塞</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/04/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/04/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="post-title-link" itemprop="url">浅学通信网络基础第一章</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-
-              <time title="创建时间：2022-03-04 14:55:27" itemprop="dateCreated datePublished" datetime="2022-03-04T14:55:27+08:00">2022-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 14:12:41" itemprop="dateModified" datetime="2022-03-21T14:12:41+08:00">2022-03-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">通信网络基础</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>##1-1什么是通信网络<br>是一些设备、设施组成的集合，可以提供特定的服务，既可以实现位于任意地点的不同用户间信息的传递</p>
-<p><img src="/"></p>
-<p>个人理解：网络传输方式是一致的，由不同协议来决定信息的意义。</p>
-<h2 id="1-2通信网络的基本构成"><a href="#1-2通信网络的基本构成" class="headerlink" title="1-2通信网络的基本构成"></a>1-2通信网络的基本构成</h2><p>数据传输网络基本功能是通过网络中的交换机或路由器，运载用户业务的分组，选择合适的传输路径，使这次额分组迅速可靠地传送到目标用户。</p>
-<p>基本信息被成为消息根据有应用场合不同有不同名称（文本，图片，视频等）</p>
-<p>A与B进行多次信息交互的交互序列被称为会话过程</p>
-<p>数据传输网络需保证每个绘画、会话过程可靠、及时、高效完成。</p>
-<p>典型的数据传输网络：分组交换网络和ATM网络等</p>
-<p>分组：有一定的数据单元</p>
-<p>每个组有个分组头，来代表目的以及其他信息</p>
-<p>每个网络节点中由存储转发的方式进行呈递</p>
-<p>三个基本过程：</p>
-<blockquote>
-<p>一、分段和重装  发端需将一条消息分成规定的分组，在收端重新装配，回复原始信息。</p>
-</blockquote>
-<blockquote>
-<p>二、路径选择 </p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>虚电路方式</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>数据报方式</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>三、网络节点交换过程 </p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30670965/article/details/96123793">数据报和虚电路的优缺点</a> </p>
-<h2 id="1-3协议体系及分层概念"><a href="#1-3协议体系及分层概念" class="headerlink" title="1-3协议体系及分层概念"></a>1-3协议体系及分层概念</h2><p>在信道上一套关于信息的表示、信息传递顺序、信息格式和信息内容等的约定，这一套约定称为通信协议</p>
-<p>分层的基础使“模块”的概念，多个模块形成系统，乘坐服务</p>
-<p>设计简单，易懂，标准化，交互性好，现成模块多，可嵌套，对用户就是黑箱</p>
-<p>双方必须有相同的或相应的模块才能进行通信</p>
-<p>要求保证数据传送的及时性正确性，可辨识性</p>
-<p>举例：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/OSI%E6%A8%A1%E5%9E%8B/10119902">OSI协议</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42631607/article/details/105029270">链路层</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1268,20 +1163,20 @@ $ echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
