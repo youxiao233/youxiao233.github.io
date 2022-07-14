@@ -182,6 +182,477 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/19/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/19/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">pwn的浅尝（二）</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-05-19 21:39:01 / 修改时间：21:56:17" itemprop="dateCreated datePublished" datetime="2022-05-19T21:39:01+08:00">2022-05-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pwn/" itemprop="url" rel="index"><span itemprop="name">pwn</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>再水点</p>
+<h1 id="栈溢出利用"><a href="#栈溢出利用" class="headerlink" title="栈溢出利用"></a>栈溢出利用</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/17/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/17/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">pwn的浅尝（一）</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+
+              <time title="创建时间：2022-05-17 20:06:48" itemprop="dateCreated datePublished" datetime="2022-05-17T20:06:48+08:00">2022-05-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-18 22:50:35" itemprop="dateModified" datetime="2022-05-18T22:50:35+08:00">2022-05-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pwn/" itemprop="url" rel="index"><span itemprop="name">pwn</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="跟着duchao大佬学pwn！！！"><a href="#跟着duchao大佬学pwn！！！" class="headerlink" title="跟着duchao大佬学pwn！！！"></a>跟着duchao大佬学pwn！！！</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mr4y1Y7fW?spm_id_from=333.337.search-card.all.click">b站传送门</a></p>
+<p>不整背景故事了，因为人家都整的有，我再整就多了</p>
+<h2 id="前期感想"><a href="#前期感想" class="headerlink" title="前期感想"></a>前期感想</h2><p>根据我近期的学习情况，pwn的需要不少前置知识  </p>
+<h3 id="Ⅰ-linux的使用（轻度，能用就可，可以慢慢学"><a href="#Ⅰ-linux的使用（轻度，能用就可，可以慢慢学" class="headerlink" title="Ⅰ  linux的使用（轻度，能用就可，可以慢慢学"></a>Ⅰ  linux的使用（轻度，能用就可，可以慢慢学</h3><h3 id="Ⅱ-gdb（要会调试，会看参数"><a href="#Ⅱ-gdb（要会调试，会看参数" class="headerlink" title="Ⅱ  gdb（要会调试，会看参数"></a>Ⅱ  gdb（要会调试，会看参数</h3><h3 id="Ⅲ-汇编语言（重度，可以说你要是看不懂前期就是坐牢"><a href="#Ⅲ-汇编语言（重度，可以说你要是看不懂前期就是坐牢" class="headerlink" title="Ⅲ  汇编语言（重度，可以说你要是看不懂前期就是坐牢"></a>Ⅲ  汇编语言（重度，可以说你要是看不懂前期就是坐牢</h3><h3 id="Ⅳ-一定的编程基础（要是没有，就会换种方式坐牢"><a href="#Ⅳ-一定的编程基础（要是没有，就会换种方式坐牢" class="headerlink" title="Ⅳ  一定的编程基础（要是没有，就会换种方式坐牢"></a>Ⅳ  一定的编程基础（要是没有，就会换种方式坐牢</h3><h3 id="Ⅴ-python脚本的使用（能明白是啥就行"><a href="#Ⅴ-python脚本的使用（能明白是啥就行" class="headerlink" title="Ⅴ  python脚本的使用（能明白是啥就行"></a>Ⅴ  python脚本的使用（能明白是啥就行</h3><p>如果对上述知识有所学习或者精通的大佬，可以学PWN<br>不然的话就把上述知识补习一下即可<br>（ps：这些都是基础，想走关于计算机的路，学了总不亏）  </p>
+<h2 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h2><p>这个可以说是很重要的工具了，配合vmmap，pwntools等插件食用更佳<br>一般用来直接对可执行程序进行动态调试，这个过程可以找到潜在的漏洞<br>就好比是纯粹骨钉，是主要武器  </p>
+<h3 id="食用说明"><a href="#食用说明" class="headerlink" title="食用说明"></a>食用说明</h3><p>我只写一下我学习pwn过程中用到的，以后可能会有专门讲gdb的博客出现吧（逃  </p>
+<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><p>有那么几种指针，我们统称指针</p>
+<pre><code>*[数字]  $[寄存器]  &amp;[函数]
+</code></pre>
+<p>开始使用  </p>
+<pre><code>gdb [被调试文件全称]
+</code></pre>
+<p>开始调试</p>
+<pre><code>1 start
+2 run
+</code></pre>
+<p>列出当前函数信息</p>
+<pre><code>disassemble
+disassemble [函数指针] //列出相应函数信息
+</code></pre>
+<p>查看信息</p>
+<pre><code>i          //（information）
+i r     //查看寄存器
+i b     //查看断点
+……
+</code></pre>
+<p>查询相关信息</p>
+<pre><code>search [字符串]  //查找相应串
+search  [指针]   //查找相应对象
+</code></pre>
+<p>打印</p>
+<pre><code>p   //print
+p [指针]
+p [数学计算]
+……
+</code></pre>
+<h4 id="比较重要的操作"><a href="#比较重要的操作" class="headerlink" title="比较重要的操作"></a>比较重要的操作</h4><p>X列出信息</p>
+<pre><code>x/[要看的单位数][格式] [指针]//总之是常用且重要的指令
+</code></pre>
+<p>set修改信息</p>
+<pre><code>set [指针] [信息]    //当然这个信息也可以是指针
+</code></pre>
+<h4 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h4><p>pwntools一定要装，或者用更好的插件<br>并且为pwntools设置另一个伪终端作为输出窗口，体验感飙升<br>相当于骨钉升级为纯粹骨钉，效果拔群  vmmap还没学明白，摆  </p>
+<p>记得多跑跑程序，加深印象</p>
+<h2 id="你的汇编大爹"><a href="#你的汇编大爹" class="headerlink" title="你的汇编大爹"></a>你的汇编大爹</h2><p>有王爽老师的8086汇编课程基础的佬超级nice<br>没有的话，不完全影响<br>你需要看明白汇编语句的意思，然后去gdb几下，加深理解<br>这里用Intel的方法来书写</p>
+<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><pre><code>mov [指针],[指针/值]//把后者的[值]赋给前者  
+add [指针],[指针/值]//前者的[]值加上后者的[值]  
+sub [指针],[指针/值]//前者的[值]减去后者的[值]   
+jmp [地址值/指针]rip（eip）（也就是函数当前执行位置）跳转到目标地址   
+lea [指针],[指针/值]//把后者的[指针]赋给前者  
+push [值]  //把一个值压入栈中  
+pop       //弹出栈顶
+pop [指针]  //弹出栈顶，并赋值给该指针所指 
+call [地址值/指针]  调用该地址的函数  
+//相当于push $rip  jmp [目标位置]    
+leave返回上个函数的栈状态//相当于pop rbp     
+ret 退出函数  //相当于pop rip  
+cmp [指针],[指针/值]    //前减去后是否为0，为零，z=1，不为零，z=0    
+jz je [指针/地址值]  //如果z=1，跳转到目标行      
+jnz jne [指针/地址值]  //如果z=0 跳转
+  
+</code></pre>
+<h3 id="函数组成"><a href="#函数组成" class="headerlink" title="函数组成"></a>函数组成</h3><p>bp: ebp  rbp<br>sp: esp  rsp  </p>
+<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p>栈的维护，保障了函数高效无误的运行<br>一般来说，bp表示栈底，sp表示栈顶<br>系统栈是从高位向低位生长的，而里面的数据是以小端序进行放置的<br>当我们使用gets之类的函数进行读入时，数据一般会储存在bp-xxx这样一个位置<br>也可以用push来进行数据的入栈，相应的sp会减去一个单位（4byte或8byte）<br>用pop [指针]进行取值，上面有写  </p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>在call一个函数时，会先 push $ip 进行一个当前位置下一条指令的地址的存储<br>然后在函数中，再 push $bp 进行一个caller函数栈底的记录<br>然后时一个mov bp,sp 进行一个bp的拉起，把bp拉至当前sp<br>（当前的sp就是caller函数的栈顶）<br>最后给sp加上一定值作为缓冲<br>差不多就是</p>
+<pre><code>-------------------------------  
+sp|当前栈顶|  
+--+-------+--------------------    
+bp|当前栈底|存的是caller的栈底地址   
+--+-------+--------------------  
+  |       |caller的下一条指令地址    
+-------------------------------
+</code></pre>
+<p>当然，不同的保护机制所给的缓冲区有一定区别<br>也有canary之类的保护机制<br>不过俺还没学过（逃<br>然后是函数返回<br>在callee函数被执行完的时候，sp会回到bp的位置<br>此时进行一个leave，也就是pop bp<br>再来一个ret （return） 也就是pop rip<br>这样bp、sp、ip就回到caller的状态了     </p>
+<h2 id="基础的漏洞利用"><a href="#基础的漏洞利用" class="headerlink" title="基础的漏洞利用"></a>基础的漏洞利用</h2><p>###栈溢出<br>我止步于此（逃<br>利用get read等可以引起读入溢出的语句，进行溢出攻击<br>具体表现为输入一些数据，覆盖原本栈帧，以便达到目的<br>最好是写py脚本进行利用，方便操作和修改   </p>
+<p>使用gdb动态调试，可以寻找程序内可以利用的地方<br>利用get读入的不严谨性，把我们找到的可利用函数的地址和利用该函数所需的数据，覆盖掉原本的返回地址和部分数据，即可利用该漏洞，从而获取shall和其他信息  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/12/pwn%E7%9A%84%E4%B8%80%E4%BA%9B%E5%89%8D%E7%BD%AE%E5%B7%A5%E5%85%B7%E7%9A%84%E8%A3%85%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/12/pwn%E7%9A%84%E4%B8%80%E4%BA%9B%E5%89%8D%E7%BD%AE%E5%B7%A5%E5%85%B7%E7%9A%84%E8%A3%85%E9%85%8D/" class="post-title-link" itemprop="url">pwn的一些前置工具的装配</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-05-12 09:56:26 / 修改时间：10:06:18" itemprop="dateCreated datePublished" datetime="2022-05-12T09:56:26+08:00">2022-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%8D%E4%BC%9Apwn%E7%9A%84%E4%BA%BA%E7%9A%84%E6%8C%A3%E6%89%8E/" itemprop="url" rel="index"><span itemprop="name">不会pwn的人的挣扎</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这里只是记一下怎么装的，我菜，也不懂</p>
+<h1 id="学不会pwn…………"><a href="#学不会pwn…………" class="headerlink" title="学不会pwn…………"></a>学不会pwn…………</h1><p>需要一些小小的插件，不然你就只能看汇编了  </p>
+<h2 id="1-gdb"><a href="#1-gdb" class="headerlink" title="1.gdb"></a>1.gdb</h2><p>这东西现在的大多数基于linux的系统都会有吧应该</p>
+<h2 id="pwntools"><a href="#pwntools" class="headerlink" title="pwntools"></a>pwntools</h2><pre><code>sudo apt update
+sudo apt install python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential -y
+python3 -m pip install --upgrade pip
+pip3 install --upgrade pwntools
+</code></pre>
+<h2 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h2><pre><code>sudo apt install checksec
+</code></pre>
+<h2 id="pwndbg"><a href="#pwndbg" class="headerlink" title="pwndbg"></a>pwndbg</h2><pre><code>git clone https://github.com/pwndbg/pwndbg
+cd pwndbg
+./setup.sh
+</code></pre>
+<h2 id="peda"><a href="#peda" class="headerlink" title="peda"></a>peda</h2><pre><code># 1
+$ pip install peda
+# 2
+$ git clone https://github.com/longld/peda.git ~/peda
+$ echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit 
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/05/%E8%A7%A3%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E7%A7%AF%E7%B4%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/05/%E8%A7%A3%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E7%A7%AF%E7%B4%AF/" class="post-title-link" itemprop="url">隐写的一点点积累</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-05-05 15:20:12 / 修改时间：15:55:58" itemprop="dateCreated datePublished" datetime="2022-05-05T15:20:12+08:00">2022-05-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E4%B8%9C%E8%A5%BF/" itemprop="url" rel="index"><span itemprop="name">杂七杂八的东西</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="隐写啊……阿巴阿巴阿巴"><a href="#隐写啊……阿巴阿巴阿巴" class="headerlink" title="隐写啊……阿巴阿巴阿巴"></a>隐写啊……阿巴阿巴阿巴</h1><p>写了一些些题目，有一点收获，但是我的记忆只有不到一周（逃<br>不写下来就又忘了，特此浅写一点点来给自己看  </p>
+<h2 id="丢010里看看呗"><a href="#丢010里看看呗" class="headerlink" title="丢010里看看呗"></a>丢010里看看呗</h2><p>010起手，主要看文件类型、文件完整性还有隐藏在十六进制代码里面的信息<br>建议直接ctrl+F flag 因为所有题都是这样（逃<br>这样可以方便寻找方向  </p>
+<h2 id="有个叫做lsb的东西"><a href="#有个叫做lsb的东西" class="headerlink" title="有个叫做lsb的东西"></a>有个叫做lsb的东西</h2><p>貌似是最低有效位隐写，虽然不知道原理是啥吧，但是能写<br>一般的，丢到stegsolve里面，看看各个通道的图层<br>哪个通道的最低位有异常，那大概是那个通道用于lsb了<br>然后就用DATA extract给整一下lsb<br>（不想整图，等到我成为学长时候在整具体的）  </p>
+<h2 id="有个调整png显示大小的"><a href="#有个调整png显示大小的" class="headerlink" title="有个调整png显示大小的"></a>有个调整png显示大小的</h2><p>一般就是CRC不对劲时候（win能打开，linux打不开时候也是）<br>去找找有无关于图片大小的提示，改一下，看看能不能显示出特殊信息<br>或者弄个脚本呗，暴力枚举大小，通过crc正确性进行判断  </p>
+<h2 id="还有个啥来着？"><a href="#还有个啥来着？" class="headerlink" title="还有个啥来着？"></a>还有个啥来着？</h2><p>记一些奇怪的插件  </p>
+<h3 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h3><p>基础，好用，感觉不对劲直接扔kali里跑个binwalk<br>大概率能发现群友奇怪的成分（雾<br>然后用下面这个</p>
+<h3 id="foremost"><a href="#foremost" class="headerlink" title="foremost"></a>foremost</h3><p>用于分离文件，禁止文件贴贴，可以拿到藏起来的文件  </p>
+<h3 id="zsteg"><a href="#zsteg" class="headerlink" title="zsteg"></a>zsteg</h3><p>很吊的linux脚本，直接zsteg -a<br>管他啥通道隐写啊，全部给你整出来，你按需拿取即可<br>适合一把梭玩家（逃</p>
+<h3 id="snow-exe"><a href="#snow-exe" class="headerlink" title="snow.exe"></a>snow.exe</h3><p>没明白</p>
+<h3 id="破解压缩包密码也算隐写（不是"><a href="#破解压缩包密码也算隐写（不是" class="headerlink" title="破解压缩包密码也算隐写（不是"></a>破解压缩包密码也算隐写（不是</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/30/%E5%9B%9B%E6%9C%88%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/30/%E5%9B%9B%E6%9C%88%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">四月总结</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-04-30 09:58:19 / 修改时间：10:10:57" itemprop="dateCreated datePublished" datetime="2022-04-30T09:58:19+08:00">2022-04-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="四月是寄的一月"><a href="#四月是寄的一月" class="headerlink" title="四月是寄的一月"></a>四月是寄的一月</h1><h2 id="4-9蓝桥省赛"><a href="#4-9蓝桥省赛" class="headerlink" title="4.9蓝桥省赛"></a>4.9蓝桥省赛</h2><p>学校是封的<br>比赛是教室开的<br>题目是看不懂的<br>人是麻的  </p>
+<h2 id="麻辣香锅"><a href="#麻辣香锅" class="headerlink" title="麻辣香锅"></a>麻辣香锅</h2><p>麻辣香锅一时爽，一直吃一直爽  </p>
+<h2 id="4-10-解封"><a href="#4-10-解封" class="headerlink" title="4.10  解封"></a>4.10  解封</h2><h2 id="分流"><a href="#分流" class="headerlink" title="分流"></a>分流</h2><p>选了物联网，不过反正要run的，都行吧</p>
+<h2 id="4-21给蓝桥官网联习系统干破防了"><a href="#4-21给蓝桥官网联习系统干破防了" class="headerlink" title="4.21给蓝桥官网联习系统干破防了"></a>4.21给蓝桥官网联习系统干破防了</h2><p>什么牛马东西，错了就给个错误，没有反馈，题解也都很烂，还是我的luogu友好  </p>
+<h2 id="4-22开始整misc玩"><a href="#4-22开始整misc玩" class="headerlink" title="4.22开始整misc玩"></a>4.22开始整misc玩</h2><h2 id="4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"><a href="#4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃" class="headerlink" title="4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"></a>4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃</h2><h2 id="4-28蓝桥结果出来了，浅拿省一，按下不表"><a href="#4-28蓝桥结果出来了，浅拿省一，按下不表" class="headerlink" title="4.28蓝桥结果出来了，浅拿省一，按下不表"></a>4.28蓝桥结果出来了，浅拿省一，按下不表</h2><h2 id="4-30写下这个东西"><a href="#4-30写下这个东西" class="headerlink" title="4.30写下这个东西"></a>4.30写下这个东西</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/29/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -725,402 +1196,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/01/2022-2-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/01/2022-2-28/" class="post-title-link" itemprop="url">2022/2/28</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-03-01 14:55:37 / 修改时间：17:08:30" itemprop="dateCreated datePublished" datetime="2022-03-01T14:55:37+08:00">2022-03-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>莫名就变成两天一写了，不过也还好</p>
-<h1 id="我的评价是：破防"><a href="#我的评价是：破防" class="headerlink" title="我的评价是：破防"></a>我的评价是：破防</h1><h2 id="27号"><a href="#27号" class="headerlink" title="27号"></a>27号</h2><p>睁开眼就开始搞代码</p>
-<p>amd的处理器+win11&#x3D;当场去世（后续更新：其实不是他们的锅，我的电脑被捆绑上了瑞星的杀软。。。删了就没事了）</p>
-<p>捏码的，编译个a+b用了四秒，然后卡了二十几秒才运行你是在开玩笑？</p>
-<p>然后就发现，这个配置组合，打开软件都要十几秒，</p>
-<p>连自带的计算器都给我卡好几秒</p>
-<p>这道理没法儿讲了，寄</p>
-<p>找不到处理方法，下午的郑轻周赛直接寄，心态上天</p>
-<p>于是就摆烂了</p>
-<p>不得不说，去瀚海打maimai还是不错的，wacca也不错</p>
-<p>以后摆烂有地方去了（逃</p>
-<p>我还打了人生第一个s（虽然是7级谱面）</p>
-<p>九级谱面也能上80%了（前途一片光明）</p>
-<p>然后就摆呗</p>
-<h2 id="28号"><a href="#28号" class="headerlink" title="28号"></a>28号</h2><p>上课，然后继续被这sb电脑搞破防</p>
-<p>继续寄</p>
-<p>中午躺床上玩电脑（话说我这开学以来第一次中午在寝室）</p>
-<p>不过床上玩电脑是真的爽啊</p>
-<p>下午排球课就有又防了，手都要断了</p>
-<p>累死了，然后摆烂到七点</p>
-<p>想去自习室摆，但是一拿起来电脑，就想解决电脑问题</p>
-<p>起视四境，破防又至矣</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/27/node-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/27/node-js/" class="post-title-link" itemprop="url">node.js</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-02-27 13:26:05 / 修改时间：13:42:57" itemprop="dateCreated datePublished" datetime="2022-02-27T13:26:05+08:00">2022-02-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>浅浅的学了一下nodejs的使用</p>
-<h1 id="跟着慕课的课程慢慢学的"><a href="#跟着慕课的课程慢慢学的" class="headerlink" title="跟着慕课的课程慢慢学的"></a>跟着慕课的课程慢慢学的</h1><pre><code>`
-console.log(&quot;Web前端开发&quot;);//普通信息
-console.info(&quot;Web前端开发&quot;);//提示信息
-console.error(&quot;Web前端开发&quot;);//错误信息
-console.warn(&quot;Web前端开发&quot;);//警告信息
-//个人理解：搭配if食用效果更佳
-
-var bBody = document.body; //定义一个变量，貌似var这个东西可以定义所有种类变量，然后变量类型取决于放进去的数据
-console.dir(bBody);
-
-var students = [                //你看这儿就是var定义数组，有别于c的定义方法
-    &#123;
-        name: &quot;张三&quot;,
-        email: &quot;zhangsan@163.com&quot;,
-        qq: 12345
-    &#125;,
-    &#123;
-        name: &quot;李四&quot;,
-        email: &quot;lisi@163.com&quot;,
-        qq: 123456
-    &#125;
-];
-console.table(students);//输出表格
-
-console.time(&#39;forTime&#39;);这个和c那个记录时间的函数很想像
-for(var i=0,count = 0;i&lt;99999;i++)&#123;//for循环属于典中典了
-    count++;
-&#125;
-console.timeEnd(&#39;forTime&#39;);
-
-console.group(&#39;前端一组&#39;);//这个类似是开了一个分支的效果
-console.log(&quot;前端一组-1&quot;);
-console.log(&quot;前端一组-2&quot;);
-console.log(&quot;前端一组-3&quot;);
-console.groupEnd();
-
-function testFn()&#123;//定义函数啊，典
-    console.count(&#39;当前函数被调用次数&#39;);
-&#125;
-testFn();
-testFn();
-testFn();
-
-var flag = false;
-console.assert(flag,&#39;当flag为false时才输出!&#39;)//这个应该是个检测函数，检测是否为真;
-</code></pre>
-<p>&#96;</p>
-<p>就学到这儿，再探再报</p>
-<p><img src="https://i0.hdslb.com/bfs/article/d1f5f858ddb52f5de6aa1ab13c2ed63ea23fcce2.jpg@1320w_740h.webp"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/26/2022-2-26/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/26/2022-2-26/" class="post-title-link" itemprop="url">2022/2/26</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-02-26 19:21:10 / 修改时间：20:19:32" itemprop="dateCreated datePublished" datetime="2022-02-26T19:21:10+08:00">2022-02-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="老校区摆的不提劲，我直接在龙子湖摆"><a href="#老校区摆的不提劲，我直接在龙子湖摆" class="headerlink" title="老校区摆的不提劲，我直接在龙子湖摆"></a>老校区摆的不提劲，我直接在龙子湖摆</h1><p>今天是交个普通话证的表，顺便陪室友串亲戚了</p>
-<p>然后顺便打了个信管的蓝桥预选赛</p>
-<p>TC我居然没看出来用栈做。。。。</p>
-<p>TH排个序，然后模拟了一个钟头，好在是过了。。。</p>
-<p>TG没看，但是据说是个裸背包，离大谱了</p>
-<p>TF24点，妈耶，我前面的大哥写了二十七个if语句</p>
-<p>总之，寄了，很划，很烂</p>
-<p>顺便放一点小姐姐拍的照片</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/02/98637a929b6fa788.jpg"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/02/08a626c6e3a333ca.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/24/2022-2-24/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/24/2022-2-24/" class="post-title-link" itemprop="url">2022/2/24</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-
-              <time title="创建时间：2022-02-24 10:53:10" itemprop="dateCreated datePublished" datetime="2022-02-24T10:53:10+08:00">2022-02-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 15:03:33" itemprop="dateModified" datetime="2022-02-25T15:03:33+08:00">2022-02-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一日之摆启于晨"><a href="#一日之摆启于晨" class="headerlink" title="一日之摆启于晨"></a>一日之摆启于晨</h1><h2 id="6：00"><a href="#6：00" class="headerlink" title="6：00"></a>6：00</h2><p>上铺放的盒子biaji一声拍地上给我惊醒了，一看表，六点钟，就很离谱，八辈子没起过这么早了。起都起了，洗个衣服吧，这小风吹着，jiojio都冻疼了，预示着又是摆的一天。</p>
-<h2 id="7：00"><a href="#7：00" class="headerlink" title="7：00"></a>7：00</h2><p>郑州的公交车离谱啊，早饭差点晃出来。</p>
-<p>然后我又看着三号楼的课，一头扎推广楼里面去了。（笑）</p>
-<p>一进教室，可恶，电路原理，昨天摆烂看选秀，没有预习。不过来都来了，这不睡会儿？看两眼书，继续摆！</p>
-<h2 id="8：00"><a href="#8：00" class="headerlink" title="8：00"></a>8：00</h2><p>电路原理课</p>
-<h2 id="9：40"><a href="#9：40" class="headerlink" title="9：40"></a>9：40</h2><p>可恶，煎饼果子背叛了我，才两节课就饿了，摆了摆了，吃点吃点，小卖部续一波命，不然后面集中不了注意力了。</p>
-<h2 id="10：00"><a href="#10：00" class="headerlink" title="10：00"></a>10：00</h2><p>思修课是要好好听的吧</p>
-<p>老师：这就是这样的一个很好的那个东西，所以我们应该好好培养一个这样的那个素养</p>
-<p>我：？？？？？？</p>
-<p>这老师也是绝了，滔滔不绝讲着莫名其妙的话（要是知识点多，我肯定听啊）</p>
-<p>摆吧，写写博客干点啥的</p>
-<p>整一个大本钟下送快递</p>
-<p>上面摆下面寄</p>
-<p>去找找有没有题可以写去</p>
-<h2 id="12：40"><a href="#12：40" class="headerlink" title="12：40"></a>12：40</h2><p>这波啊，这波是错峰吃饭</p>
-<p>woc？大帝要打乌克兰了？</p>
-<p>mark一下，下午再看</p>
-<h2 id="16：00"><a href="#16：00" class="headerlink" title="16：00"></a>16：00</h2><p>下课一看手机，基辅拿下了</p>
-<p>woc，见证历史了属于是</p>
-<p>这波啊，这波是疯狂星期四了2333</p>
-<h1 id="这波是见证历史了"><a href="#这波是见证历史了" class="headerlink" title="这波是见证历史了"></a>这波是见证历史了</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1188,20 +1267,20 @@ console.assert(flag,&#39;当flag为false时才输出!&#39;)//这个应该是个�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
