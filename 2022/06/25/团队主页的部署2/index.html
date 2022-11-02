@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="上次耻辱过后，一不做二不休，直接重装系统学长的oj就无了（）不过以后再说这个这波需要重新配置一下服务器了   第一步的话是基础配置配个ip然后发现腾讯云的服务器已经配好ip了（不过考虑人家是物理机，应该没啥问题）   配个yum然后发现他默认用的是腾讯云家的yum不用自己配，真好（逃     开个ssh服务yum list installed | grep openssh-server看一看有没有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="团队主页的部署2">
+<meta property="og:url" content="http://example.com/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/index.html">
+<meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
+<meta property="og:description" content="上次耻辱过后，一不做二不休，直接重装系统学长的oj就无了（）不过以后再说这个这波需要重新配置一下服务器了   第一步的话是基础配置配个ip然后发现腾讯云的服务器已经配好ip了（不过考虑人家是物理机，应该没啥问题）   配个yum然后发现他默认用的是腾讯云家的yum不用自己配，真好（逃     开个ssh服务yum list installed | grep openssh-server看一看有没有">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-25T06:42:02.000Z">
+<meta property="article:modified_time" content="2022-06-25T10:06:06.357Z">
+<meta property="article:author" content="youxiao">
+<meta property="article:tag" content="工作">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>团队主页的部署2 | 河南农业大学摆烂摸鱼划水阵线</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">河南农业大学摆烂摸鱼划水阵线</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">指战中心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档QAQ</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          团队主页的部署2
+        </h1>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-06-25 14:42:02 / 修改时间：18:06:06" itemprop="dateCreated datePublished" datetime="2022-06-25T14:42:02+08:00">2022-06-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%A2%E9%98%9F%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">团队工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="上次耻辱过后，一不做二不休，直接重装系统"><a href="#上次耻辱过后，一不做二不休，直接重装系统" class="headerlink" title="上次耻辱过后，一不做二不休，直接重装系统"></a>上次耻辱过后，一不做二不休，直接重装系统</h1><p>学长的oj就无了（）<br>不过以后再说这个<br>这波需要重新配置一下服务器了  </p>
+<h2 id="第一步的话是基础配置"><a href="#第一步的话是基础配置" class="headerlink" title="第一步的话是基础配置"></a>第一步的话是基础配置</h2><h3 id="配个ip"><a href="#配个ip" class="headerlink" title="配个ip"></a>配个ip</h3><p>然后发现腾讯云的服务器已经配好ip了（不过考虑人家是物理机，应该没啥问题）  </p>
+<h3 id="配个yum"><a href="#配个yum" class="headerlink" title="配个yum"></a>配个yum</h3><p>然后发现他默认用的是腾讯云家的yum<br>不用自己配，真好（逃    </p>
+<h3 id="开个ssh服务"><a href="#开个ssh服务" class="headerlink" title="开个ssh服务"></a>开个ssh服务</h3><p>yum list installed | grep openssh-server<br>看一看有没有安装ssh<br>然后发现是有的，那么打开他<br>cd &#x2F;etc&#x2F;ssh<br>vim sshd.conf<br>把 Port 和ListenAddress 的注释删掉<br>permitrootlogin yes 注释删掉<br>passwordAuthentication yes 注释删掉<br>然后是sudo service sshd start<br>完事  </p>
+<h3 id="关个防火墙"><a href="#关个防火墙" class="headerlink" title="关个防火墙"></a>关个防火墙</h3><p>systemctl stop firewalld.service  </p>
+<p>Xshall能连上，还不错  </p>
+<h2 id="第二部是装docker"><a href="#第二部是装docker" class="headerlink" title="第二部是装docker"></a>第二部是装docker</h2><p>先塞一个yum 源<br>yum-config-manager –add-repo <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br>然后安装<br>yum install docker-ce<br>启动<br>sudo systemctl start docker<br>开启自启动<br>sudo systemctl enable docker<br>输入docker version  之后显示了版本信息，安装成功  </p>
+<h2 id="第三步，上传我的东西"><a href="#第三步，上传我的东西" class="headerlink" title="第三步，上传我的东西"></a>第三步，上传我的东西</h2><p>因为之前吧xshall下载回来了，我们直接用方便的rz  </p>
+<p>先试试nginx能不能用，上次耻辱下线就是因为nginx死活不行<br>先拉取nginx<br>docker pull nginx<br>docker run -dit –name&#x3D;nginx -p 80:80 nginx<br>这里我找到一个点，就是之前看的博客里面是没有-t这个参数的<br>但是我的理解中，服务端至少要有一个终端，没有-t就不能交互<br>于是加上-t<br>然后外网访问服务器80端口，能看到nginx的主页<br>我觉得成了<br>可是，我在<br>docker run -dit –name&#x3D;nginx -p 90:80 nginx<br>的时候又出现了问题，无法访问<br>和上次gg时候一样，我吐了啊。。。。<br>在我懵逼至极的时候，我想起来老大之前服务器里面使用的那几个端口<br>我一试，这几个端口都显示了nginx主页<br>我直接人傻了，于是去问郁老大  </p>
+<h1 id="以下内容建议全文背诵"><a href="#以下内容建议全文背诵" class="headerlink" title="以下内容建议全文背诵"></a>以下内容建议全文背诵</h1><p>老大说： </p>
+<pre><code>你是不是腾讯云里面没有设置安全组里的开放端口啊
+</code></pre>
+<p>我：？？？？？？？？？<br>打开，好了（）<br>全体目光向我看齐<br>就这儿，对<br>我宣布个事儿<br>我是个（  ——  ——  ）<br>然后docker run -dit –name&#x3D;nginx -p 14514:80 -v &#x2F;usr&#x2F;html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html nginx<br>可以访问（）<br>我。。。。。。。。。。。。  </p>
+<h1 id="得到的教训是"><a href="#得到的教训是" class="headerlink" title="得到的教训是"></a>得到的教训是</h1><p>欲善其功，先利其器<br>先给自己用的东西整明白再说（）  </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag"># 工作</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/23/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B2/" rel="prev" title="团队主页的部署">
+      <i class="fa fa-chevron-left"></i> 团队主页的部署
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/28/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA%EF%BC%88%E8%A1%8C%E4%B8%9A%E8%AE%A4%E7%9F%A5%E5%8F%8A%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%EF%BC%89/" rel="next" title="信安世纪（行业认知及产品技术）">
+      信安世纪（行业认知及产品技术） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E6%AC%A1%E8%80%BB%E8%BE%B1%E8%BF%87%E5%90%8E%EF%BC%8C%E4%B8%80%E4%B8%8D%E5%81%9A%E4%BA%8C%E4%B8%8D%E4%BC%91%EF%BC%8C%E7%9B%B4%E6%8E%A5%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">上次耻辱过后，一不做二不休，直接重装系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E7%9A%84%E8%AF%9D%E6%98%AF%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">第一步的话是基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E4%B8%AAip"><span class="nav-number">1.1.1.</span> <span class="nav-text">配个ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E4%B8%AAyum"><span class="nav-number">1.1.2.</span> <span class="nav-text">配个yum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E4%B8%AAssh%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.1.3.</span> <span class="nav-text">开个ssh服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%B8%AA%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">1.1.4.</span> <span class="nav-text">关个防火墙</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E6%98%AF%E8%A3%85docker"><span class="nav-number">1.2.</span> <span class="nav-text">第二部是装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E4%B8%8A%E4%BC%A0%E6%88%91%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-number">1.3.</span> <span class="nav-text">第三步，上传我的东西</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8B%E5%86%85%E5%AE%B9%E5%BB%BA%E8%AE%AE%E5%85%A8%E6%96%87%E8%83%8C%E8%AF%B5"><span class="nav-number">2.</span> <span class="nav-text">以下内容建议全文背诵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%97%E5%88%B0%E7%9A%84%E6%95%99%E8%AE%AD%E6%98%AF"><span class="nav-number">3.</span> <span class="nav-text">得到的教训是</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="youxiao"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">youxiao</p>
+  <div class="site-description" itemprop="description">摆烂是人类进步的阶梯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/1796574343@qq.com" title="E-Mail → 1796574343@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youxiao</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,255,255' opacity='1' zIndex='-1' count='20' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="威海站补题https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;102798 A. Golden Spirit讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。 先把所有老人都扶到对岸显然是最优的，并且第一个到当前岸边的老人休息完后，即视为休息完毕然后分为两种情况考虑：  1，把所有老">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020ccpc威海站补题记录">
+<meta property="og:url" content="http://example.com/2022/11/02/CCPC2020%E5%A8%81%E6%B5%B7%E7%AB%99%E8%A1%A5%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
+<meta property="og:description" content="威海站补题https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;102798 A. Golden Spirit讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。 先把所有老人都扶到对岸显然是最优的，并且第一个到当前岸边的老人休息完后，即视为休息完毕然后分为两种情况考虑：  1，把所有老">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-01T16:14:40.000Z">
+<meta property="article:modified_time" content="2022-11-01T17:14:50.201Z">
+<meta property="article:author" content="youxiao">
+<meta property="article:tag" content="补题">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/11/02/CCPC2020%E5%A8%81%E6%B5%B7%E7%AB%99%E8%A1%A5%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2020ccpc威海站补题记录 | 河南农业大学摆烂摸鱼划水阵线</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">河南农业大学摆烂摸鱼划水阵线</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">指战中心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档QAQ</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/02/CCPC2020%E5%A8%81%E6%B5%B7%E7%AB%99%E8%A1%A5%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020ccpc威海站补题记录
+        </h1>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-11-02 00:14:40 / 修改时间：01:14:50" itemprop="dateCreated datePublished" datetime="2022-11-02T00:14:40+08:00">2022-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E9%80%9F%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞速赛</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>威海站补题<br><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102798">https://codeforces.com/gym/102798</a></p>
+<h3 id="A-Golden-Spirit"><a href="#A-Golden-Spirit" class="headerlink" title="A. Golden Spirit"></a>A. Golden Spirit</h3><p>讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。</p>
+<p>先把所有老人都扶到对岸显然是最优的，并且第一个到当前岸边的老人休息完后，即视为休息完毕<br>然后分为两种情况考虑：</p>
+<blockquote>
+<p>1，把所有老人扶到对岸，然后等当前岸边第一个过来的老人（全部老人中第二个过桥的）休息完再走，此时的贡献是</p>
+</blockquote>
+<pre><code>2*2*n*t+x-(2*(n-1))*t
+</code></pre>
+<blockquote>
+<p>2,把所有老人扶到对岸，然后到对岸，等对岸第一个过来的老人（全部老人中第一个过桥的）休息完再走，此时的贡献是</p>
+</blockquote>
+<pre><code>2*2*n*t-(2*(n-1))*t+t
+</code></pre>
+<p>两个情况取max即可<br>代码实现：</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+
+int main()&#123;
+    int t;
+    cin&gt;&gt;t;
+    while(t--)&#123;
+        ll n,x,k;
+        scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;x,&amp;k);        
+        ll ans1=(n*4*k)+max(0ll,x-(2ll*n*k-2*k));
+        ll ans2=(n*4*k)+k+max(0ll,x-(2ll*n*k));
+        cout&lt;&lt;min(ans1,ans2)&lt;&lt;&quot;\n&quot;;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h1 id="C-Rencontre"><a href="#C-Rencontre" class="headerlink" title="C. Rencontre"></a>C. Rencontre</h1><p>讲一棵树，n个节点，读入u，v，w，表示u和v之间有双向边，距离为w，在树上有三次选项，第i次选择会等概率的从Mi个给定的点中选，然后找一个点，到三次选择的点距离和最小，求这个距离和的期望值  </p>
+<p>我们考虑算出三个点的简单路径，相加再除以二就是到三个的最小距离和的点的距离和，然后再算期望<br>直接算肯定不行，但是注意到本题是很多种可能求期望<br>我们可以利用换根dp求出每个点到其他所有点的距离和，这样可以求出在枚举任意三个点为根时的所有简单路径和，除以二便是所有到三次选择的点距离和最小的点的距离的总和<br>然后考虑哪些点可以给出贡献，我们只需要在树形dp计算路径时候，只记录被某次选择包含的点到根节点的路径（三次选择分别计算），然后换根求出所有点作为根时，三次选择的所有点分别到该根节点的的距离和。然后枚举三次选择，将维护好的另外两种选择的值直接累加过来，再除以对应选择的节点数算出期望即可  </p>
+<p>代码实现：</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=2e5+1000,M=4e5+100;
+typedef double db;
+typedef long long ll;
+int n,h[N],ne[M],t[M],val[M],idx=2;
+int m[3],nu[N][3],uu[N][3];
+ll d[N][3];
+db anss;
+
+void add(int u,int v,int w)&#123;
+    ne[idx]=h[u];
+    t[idx]=v;
+    val[idx]=w;
+    h[u]=idx++;
+&#125;
+
+void dfs(int x,int pa)&#123;
+    for(int i=h[x];i;i=ne[i])&#123;
+        if(i==(pa^1))continue;
+        int y=t[i]; 
+        dfs(y,i);
+        for(int j=0;j&lt;3;j++)&#123;
+            nu[x][j]+=nu[y][j]+uu[y][j];
+            d[x][j]+=(ll)(nu[y][j]+uu[y][j])*val[i]+d[y][j];
+            
+        &#125;
+    &#125;
+    return ;
+&#125;
+void dp(int x,int fr,int e)&#123;
+    if(fr!=0)&#123;
+        for(int i=0;i&lt;3;i++)&#123;
+            d[x][i]=d[fr][i]+(1ll*m[i]-2ll*uu[x][i]-2ll*nu[x][i])*val[e];
+        &#125;
+
+    &#125;
+    for(int i=h[x];i;i=ne[i])&#123;
+        int y=t[i];
+        if(y==fr)continue;
+        dp(y,x,i);
+    &#125;
+    return ;
+&#125;
+int main()&#123;
+    #ifdef LOCAL
+    freopen(&quot;input.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;output.out&quot;,&quot;w&quot;,stdout);
+    #endif
+    scanf(&quot;%d&quot;,&amp;n);
+    int u,v,w;
+    for(int i=1;i&lt;n;i++)&#123;
+        scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;w);
+        add(u,v,w);
+        add(v,u,w);
+    &#125;
+    
+    int a;
+    for(int i=0;i&lt;3;i++)&#123;
+        scanf(&quot;%d&quot;,&amp;m[i]);
+        for(int j=1;j&lt;=m[i];j++)&#123;
+            scanf(&quot;%d&quot;,&amp;a);
+            uu[a][i]=1;
+        &#125;
+    &#125;
+    dfs(1,0);
+    dp(1,0,0);
+    for(int k=0;k&lt;3;k++)&#123;
+        for(int j=k+1;j&lt;3;j++)&#123;
+            for(int i=1;i&lt;=n;i++)&#123;
+                if(uu[i][k])anss+=(db)d[i][j]/(1.0*m[j]*m[k]);
+            &#125;
+        &#125;
+    &#125;
+    printf(&quot;%.10lf&quot;,anss/2);
+    return 0;
+&#125;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%A1%A5%E9%A2%98/" rel="tag"># 补题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/30/CCPC%E5%8C%BA%E5%9F%9F%E8%B5%9B%E9%9B%86%E9%94%A6/" rel="prev" title="CCPC区域赛集锦">
+      <i class="fa fa-chevron-left"></i> CCPC区域赛集锦
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/02/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%20%E6%8D%A2%E6%A0%B9dp/" rel="next" title="换根dp">
+      换根dp <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Golden-Spirit"><span class="nav-number">1.</span> <span class="nav-text">A. Golden Spirit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Rencontre"><span class="nav-number"></span> <span class="nav-text">C. Rencontre</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="youxiao"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">youxiao</p>
+  <div class="site-description" itemprop="description">摆烂是人类进步的阶梯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/1796574343@qq.com" title="E-Mail → 1796574343@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youxiao</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,255,255' opacity='1' zIndex='-1' count='20' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

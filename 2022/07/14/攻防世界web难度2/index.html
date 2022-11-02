@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="web嘛，不就是研究怎么偷自行车吗（逃   upload1看题目，是一个文件上传题目，还是最简单那种（逃那就摸出我们的一句话木马来f12看到文件后缀限制也就是说需要绕过，post请求还是可以轻松绕过的先把php马改成jpg后缀，bp抓包，然后直接上传把这个改成php，然后发送请求可以看到，上传成功了访问一下这个路径，可以访问摸出咱的蚁剑进行登录然后就可以进入靶机的后台，拿到flag   cyber">
+<meta property="og:type" content="article">
+<meta property="og:title" content="难度2">
+<meta property="og:url" content="http://example.com/2022/07/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E9%9A%BE%E5%BA%A62/index.html">
+<meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
+<meta property="og:description" content="web嘛，不就是研究怎么偷自行车吗（逃   upload1看题目，是一个文件上传题目，还是最简单那种（逃那就摸出我们的一句话木马来f12看到文件后缀限制也就是说需要绕过，post请求还是可以轻松绕过的先把php马改成jpg后缀，bp抓包，然后直接上传把这个改成php，然后发送请求可以看到，上传成功了访问一下这个路径，可以访问摸出咱的蚁剑进行登录然后就可以进入靶机的后台，拿到flag   cyber">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/52aee8f1105f2858.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/e5c13d8109436b45.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/473e049611680f6a.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/c01503a67a8105a2.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/81bc73bf7601079b.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/2bb74a4ef9f79257.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/8aec18e389cff6bb.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/9220270af546d6b2.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/630eb9bbb609e8dd.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/7248b042b27d9962.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/c7e715ea389ce749.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/07/14/6c48158efaf570cc.png">
+<meta property="article:published_time" content="2022-07-14T05:49:00.000Z">
+<meta property="article:modified_time" content="2022-07-14T14:36:59.317Z">
+<meta property="article:author" content="youxiao">
+<meta property="article:tag" content="打题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/07/14/52aee8f1105f2858.png">
+
+<link rel="canonical" href="http://example.com/2022/07/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E9%9A%BE%E5%BA%A62/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>难度2 | 河南农业大学摆烂摸鱼划水阵线</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">河南农业大学摆烂摸鱼划水阵线</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">指战中心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档QAQ</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E9%9A%BE%E5%BA%A62/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          难度2
+        </h1>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-07-14 13:49:00 / 修改时间：22:36:59" itemprop="dateCreated datePublished" datetime="2022-07-14T13:49:00+08:00">2022-07-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>web嘛，不就是研究怎么偷自行车吗（逃  </p>
+<h1 id="upload1"><a href="#upload1" class="headerlink" title="upload1"></a>upload1</h1><p>看题目，是一个文件上传题目，还是最简单那种（逃<br>那就摸出我们的一句话木马来<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/52aee8f1105f2858.png"><br>f12看到文件后缀限制<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/e5c13d8109436b45.png"><br>也就是说需要绕过，post请求还是可以轻松绕过的<br>先把php马改成jpg后缀，bp抓包，然后直接上传<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/473e049611680f6a.png"><br><img src="https://s3.bmp.ovh/imgs/2022/07/14/c01503a67a8105a2.png"><br>把这个改成php，然后发送请求<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/81bc73bf7601079b.png"><br>可以看到，上传成功了<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/2bb74a4ef9f79257.png"><br>访问一下这个路径，可以访问<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/8aec18e389cff6bb.png"><br>摸出咱的蚁剑进行登录<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/9220270af546d6b2.png"><br>然后就可以进入靶机的后台，拿到flag  </p>
+<pre><code>cyberpeace&#123;9df2577798cc26b31c2c208f0730b82d&#125;
+</code></pre>
+<h1 id="xff与referer"><a href="#xff与referer" class="headerlink" title="xff与referer"></a>xff与referer</h1><p>伪造xff和伪造referer<br>添加xff和referer的头文件即可<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/630eb9bbb609e8dd.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/huhu1020387597/p/11479468.html">关于referer</a><br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/X-Forwarded-For/3593639?fr=aladdin">关于xff</a>  </p>
+<h1 id="command-execution"><a href="#command-execution" class="headerlink" title="command_execution"></a>command_execution</h1><p>我一进来就看见一个ping查询界面（逃<br>题目都说了，没写waf，说了就是妹写<br>那就把执行代码拼接在ping的ip后面，<br>利用后台的运行代码给咱们找找自行车在哪儿<br>输入127.0.0.1;find &#x2F; -name “flag*”<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/7248b042b27d9962.png"></p>
+<p>然后看到一个flag.txt<br>这就是咱要的了，同样的方法，这次把自行车给他骑走<br>127.0.0.1;cat &#x2F;home&#x2F;flag.txt  </p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/07/14/c7e715ea389ce749.png"></p>
+<pre><code>cyberpeace&#123;2750c16d03c412e3381a356d4a5d9ecc&#125;
+</code></pre>
+<p>难一点的话，会把空格过滤掉，遇见再说  </p>
+<h1 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h1><p>他的代码都在上面写了，按顺序反向解密一下就可<br>rot13（和凯撒密码key&#x3D;13一样）解密<a target="_blank" rel="noopener" href="https://www.xiao84.com/tools/103175.html">凯撒解密</a><br><a target="_blank" rel="noopener" href="http://tool.huixiang360.com/str/reverse.php">反转</a><br><a target="_blank" rel="noopener" href="https://base64.supfree.net/">base64解密</a><br>然后手动写个代码，给每一位ascll减一<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/6c48158efaf570cc.png"><br>拿到的结果再反转即可</p>
+<pre><code>flag:&#123;NSCTF_b73d5adfb819c64603d7237fa0d52977&#125;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%89%93%E9%A2%98/" rel="tag"># 打题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/06/%E4%BF%A1%E5%AE%89%E4%B8%96%E7%BA%AA7-5%E7%9A%84%E7%BB%93%E8%AF%BE%E8%B5%9B/" rel="prev" title="信安世纪7.5的结课赛">
+      <i class="fa fa-chevron-left"></i> 信安世纪7.5的结课赛
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/01/upload-lab%E6%B7%B7%E5%85%B3%E8%AE%B0%E5%BD%95/" rel="next" title="upload-lab混关记录">
+      upload-lab混关记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#upload1"><span class="nav-number">1.</span> <span class="nav-text">upload1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xff%E4%B8%8Ereferer"><span class="nav-number">2.</span> <span class="nav-text">xff与referer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#command-execution"><span class="nav-number">3.</span> <span class="nav-text">command_execution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web2"><span class="nav-number">4.</span> <span class="nav-text">web2</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="youxiao"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">youxiao</p>
+  <div class="site-description" itemprop="description">摆烂是人类进步的阶梯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/1796574343@qq.com" title="E-Mail → 1796574343@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youxiao</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,255,255' opacity='1' zIndex='-1' count='20' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

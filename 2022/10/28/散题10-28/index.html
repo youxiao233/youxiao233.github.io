@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="P2856 [USACO06FEB]Cellphones GUSACO06FEB]Cellphones G - 洛谷 | 计算机科学教育新生态 (luogu.com.cn) 【题目翻译】： 奶牛的名字都是由英文字母表的前L(1 \leq L \leq 26)L(1≤L≤26)个字母构成的（全部为大写字母且长度\leq 10≤10）。现在奶牛们想设计一种手机， 有BB个按键。请你把这L个字母按顺序分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="散题10&#x2F;28">
+<meta property="og:url" content="http://example.com/2022/10/28/%E6%95%A3%E9%A2%9810-28/index.html">
+<meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
+<meta property="og:description" content="P2856 [USACO06FEB]Cellphones GUSACO06FEB]Cellphones G - 洛谷 | 计算机科学教育新生态 (luogu.com.cn) 【题目翻译】： 奶牛的名字都是由英文字母表的前L(1 \leq L \leq 26)L(1≤L≤26)个字母构成的（全部为大写字母且长度\leq 10≤10）。现在奶牛们想设计一种手机， 有BB个按键。请你把这L个字母按顺序分">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-28T09:50:22.000Z">
+<meta property="article:modified_time" content="2022-10-28T14:58:10.046Z">
+<meta property="article:author" content="youxiao">
+<meta property="article:tag" content="散题">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/10/28/%E6%95%A3%E9%A2%9810-28/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>散题10/28 | 河南农业大学摆烂摸鱼划水阵线</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">河南农业大学摆烂摸鱼划水阵线</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">指战中心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档QAQ</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/28/%E6%95%A3%E9%A2%9810-28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          散题10/28
+        </h1>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-10-28 17:50:22 / 修改时间：22:58:10" itemprop="dateCreated datePublished" datetime="2022-10-28T17:50:22+08:00">2022-10-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">信息学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="P2856-USACO06FEB-Cellphones-G"><a href="#P2856-USACO06FEB-Cellphones-G" class="headerlink" title="P2856 [USACO06FEB]Cellphones G"></a>P2856 [USACO06FEB]Cellphones G</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2856">USACO06FEB]Cellphones G - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
+<p><strong>【题目翻译】：</strong> 奶牛的名字都是由英文字母表的前L(1 \leq L \leq 26)<em>L</em>(1≤<em>L</em>≤26)个字母构成的（全部为<strong>大写字母</strong>且长度\leq 10≤10）。现在奶牛们想设计一种手机， 有B<em>B</em>个按键。请你把这<em>L</em>个字母<strong>按顺序</strong>分配给<em>B</em>个按键，使能够通过按这些键而唯一确定的奶牛数尽量多。求最多可以唯一确定多少头奶牛，输出方案。如果有多种方案，输出编号小的按键容纳字母最多的方案。</p>
+<p>没想到是个暴力求解</p>
+<p>暴力枚举每个按键包含的字母，时间复杂度O（能过），由于每个字符串长度最多只有10，我们用哈希进行储存，每次处理n个串的哈希值，然后排序，只出现一次的哈希值的串贡献为1，对所有枚举情况的值取最大值即可。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=1010;
+int b,l,n;
+int num[N],tmd[30],hs[30],ans;
+char s[N][15],an[30];
+long long has[N];
+
+void anss()&#123;
+    for(int i=1;i&lt;=n;i++)&#123;
+        has[i]=0;
+        for(int j=1;j&lt;=num[i];j++)&#123;
+            has[i]=has[i]*(b+1)+tmd[(int)s[i][j]-(int)&#39;A&#39;+1];
+        &#125;
+    &#125;
+    sort(has+1,has+1+n);
+    int tmp=0;
+    for(int i=1;i&lt;=n;i++)&#123;
+        if(has[i]!=has[i-1]&amp;&amp;has[i]!=has[i+1])tmp++;
+    &#125;
+    if(tmp&gt;=ans)&#123;
+        ans=tmp;
+        for(int i=1;i&lt;=l;i++)&#123;
+            an[i]=tmd[i];
+        &#125;
+    &#125;
+&#125;
+
+void dfs(int i,int j)&#123;
+    if(j&gt;l)&#123;
+        if(i&gt;b)anss();
+        return ;
+    &#125;
+    if(i&gt;b)return;
+    if(i&lt;=b)&#123;
+        tmd[j+1]=i+1;
+        dfs(i+1,j+1);
+    &#125;
+    if(l-j+i&gt;=b)&#123;
+        tmd[j+1]=i;
+        dfs(i,j+1);
+    &#125;
+&#125;
+
+int main()&#123;
+    scanf(&quot;%d%d%d&quot;,&amp;b,&amp;l,&amp;n);
+    for(int i=1;i&lt;=n;i++)&#123;
+        scanf(&quot;%s&quot;,s[i]+1);
+        num[i]=strlen(s[i]+1);
+    &#125;
+    tmd[1]=1;
+    dfs(1,1);
+    cout&lt;&lt;ans&lt;&lt;&quot;\n&quot;;
+    for(int i=1;i&lt;=l;i++)&#123;
+        printf(&quot;%c&quot;,i+&#39;A&#39;-1);
+        if(an[i+1]!=an[i])cout&lt;&lt;&quot;\n&quot;;
+    &#125;
+
+    return 0;
+&#125;
+        
+</code></pre>
+<h1 id="P3668-USACO17OPEN-Modern-Art-2-G"><a href="#P3668-USACO17OPEN-Modern-Art-2-G" class="headerlink" title="P3668 [USACO17OPEN]Modern Art 2 G"></a>P3668 [USACO17OPEN]Modern Art 2 G</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3668">题目链接</a><br>小TY的同学HF也想创作艺术</p>
+<p>HF只有一块长条状的画布(画条)，所以每一次涂色只能涂上连续几个单位的颜料，同样新的颜料可以完全覆盖旧的颜料</p>
+<p>由于他的颜料同样非常傲娇，每次涂完要等上1day才能完全干，只有旧颜料干了以后才能用新颜料覆盖</p>
+<p>现在小HF用了2017个年头终于画出了一个大作品，自己非常满意</p>
+<p>现在他想复制这份作品</p>
+<p>每种颜色刷上去时候一定都是连续的，如果后刷的颜色被先刷上去的区间包含，证明后刷上去的颜色先结束。<br>先预处理出所有颜色最早出现的位置和最晚出现的位置，然后我们考虑用一个栈来维护当前状态  </p>
+<p>如果当前颜色与栈顶颜色不同，且未曾入栈，则该颜色的天数等栈顶颜色天数加一，该颜色入栈，并标记为已经入栈<br>如果该颜色第二次出现，并且已经是最后一次出现，那该颜色出栈<br>如果当前颜色与栈顶颜色不同，且已经入过栈，则当前状态不合法输出负一，程序结束<br>如果循环结束，且不存在不合法情况，那过程中记录的颜色的天数即为最终答案  </p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=1e5+100;
+int n,a[N],num[N],st[N],t;
+int fr[N],ed[N];
+bool b[N];
+int main()&#123;
+    cin&gt;&gt;n;
+    int z=0;
+    memset(fr,0x3f,sizeof(fr));
+    for(int i=1;i&lt;=n;i++)&#123;
+        cin&gt;&gt;a[i];
+        fr[a[i]]=min(i,fr[a[i]]);
+        ed[a[i]]=max(i,ed[a[i]]);
+        if(a[i]==0)z++;
+    &#125;
+    if(z==n)&#123;
+        printf(&quot;0&quot;);
+        return 0;
+    &#125;
+    int anss=0;
+    for(int i=1;i&lt;=n;i++)&#123;
+        if(!t||st[t]!=a[i])&#123;
+            if(!b[a[i]])&#123;
+                b[a[i]]=1;
+                if(i==ed[a[i]])&#123;
+                    anss=max(anss,num[t]+1);
+                    continue;
+                &#125;
+                st[++t]=a[i];
+                if(a[i]!=0)num[t]=num[t-1]+1;
+                else num[t]=num[t-1];
+                anss=max(anss,num[t]);
+                continue;
+            &#125;
+            else &#123;
+                printf(&quot;-1&quot;);
+                return 0;
+            &#125;
+        &#125;
+        if(st[t]==a[i])&#123;
+            if(i==ed[a[i]])t--;
+            continue;
+        &#125;
+    &#125;
+    printf(&quot;%d&quot;,anss);
+    return 0;
+&#125; 
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%A3%E9%A2%98/" rel="tag"># 散题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/28/%E5%A4%8D%E4%B9%A0%C2%B7%E4%BA%8C%E5%88%86/" rel="prev" title="复习·二分">
+      <i class="fa fa-chevron-left"></i> 复习·二分
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/30/CCPC%E5%8C%BA%E5%9F%9F%E8%B5%9B%E9%9B%86%E9%94%A6/" rel="next" title="CCPC区域赛集锦">
+      CCPC区域赛集锦 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#P2856-USACO06FEB-Cellphones-G"><span class="nav-number">1.</span> <span class="nav-text">P2856 [USACO06FEB]Cellphones G</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#P3668-USACO17OPEN-Modern-Art-2-G"><span class="nav-number">2.</span> <span class="nav-text">P3668 [USACO17OPEN]Modern Art 2 G</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="youxiao"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">youxiao</p>
+  <div class="site-description" itemprop="description">摆烂是人类进步的阶梯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/1796574343@qq.com" title="E-Mail → 1796574343@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youxiao</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,255,255' opacity='1' zIndex='-1' count='20' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

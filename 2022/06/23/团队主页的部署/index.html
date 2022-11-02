@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一开始用的是nginx直接部署过程忘记写在这里了   error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory解决方法  [emerg] bind() to 0.0.0.0:80 failed (98: Address already i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="团队主页的部署">
+<meta property="og:url" content="http://example.com/2022/06/23/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
+<meta property="og:description" content="一开始用的是nginx直接部署过程忘记写在这里了   error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory解决方法  [emerg] bind() to 0.0.0.0:80 failed (98: Address already i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-23T08:07:50.000Z">
+<meta property="article:modified_time" content="2022-06-25T10:07:08.752Z">
+<meta property="article:author" content="youxiao">
+<meta property="article:tag" content="工作">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/06/23/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>团队主页的部署 | 河南农业大学摆烂摸鱼划水阵线</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">河南农业大学摆烂摸鱼划水阵线</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">指战中心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档QAQ</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/23/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          团队主页的部署
+        </h1>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+
+              <time title="创建时间：2022-06-23 16:07:50" itemprop="dateCreated datePublished" datetime="2022-06-23T16:07:50+08:00">2022-06-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-25 18:07:08" itemprop="dateModified" datetime="2022-06-25T18:07:08+08:00">2022-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%A2%E9%98%9F%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">团队工作</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一开始用的是nginx直接部署<br>过程忘记写在这里了  </p>
+<p>error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Primzahl/p/9261760.html">解决方法</a></p>
+<p> [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</p>
+<p>发现80端口被docker占用（郁老大，你可没说有这啊）<br>所以其实我直接用docker拉取nginx，然后部署就行<br>先搜索安装的nginx镜像  </p>
+<pre><code>docker search nginx
+</code></pre>
+<p>然后找到合适的版本进行拉取  </p>
+<pre><code>docker pull nginx  
+</code></pre>
+<p>拉取后运行nginx容器  </p>
+<pre><code>docker run -di --name=nginx -p 90:80 -v /usr/html:/usr/share/nginx/html nginx 
+# -d 后台运行
+# -i 交互方式运行
+# --name 自定义容器名称
+# -p 端口号映射 90 自定义为外部访问端口：80 为nginx容器对外暴露的端口
+# -v 目录挂载  冒号前为 外部目录，冒号后为 容器内目录；相当于外部目录中的内容会映射同步到容器内
+</code></pre>
+<p>这里就需要上传我的html了，可是呢，好巧不巧，我的xshall安装包他无了，<br>我用的是原始一点的putty（）并且只有putty.exe其他啥也没（逃<br>于是就不能用rz这种方便快捷的方式了（呜呜呜  </p>
+<p>netstat -ano  查看已使用端口 状态</p>
+<p>docker的操作<br>docker rm + 名字 删除容器<br>docker start 名字 开启某个容器<br>docker run 镜像名字 部署一个容器<br>-p 物理机端口：docker端口  建立一个端口映射<br>–name&#x3D;名字 设置容器名称<br>-d后台运行<br>-i交互式运行<br>-v 物理机目录：docker目录 目录挂载<br>docker stop 名字  停止一个容器  </p>
+<p>但是我越整越迷，每次部署完nginx都无法访问<br>人都傻了  </p>
+<p>机关算尽，无法解决外网不能访问的问题<br>于是决定撅掉郁老大的ubuntu，换成centos7（）<br>这波是耻辱下播（）  </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag"># 工作</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/15/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5%E7%9A%84%E5%BF%A7%E9%83%81%E4%B8%AA%E4%BA%BA%E6%84%9F%E5%8F%97/" rel="prev" title="凉宫春日的忧郁个人感受（剧透向">
+      <i class="fa fa-chevron-left"></i> 凉宫春日的忧郁个人感受（剧透向
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/25/%E5%9B%A2%E9%98%9F%E4%B8%BB%E9%A1%B5%E7%9A%84%E9%83%A8%E7%BD%B22/" rel="next" title="团队主页的部署2">
+      团队主页的部署2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="youxiao"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">youxiao</p>
+  <div class="site-description" itemprop="description">摆烂是人类进步的阶梯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/1796574343@qq.com" title="E-Mail → 1796574343@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youxiao</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,255,255' opacity='1' zIndex='-1' count='20' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

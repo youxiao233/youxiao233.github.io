@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延指节点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅学通信网络基础第三章">
+<meta property="og:url" content="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
+<meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
+<meta property="og:description" content="网络延时 概述通信网络特点：资源共享 会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss） 衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制 网络时延模型处理时延一个分组到达节点输入端与其到达输出端之间的时延 传输时延指节点开始发送第一比特到发完最后一比特的时间 传播时延指节点发送第一个比特的时刻到此比特到达接收点的时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgtu.com/i/qnr3QI">
+<meta property="og:image" content="http://example.com/">
+<meta property="og:image" content="http://example.com/">
+<meta property="og:image" content="http://example.com/">
+<meta property="article:published_time" content="2022-03-20T09:44:07.000Z">
+<meta property="article:modified_time" content="2022-03-22T09:17:17.298Z">
+<meta property="article:author" content="youxiao">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgtu.com/i/qnr3QI">
+
+<link rel="canonical" href="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>浅学通信网络基础第三章 | 河南农业大学摆烂摸鱼划水阵线</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">河南农业大学摆烂摸鱼划水阵线</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">指战中心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档QAQ</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/20/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%89%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浅学通信网络基础第三章
+        </h1>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+
+              <time title="创建时间：2022-03-20 17:44:07" itemprop="dateCreated datePublished" datetime="2022-03-20T17:44:07+08:00">2022-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-22 17:17:17" itemprop="dateModified" datetime="2022-03-22T17:17:17+08:00">2022-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">通信网络基础</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>网络延时</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>通信网络特点：资源共享</p>
+<p>会出现资源无法获得的情况（如被占用）： 延迟（Delay），丢弃（loss）</p>
+<p>衡量网络传输能力的重要指标使将分组从源节点传到目的节点的时延  包括接入方式，路由选择，流量和拥塞的控制</p>
+<h2 id="网络时延模型"><a href="#网络时延模型" class="headerlink" title="网络时延模型"></a>网络时延模型</h2><h3 id="处理时延"><a href="#处理时延" class="headerlink" title="处理时延"></a>处理时延</h3><p>一个分组到达节点输入端与其到达输出端之间的时延</p>
+<h3 id="传输时延"><a href="#传输时延" class="headerlink" title="传输时延"></a>传输时延</h3><p>指节点开始发送第一比特到发完最后一比特的时间</p>
+<h3 id="传播时延"><a href="#传播时延" class="headerlink" title="传播时延"></a>传播时延</h3><p>指节点发送第一个比特的时刻到此比特到达接收点的时延</p>
+<pre><code>与电磁波在媒质中传播速度有关，与通信距离成正比，与信道容量本身无关
+传播时延=信道长度/在信道的传播速度
+电磁波在自由空间光速传播，在网络传输中慢一点
+铜线电缆  ：2.3*10^5
+光纤：2.0*10^5
+</code></pre>
+<h3 id="排队时延"><a href="#排队时延" class="headerlink" title="排队时延"></a>排队时延</h3><p>分组进入传输队列到分组实际进入传输的时延；分组进入等待队列到分组进入节点处理的时延</p>
+<hr>
+<p>排队模型：</p>
+<h4 id="到达过程–顾客到达的规则和行为"><a href="#到达过程–顾客到达的规则和行为" class="headerlink" title="到达过程–顾客到达的规则和行为"></a>到达过程–顾客到达的规则和行为</h4><p>到达数目：有限或无限<br>到达间隔：确定或随机<br>到达方式：独立或成批到达</p>
+<h4 id="排队规则"><a href="#排队规则" class="headerlink" title="排队规则"></a>排队规则</h4><p>等待制：系统忙时，顾客在系统中等待<br>损失制：顾客发现系统繁忙，立即离开系统（如日常使用的电话通信系统）<br>服务顺序：FCFS、、LCFS等</p>
+<h4 id="服务过程–服务规则和时间"><a href="#服务过程–服务规则和时间" class="headerlink" title="服务过程–服务规则和时间"></a>服务过程–服务规则和时间</h4><p>服务员个数：无穷、单个或多个<br>服务时间：确定或随机  </p>
+<hr>
+<p>在不同的传输网络中，顾客和服务时间可能各不相同<br>在分组交换网络中，顾客就是分组，服务时间为分组传输时间<br>在电话交换网络中，顾客就是呼叫，服务时间为呼叫持续的时间  </p>
+<h4 id="排队时延的计算"><a href="#排队时延的计算" class="headerlink" title="排队时延的计算"></a>排队时延的计算</h4><p>已知量  </p>
+<pre><code>顾客到达率λ（单位时间进入系统的平均顾客数，也称单位时间内进入的“典型顾客数”，“典型”是时间平均）  
+服务速率μ（制系统忙时单位时间内服务的典型（平均）顾客数）  
+</code></pre>
+<p>求解量  </p>
+<pre><code>系统中平均顾客数N（他是在等待队列中和正接受服务的顾客数之和的平均数）  
+每个顾客的平均时延T（即每个顾客等待所花的时间加上服务时间至和的平均值）
+</code></pre>
+<h1 id="Little定理"><a href="#Little定理" class="headerlink" title="Little定理"></a>Little定理</h1><p>顾客到达率λ<br>系统中平均顾客数N<br>每个顾客的平均时延T</p>
+<h2 id="公式-N-x3D-λT"><a href="#公式-N-x3D-λT" class="headerlink" title="公式  N&#x3D;λT"></a>公式  N&#x3D;λT</h2><p>系统的用户数&#x3D;用户平均到达率*平均时延<br>1.他关心的只是排队系统的三个统计平均量，对某个过程的具体时间以及排队规则不做要求<br>2.公式中三个统计平均量必须是针对一个顾客群体而言的，也就是只要这三个统计平均量是针对同一个顾客群体定义，其间就存在Little公式</p>
+<p><img src="https://imgtu.com/i/qnr3QI"><br><img src="/"><br><img src="/">  </p>
+<h1 id="M-x2F-M-x2F-m型排队系统的表征"><a href="#M-x2F-M-x2F-m型排队系统的表征" class="headerlink" title="M&#x2F;M&#x2F;m型排队系统的表征"></a>M&#x2F;M&#x2F;m型排队系统的表征</h1><h2 id="排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E"><a href="#排队系统的表示方式-A-x2F-B-x2F-C-x2F-D-x2F-E" class="headerlink" title="排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E"></a>排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E</h2><h3 id="A-表示到达时间间隔分布"><a href="#A-表示到达时间间隔分布" class="headerlink" title="A 表示到达时间间隔分布"></a>A 表示到达时间间隔分布</h3><h3 id="B-服务时间分布"><a href="#B-服务时间分布" class="headerlink" title="B 服务时间分布"></a>B 服务时间分布</h3><p>A，B包含：<br>M：指数分布<br>D：确定性分布<br>Ek：爱尔兰分布<br>G：一般分布</p>
+<h3 id="C-服务员个数"><a href="#C-服务员个数" class="headerlink" title="C 服务员个数"></a>C 服务员个数</h3><h3 id="D-服务系统容量"><a href="#D-服务系统容量" class="headerlink" title="D 服务系统容量"></a>D 服务系统容量</h3><p>包括正被服务和等待的用户<br>缺省时默认为无穷大</p>
+<h3 id="服务规则"><a href="#服务规则" class="headerlink" title="服务规则"></a>服务规则</h3><p>先来先服务（FCFS）<br>后来先服务（LCFS）<br>随即服务（SIRO）<br>缺省时默认FCFS  </p>
+<h2 id="M-x2F-M-x2F-1型"><a href="#M-x2F-M-x2F-1型" class="headerlink" title="M&#x2F;M&#x2F;1型"></a>M&#x2F;M&#x2F;1型</h2><p>到达是poisson过程，到达率是λ<br>允许排无限长的队（系统缓存无限）<br>服务过程为指数过程，服务速率为μ（平均服务时间为1&#x2F;μ）<br>服务员为1个，到达过程与服务过程互相独立<br>稳态概率为Pn &#x3D;（ρ^n）*（1-ρ） n&#x3D;0，1，2……<br>（也就是有n个客户的概率和系统状态的稳态概率）<br>ρ&#x3D;λ&#x2F;μ 反映了繁忙程度（litte）<br>空闲概率：P0 &#x3D;（1-ρ）<br>排队概率为ρ<br>平均用户数为</p>
+<h3 id="N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ"><a href="#N-x3D-∑-∞-n-x3D-0-nPn-x3D-∑-∞-n-x3D-0-nρ-1-ρ" class="headerlink" title="N&#x3D;∑(∞,n&#x3D;0)nPn &#x3D; ∑(∞,n&#x3D;0)nρ*(1-ρ)"></a>N&#x3D;∑(∞,n&#x3D;0)n<em>Pn &#x3D; ∑(∞,n&#x3D;0)n</em>ρ*(1-ρ)</h3><h3 id="x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ"><a href="#x3D-ρ-1-ρ-Σ-∞-n-0-nρ-n-1-x3D-ρ-x2F-1-ρ-x3D-λ-x2F-μ-λ" class="headerlink" title="&#x3D;ρ*(1-ρ)Σ(∞,n-0)nρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)"></a>&#x3D;ρ*(1-ρ)<em>Σ(∞,n-0)n</em>ρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)</h3><p>（我再码公式是孙子）<br><img src="/"><br>（是不是很像上一课的litte例子？）</p>
+<h2 id="M-x2F-M-x2F-m-x2F-m型"><a href="#M-x2F-M-x2F-m-x2F-m型" class="headerlink" title="M&#x2F;M&#x2F;m&#x2F;m型"></a>M&#x2F;M&#x2F;m&#x2F;m型</h2><h2 id="M-x2F-G-x2F"><a href="#M-x2F-G-x2F" class="headerlink" title="M&#x2F;G&#x2F;"></a>M&#x2F;G&#x2F;</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/14/%E6%B5%85%E5%AD%A6%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E7%AB%A0/" rel="prev" title="浅学通信网络基础第二章">
+      <i class="fa fa-chevron-left"></i> 浅学通信网络基础第二章
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/" rel="next" title="http协议浅尝">
+      http协议浅尝 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%97%B6%E5%BB%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">网络时延模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">处理时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">传输时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">传播时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.4.</span> <span class="nav-text">排队时延</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B0%E8%BE%BE%E8%BF%87%E7%A8%8B%E2%80%93%E9%A1%BE%E5%AE%A2%E5%88%B0%E8%BE%BE%E7%9A%84%E8%A7%84%E5%88%99%E5%92%8C%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">到达过程–顾客到达的规则和行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E8%A7%84%E5%88%99"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">排队规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%BF%87%E7%A8%8B%E2%80%93%E6%9C%8D%E5%8A%A1%E8%A7%84%E5%88%99%E5%92%8C%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">服务过程–服务规则和时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">排队时延的计算</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Little%E5%AE%9A%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">Little定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F-N-x3D-%CE%BBT"><span class="nav-number">2.1.</span> <span class="nav-text">公式  N&#x3D;λT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#M-x2F-M-x2F-m%E5%9E%8B%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%A1%A8%E5%BE%81"><span class="nav-number">3.</span> <span class="nav-text">M&#x2F;M&#x2F;m型排队系统的表征</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F-A-x2F-B-x2F-C-x2F-D-x2F-E"><span class="nav-number">3.1.</span> <span class="nav-text">排队系统的表示方式  A&#x2F;B&#x2F;C&#x2F;D&#x2F;E</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E8%A1%A8%E7%A4%BA%E5%88%B0%E8%BE%BE%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94%E5%88%86%E5%B8%83"><span class="nav-number">3.1.1.</span> <span class="nav-text">A 表示到达时间间隔分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%9C%8D%E5%8A%A1%E6%97%B6%E9%97%B4%E5%88%86%E5%B8%83"><span class="nav-number">3.1.2.</span> <span class="nav-text">B 服务时间分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E6%9C%8D%E5%8A%A1%E5%91%98%E4%B8%AA%E6%95%B0"><span class="nav-number">3.1.3.</span> <span class="nav-text">C 服务员个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F%E5%AE%B9%E9%87%8F"><span class="nav-number">3.1.4.</span> <span class="nav-text">D 服务系统容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%A7%84%E5%88%99"><span class="nav-number">3.1.5.</span> <span class="nav-text">服务规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M-x2F-M-x2F-1%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">M&#x2F;M&#x2F;1型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#N-x3D-%E2%88%91-%E2%88%9E-n-x3D-0-nPn-x3D-%E2%88%91-%E2%88%9E-n-x3D-0-n%CF%81-1-%CF%81"><span class="nav-number">3.2.1.</span> <span class="nav-text">N&#x3D;∑(∞,n&#x3D;0)nPn &#x3D; ∑(∞,n&#x3D;0)nρ*(1-ρ)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x3D-%CF%81-1-%CF%81-%CE%A3-%E2%88%9E-n-0-n%CF%81-n-1-x3D-%CF%81-x2F-1-%CF%81-x3D-%CE%BB-x2F-%CE%BC-%CE%BB"><span class="nav-number">3.2.2.</span> <span class="nav-text">&#x3D;ρ*(1-ρ)Σ(∞,n-0)nρ^(n-1)&#x3D;ρ&#x2F;(1-ρ)&#x3D;λ&#x2F;(μ-λ)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M-x2F-M-x2F-m-x2F-m%E5%9E%8B"><span class="nav-number">3.3.</span> <span class="nav-text">M&#x2F;M&#x2F;m&#x2F;m型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M-x2F-G-x2F"><span class="nav-number">3.4.</span> <span class="nav-text">M&#x2F;G&#x2F;</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="youxiao"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">youxiao</p>
+  <div class="site-description" itemprop="description">摆烂是人类进步的阶梯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/1796574343@qq.com" title="E-Mail → 1796574343@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youxiao</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,255,255' opacity='1' zIndex='-1' count='20' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
