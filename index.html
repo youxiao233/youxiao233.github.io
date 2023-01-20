@@ -344,6 +344,770 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/17/%E6%95%B0%E5%AD%A6%EF%BC%9Agcd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/17/%E6%95%B0%E5%AD%A6%EF%BC%9Agcd/" class="post-title-link" itemprop="url">数学：gcd lcm</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+
+              <time title="创建时间：2023-01-17 16:42:46" itemprop="dateCreated datePublished" datetime="2023-01-17T16:42:46+08:00">2023-01-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-18 08:55:43" itemprop="dateModified" datetime="2023-01-18T08:55:43+08:00">2023-01-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="GCD是好东西"><a href="#GCD是好东西" class="headerlink" title="GCD是好东西"></a>GCD是好东西</h1><p>gcd，即最大公约数，在数论题里有一席之地<br>（1）如果两个自然数是互质数，那么它们的最大公约数是1，最小公倍数是这两个数的乘积。<br>例如8和9，它们是互质数，所以（8，9）&#x3D;1，[8，9]&#x3D;72。<br>（2）如果两个自然数中，较大数是较小数的倍数，那么较小数就是这两个数的最大公约数，较大数就是这两个数的最小公倍数。<br>例如18与3，18÷3&#x3D;6，所以（18，3）&#x3D;3，[18，3]&#x3D;18。<br>（3）两个整数分别除以它们的最大公约数，所得的商是互质数。<br>例如8和14分别除以它们的最大公约数2，所得的商分别为4和7，那么4和7是互质数。<br>（4）两个自然数的最大公约数与它们的最小公倍数的乘积等于这两个数的乘积。<br>例如12和16，（12，16）&#x3D;4，[12，16]&#x3D;48，有4×48&#x3D;12×16，即（12，16）× [12，16]&#x3D;12×16。<br>（5）a与b的最大公约数是最小的a与b的正线性组合,即对于方程xa+yb&#x3D;c来说,若x,a,y,b都为整数,那么c的最小正根为gcd(a,b).  </p>
+<h2 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h2><p>也即更相减损术通常用递归和模运算实现  </p>
+<pre><code>ll gcd(ll ,ll b)&#123;
+    return !b?a:gcd(b,a%b);
+&#125;
+</code></pre>
+<p>一般来说这个就够用了，系统也自带了__gcd();来方便使用<br>而这个方法使用的是模运算，每次计算比较耗时，于是就有了下面的方法  </p>
+<h2 id="Stein算法"><a href="#Stein算法" class="headerlink" title="Stein算法"></a>Stein算法</h2><p>Stein算法使用了加减和移位操作来减少耗时<br>（1）当a，b都是偶数，就分别除以二；<br>（2）当a为偶，b为奇，就将a除以二（反之亦然）；<br>（3）当a，b都为奇数，就将a&#x3D;（a+b）&#x2F;2，b&#x3D;（a-b）&#x2F;2；  </p>
+<p>然后再优化一下就成了：</p>
+<pre><code>ll gcd_core(ll a,ll b)&#123;
+    if(!b)return a;
+    if(!a)return b;
+    while((!(a&amp;0x1)))a&gt;&gt;=1;
+    return a&lt;b?gcd_core((b-a)&gt;&gt;1,a):gcd_core((a-b)&gt;&gt;1,b);
+&#125;
+ll gcd_stein(ll a,ll b)&#123;
+    ll c=0;
+    while((!(a&amp;0x1))&amp;&amp;(!(b&amp;0x1)))a&gt;&gt;=1,b&gt;&gt;=1,c++;
+    return (!a&amp;0x1)?gcd_core(a&gt;&gt;1,b)&lt;&lt;c: gcd_core(b,a)&lt;&lt;c;
+&#125;  
+</code></pre>
+<h2 id="高精度的gcd"><a href="#高精度的gcd" class="headerlink" title="高精度的gcd"></a>高精度的gcd</h2><p>看什么看，学python去</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/23/php%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/23/php%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">php基础语法</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+
+              <time title="创建时间：2022-11-23 15:27:30" itemprop="dateCreated datePublished" datetime="2022-11-23T15:27:30+08:00">2022-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-28 01:02:04" itemprop="dateModified" datetime="2022-11-28T01:02:04+08:00">2022-11-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://www.php.cn/course/74.html">来这里学吧</a></p>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><p>这里只留基础部分，有些模块还会有后续的补充</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>1.必须要以$开始。如变量x必须要写成$x</p>
+<p>2.变量的首字母不能以数字开始</p>
+<p>3.变量的名字区分大小写</p>
+<p>4.变量不要用特殊符号、中文，_不算特殊符号</p>
+<p>示例：</p>
+<pre><code>    &lt;?php
+        $Six=6;
+        $six6=6;
+        $six_=6;
+        $_six=6;    
+    ?&gt;
+</code></pre>
+<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><p>echo+值</p>
+<pre><code>    &lt;?php
+        echo 123;
+        $output=123;
+        echo $output;
+    ?&gt;
+</code></pre>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>跟c语言一样</p>
+<pre><code>//单行注释
+
+/*    多行
+    注释*/
+</code></pre>
+<h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><p>用赋的值决定变量类型（怪哦<br>这些是和其他语言类似的  </p>
+<pre><code>&lt;?php
+    $int=114514;//整形
+    $otc=0337522;//八进制
+    $hex=0x1BF52;//十六进制
+    $bool=ture;//布尔
+    $none=NULL;//空
+    $string1=&#39;压力马斯内&#39;；//字符串
+    $string2=&quot;压力马斯内&quot;；//字符串
+    $float=114.514;
+?&gt;
+</code></pre>
+<p>特别的：</p>
+<h3 id="定符界"><a href="#定符界" class="headerlink" title="定符界"></a>定符界</h3><p>在变量赋值后面写三个小于号（&lt;&lt;&lt;）<br>然后在&lt;&lt;&lt;写下任意字符<br>在这些区域里写下任意字符串<br>最后再用&lt;&lt;&lt;后相同的字符结尾   </p>
+<pre><code>&lt;?php
+
+$dingjie = &lt;&lt;&lt;ABC
+  如果
+       非要在这个滚犊子
+   前
+       面&lt;br /&gt;
+      加上一段
+   &lt;i&gt;距离的话&lt;/i&gt;
+   我想说：&lt;h1&gt;思想有多远，你就跟我滚多远&lt;/h1&gt;
+ABC;
+echo $dingjie
+?&gt;
+//来自php中文网
+</code></pre>
+<h3 id="用双引号赋值的特点"><a href="#用双引号赋值的特点" class="headerlink" title="用双引号赋值的特点"></a>用双引号赋值的特点</h3><p>与单引号不同的是，双引号可以解析变量（单引号只解析’&#39;‘和’&#39;）<br>双引号会执行变量<br>可以在双引号里面插入变量，会将该变量拼接进字符里<br>（如果不加其他字符，会把变量名当字符解析）<br>但是要用字符分隔（当然非转义字符会被拼接进去，转义字符会正常转义然后加进去）<br>可以使用大括号包裹这种形式隔开，这样就可以把变量与其他部分隔开（聪明的）<br>双引号的效率没有单引号高<br>我们将定界符声明字符串视为双引号一样的功能来看待（确实基本上一样啊喂）</p>
+<p>另外，我们可以用’.’来拼接字符串</p>
+<pre><code>&lt;?php
+    $string1=&#39;压力马斯内&#39;.&#39;114；
+    $string2=$string1.&quot;$string1 压力马斯内&#123;$string1&#125;&quot;.&#39;514&#39;；
+    $string3=&#39;$string1 514&#39;;//这个$string将不会被解析  
+
+?&gt;
+</code></pre>
+<h3 id="使用var-dump可以查看数据类型"><a href="#使用var-dump可以查看数据类型" class="headerlink" title="使用var_dump可以查看数据类型"></a>使用var_dump可以查看数据类型</h3><pre><code>&lt;？php
+$float=114.514;
+var_dump($float);    
+？&gt;
+</code></pre>
+<h3 id="NULL型"><a href="#NULL型" class="headerlink" title="NULL型"></a>NULL型</h3><p>主要有以下三空情况会产生空（null）类型：</p>
+<pre><code>1.通过变量赋值明确指定为变量的值为NULL
+
+2.一个变量没有给任何值
+
+3.使用函数unset()将变量销毁掉
+
+4.没有被定义的变量也是null
+</code></pre>
+<p>NULL就是没有，不是false也不是0也不是’ ‘</p>
+<p>有几个相关函数：</p>
+<h4 id="empty"><a href="#empty" class="headerlink" title="empty()"></a>empty()</h4><p>empty()可以向括号中间传入一个变量。这个变量的值如果为false或者为null的话，返回true。  </p>
+<h4 id="isset"><a href="#isset" class="headerlink" title="isset()"></a>isset()</h4><p>isset()可以向括号中间传入一个或者多个变量，变量与变量间用逗号分开。只要其中有有一个变量为null，则返回false。否则，则返回true。</p>
+<h4 id="unset"><a href="#unset" class="headerlink" title="unset()"></a>unset()</h4><p>销毁括号中传入的变量</p>
+<h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>和c语言一样没什么好说的    </p>
+<pre><code>&lt;?php
+if(/*表达式*/)&#123;
+    //表达式为真，执行这里
+&#125;
+else&#123;
+    //表达式为假，执行这里
+&#125;
+?&gt;
+</code></pre>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>定义时候用array()即可<br>然后括号里一个值，或者多个值用逗号隔开  </p>
+<pre><code>&lt;?php
+$arr = array(1,2,3);
+?&gt;
+</code></pre>
+<h2 id="资源类型"><a href="#资源类型" class="headerlink" title="资源类型"></a>资源类型</h2><p>对于php来说，资源类型就是从本地或者网络引用的其他文件<br>就相当于用php打开了其他东西（文本，视频，图片，数据库等等）  </p>
+<pre><code>直接复制一段，方便我自己理解（逃
+&lt;?php
+//PHP操作图片需打开配置文件中 extension=php_gd2.dll
+//==================================================生成图片
+$imgname = &quot;./test.png&quot;;
+//根据给定路径图片名或 web 路径创建 png 图片模板对象，图片不存在会报错，需加 @
+$im = @imagecreatefrompng ( $imgname );
+//对应的创建jpg图片的方法为 imagecreatefromjpeg ，例
+//$im = imagecreatefromjpeg(&quot;http://wx.qlogo.cn/mmopen/Q3auHgzwzM4fA6602v35iaPhicn4NerIoHhHIsM6uBFjDnbn6saxic3QJBibmibterqicNwiajic1ff8Y2sPhj1ictV0wMw/096&quot;);
+if (! $im) &#123;
+ //=======================创建图片对象
+ //如果指定图片不存在，则创建指定大小的空图片模板对象，宽800，高500
+ $im = ImageCreate ( 800, 500 );
+ //第二种创建图片方法
+ $im = ImageCreateTrueColor(800, 500);
+ 
+ //=======================创建颜色对象
+ //依据一个模板对象，生成颜色对象，0为red值，100为green值，30为blue值
+ //ImageCreate 创建的对象在此会直接将颜色填充至模板对象中，ImageCreateTrueColor 创建的对象则只创建颜色对象，不填充
+ $bgc = ImageColorAllocate ( $im, 0, 100, 30 );
+ $tc = ImageColorAllocate ( $im, 0, 0, 0 );
+ 
+ //=======================填充颜色
+ //为图片对象填充矩形颜色，如果空模板对象不填充颜色则为黑色
+ //100，50对应矩形填充区域左上角的横纵坐标，150，200对应矩形右下角的横纵坐标
+ //这里坐标对ImageCreate模板对象不起作用，全局填充，对ImageCreateTrueColor起作用。
+ ImageFilledRectangle ($im, 100, 50, 150, 200, $bgc);
+ //第二种填充方法200,100同样为左上角横纵坐标，但这里坐标对两种方法创建的模板对象都不起作用，完全填充
+ ImageFill($im, 200, 100, $bgc);
+ 
+ //=======================填充文字
+ //在模板对象中添加文字两种方法
+ //40字体粗度，50字体左边距距离，5字体上边距距离，$tc字体颜色，这种方式只能填充英语，填中文乱码
+ ImageString ( $im, 40, 50, 5, &quot;just is English code&quot;, $tc );
+ //添加中文18为字体大小，0字体旋转程度，100左边距距离，200上边距距离，项目目录下要有&quot;MSYH.TTF&quot;这个字体文件
+ imagettftext($im, 18, 0, 100, 200, $tc, &quot;MSYH.TTF&quot;, &quot;填充中文&quot;);
+&#125;
+
+
+
+//==================================================合成图片
+// 载入图象
+$img1 = imagecreatefromjpeg(&quot;image1.jpg&quot;);
+$img2 = imagecreatefromjpeg(&quot;064.jpg&quot;);
+
+//方法一合成图象 ，将参数二合成到参数一中，500离主图片左边距,400离主图片上边距,0新合图片内右边距偏移量,10新合图片内下边距偏移量, 243合到参数一后所占位置宽，90合到参数一后所占位置高
+//imagecopy($img1,$img2,500,400,0,10,243,90);
+//得到原始大图片尺寸
+$imgage = getimagesize(&quot;064.jpg&quot;);
+$src_W = $imgage[0]; //获取原图片宽度
+$src_H = $imgage[1]; //获取原图片高度
+//方法二合成图象并改变大小，500,400,0,10,与imagecopy作用一致，200分别是缩小后宽，高，$src_W，$src_H原图宽，高
+//imagecopyresampled($img1, $img2, 500,400,0,10, 200, 200, $src_W, $src_H);
+//方法三，并且合透明图必须用此方法，别的合成方法合成后该透明的地方无法透明
+//500,400,0,10, 243,90,与imagecopy作用一致，100表示参数二在参数一中透明程度，范围0~100,0完全透明，100完全不透明
+imagecopymerge($img1, $img2, 500,400,0,10, 243,90, 100);
+
+
+
+//==================================================合成圆角图片
+//每次生成圆的四个角中一个角，中心透明，边角有色的图片，用于合成
+function get_lt($halfWidth) &#123;
+ //根据圆形弧度创建一个正方形的图像
+ $img = imagecreatetruecolor($halfWidth, $halfWidth);
+ //图像的背景
+ $bgcolor = imagecolorallocate($img, 223, 0, 0);
+ //填充颜色
+ imagefill($img, 0, 0, $bgcolor);
+ //定义圆中心颜色
+ $fgcolor = imagecolorallocate($img, 0, 0, 0);
+ // $halfWidth,$halfWidth：以图像的右下角开始画弧
+ // $halfWidth*2, $halfWidth*2：已宽度、高度画弧
+ // 180, 270：指定了角度的起始和结束点
+ // fgcolor：指定画弧内的颜色
+ imagefilledarc($img, $halfWidth, $halfWidth, $halfWidth*2, $halfWidth*2, 180, 270, $fgcolor, IMG_ARC_PIE);
+ //将图片中指定色设置为透明
+ imagecolortransparent($img, $fgcolor);
+ //变换角度
+ // $img = imagerotate($img, 90, 0);
+ // $img = imagerotate($img, 180, 0);
+ // $img = imagerotate($img, 270, 0);
+ // header(&#39;Content-Type: image/png&#39;);
+ // imagepng($img);
+ return $img;
+&#125;
+
+$img1 = imagecreatefrompng(&quot;vote_2.png&quot;);
+$img2 = imagecreatefromjpeg(&quot;064.jpg&quot;);
+//获取图片尺寸
+$imgSize = getimagesize(&quot;064.jpg&quot;);
+$image_width = $imgSize[0];
+$image_height = $imgSize[1];
+
+//圆角长度，最好是图片宽，高的一半
+$halfWidth = $image_width / 2;
+
+//获取四分之一透明圆角
+$lt_img = get_lt($halfWidth);
+
+//改造$img2 左上角圆角透明
+imagecopymerge($img2, $lt_img, 0, 0, 0, 0, $halfWidth, $halfWidth, 100);
+//旋转图片
+$lb_corner = imagerotate($lt_img, 90, 0);
+//左下角
+imagecopymerge($img2, $lb_corner, 0, $image_height - $halfWidth, 0, 0, $halfWidth, $halfWidth, 100);
+//旋转图片
+$rb_corner = imagerotate($lt_img, 180, 0);
+//右上角
+imagecopymerge($img2, $rb_corner, $image_width - $halfWidth, $image_height - $halfWidth, 0, 0, $halfWidth, $halfWidth, 100);
+//旋转图片
+$rt_corner = imagerotate($lt_img, 270, 0);
+//右下角
+imagecopymerge($img2, $rt_corner, $image_width - $halfWidth, 0, 0, 0, $halfWidth, $halfWidth, 100);
+
+//生成红色
+$red = imagecolorallocate($img2, 223, 0, 0);
+//去除参数二中红色设成透明
+imagecolortransparent($img2, $red);
+
+imagecopymerge($img1, $img2, 117,37,0,0, 64, 64, 100);
+
+
+
+//设定http输出格式
+//header ( &quot;Content-type: image/png&quot; );
+header(&quot;Content-type: image/jpeg&quot;);
+
+//将二进制文件流输出到网页
+//imagePng ( $im );
+//如果是jpg二进制流用 imagejpeg 输出图象，并且后面加路径则直接生成保存图片，不再在页面输出
+//如果已有图片则覆盖生成
+//imagejpeg($img1, &quot;new.jpg&quot;);
+imagejpeg($img1);
+
+//注销模板对象
+ImageDestroy($im);
+ImageDestroy($img1);
+ImageDestroy($img2);
+?&gt;
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/23/2022CCPC%E7%BB%B5%E9%98%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/23/2022CCPC%E7%BB%B5%E9%98%B3/" class="post-title-link" itemprop="url">2022CCPC绵阳</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-11-23 14:09:05 / 修改时间：15:23:14" itemprop="dateCreated datePublished" datetime="2022-11-23T14:09:05+08:00">2022-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="好耶，年轻人的第一块铜牌"><a href="#好耶，年轻人的第一块铜牌" class="headerlink" title="好耶，年轻人的第一块铜牌"></a>好耶，年轻人的第一块铜牌</h1><p>本来是没抱什么希望来的  </p>
+<p>算法水平：<br>学oi，但高中只有省一，且大一摆烂<br>大一结束才接触，一个暑假刷一半acwing提高课<br>大四准备考研，但是之前有一个icpc铜<br>英语水平：<br>完全不学英语的<br>大四都没过四级的<br>高中考的日语的大佐<br>准备水平：<br>一个开赛前半小时才醒<br>一个准备考研，完全不训练，考前抽两根烟<br>一个看了一周的数学知识<br>比赛环境：<br>学校临时找的资料室  </p>
+<p>总之是这样的</p>
+<p>开题：<br>开题十分顺利基本上开到的都是能写的，并且我当了一波天选之人<br>石头剪刀布的题第一时间想到栈，因为赛前我正好在看了一些栈的屌题<br>生命游戏更是天选中的天选，因为高中学oi的学弟之前拉着我玩生命游戏，对题目的理解十分顺畅，并且立刻想到了对角线构造的答案<br>然后是A题和D题的角逐，还有两小时时候我就有A的dp转移方程式了，但是刚写完最开始设想的代码，熊有了D的想法，介于我的想法没能实现（后来证明不是线性dp，而是记忆化搜索），就让他先写，让他给我留出来一个小时调dp（因为我很菜，要调好久）<br>然后他给我剩了十五分钟（逃<br>我平生第一次有这么强的好胜心，第一次因为觉得自己没有错而想打人（逃<br>当然他的思路也没错，但是卡精度<br>最终两道题都跪了，喜提铜牌<br>其实还好，我和大佐第一次打区赛，能拿到牌子已经知足了，而熊都大四了，算是给他圆了一个ccpc区赛拿到牌子的梦想<br>老师也挺高兴的，她也没想到我们这个省赛前两天临时组建的队伍，甚至两个人都是长时间不练习，一个是刚学三四个月的队伍拿到了牌子<br>我倒是觉的对得起我这么一年了<br>没有滚榜，甚至是正着念的榜，我们是倒数（好耶），但是倒数第二组念到我们时候，还是高兴的跳起来了。<br>等到明年，机房就归我管了，我希望2023年能打的好一点，最好能压郑带一头，让我们能就此站住脚跟。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/16/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/16/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/" class="post-title-link" itemprop="url">启发式合并</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-11-16 21:54:38 / 修改时间：23:04:56" itemprop="dateCreated datePublished" datetime="2022-11-16T21:54:38+08:00">2022-11-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">信息学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="这是玄学"><a href="#这是玄学" class="headerlink" title="这是玄学"></a>这是玄学</h1><h2 id="那么什么是启发式合并呢？"><a href="#那么什么是启发式合并呢？" class="headerlink" title="那么什么是启发式合并呢？"></a>那么什么是启发式合并呢？</h2><p>我们假设有一列集合，我们需要按照某种规则将其合并，如果我们直接暴力的去合并，直接拿起两个集合进行枚举合并，那我们将得到一个n方的复杂度，这显然是坏的<br>我们考虑合并时是用一个集合向另一个集合合并，时间花费是当前集合的元素总数，那如果我们每次都用小的集合向大的集合合并，那我们就可以简化掉一些合并的时间花销<br>而这个简化会将n<em>n的复杂度优化至n</em>logn<br>粗浅的意识流证明：  </p>
+<pre><code>当你在选取区间进行合并时，用小的集合向大的集合进行合并，这样做的话，
+对于每次被合并的集合都存在一个集合比该集合的元素更多，这样的最有情况只需要合并n次，
+即每次都选取新的集合向同一个集合合并，而最坏情况则是每次合并前后的集合大小相同，
+这样就是n*log2(n)的复杂度，美滋滋  
+</code></pre>
+<h1 id="HNOI2009-梦幻布丁"><a href="#HNOI2009-梦幻布丁" class="headerlink" title="[HNOI2009]梦幻布丁"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3201">[HNOI2009]梦幻布丁</a></h1><p>用链表维护每个颜色的布丁所在的所有位置，然后每次修改时对每个颜色进行枚举，其左侧是目标颜色的或右侧是目标颜色的，分别贡献1（总段数减一），对于颜色修改，用一个映射即可将没次修改的“一个颜色换成另一个颜色”转化成“数量少的颜色换成多的颜色”，最后将少的集合的链表接在元素多的集合即可，特别地，注意x&#x3D;&#x3D;y这种情况  </p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+using namespace std;
+const int N=1e5+100,M=2e6+100;
+int a[M],b[M];
+int n,m;
+int h[M],ne[M],to[M],idx=1,sz[M],ed[M],ar[M];
+int anss=0;
+void add(int u,int v)&#123;
+    ne[idx]=h[u];
+    to[idx]=v;
+    if(!ed[u])ed[u]=idx;
+    h[u]=idx++;
+&#125;
+int main()&#123;
+    #ifdef LOCAL
+    freopen(&quot;input.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;output.out&quot;,&quot;w&quot;,stdout);
+    #endif
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    int ma=0;
+    for(int i=1;i&lt;=n;i++)&#123;
+        scanf(&quot;%d&quot;,&amp;a[i]);
+        if(a[i]!=a[i-1])anss++;
+        add(a[i],i);sz[a[i]]++;
+        ar[a[i]]=a[i];
+    &#125;
+    for(int i=1;i&lt;=1e6;i++)ar[i]=i;
+    for(int i=1;i&lt;=m;i++)&#123;
+        int k;
+        scanf(&quot;%d&quot;,&amp;k);
+        if(k==1)&#123;
+            int x,y;
+            scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+            if(x==y)continue;
+            if(sz[ar[x]]&gt;sz[ar[y]])swap(ar[x],ar[y]);
+            x=ar[x],y=ar[y];
+            for(int j=h[x];j;j=ne[j])&#123;
+                int k=to[j];
+                if(a[k-1]==y)anss--;
+                if(a[k+1]==y)anss--;                
+            &#125;
+            for(int j=h[x];j;j=ne[j])&#123;
+                a[to[j]]=y;
+                if(!ne[j])&#123;
+                    ne[j]=h[y];
+                    h[y]=h[x];
+                    sz[y]+=sz[x];
+                    sz[x]=0;
+                    h[x]=0;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+        else&#123;
+            printf(&quot;%d\n&quot;,anss);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="CF600E-Lomsat-gelral"><a href="#CF600E-Lomsat-gelral" class="headerlink" title="[CF600E]Lomsat gelral"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF600E">[CF600E]Lomsat gelral</a></h1><p>此处引入树上启发式合并<br>以每个节点为根子树都可以看作一个集合（看作二元组吧，key和value），我们向上贡献答案时候就可以采取合并的思路<br>根据最开始的思路，我们在选择合并时候，可以让小的子树向大的子树合并，但是这样有一个问题： </p>
+<pre><code>我们在合并过程中怎么维护每个节点的子树中所有的颜色和出现次数？
+</code></pre>
+<p>面对题目的刁难，我们的选择是，不维护啊不维护<br>我们将子树规模最大的子节点成为重儿子，将其作为当前最大的集合与其他进行合并显然不会更劣，但是没法维护，那我们就把重儿子的子树染色状态保留，直接作为父母节点的当前已经计算过的子树，而轻儿子则直接遍历一边求出染色状态，然后清除它的贡献，只保留重儿子的。这样就很怪，但是很快。<br>时间复杂度看起来很玄学，一个节点如果在轻链上，他会被计算轻链的长度次 ，也即log(轻链长度)次（因为对于轻儿子来说，一定有一个比他大的重儿子存在），而作为一个重链上的节点，也只会被算1+log(重链前的轻链长度)次，均摊下来是个n*long(n)的复杂的，所以是极好的。  </p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int N=2e5+10,M=1e5+10;
+int n;
+ll ans[M];
+int a[M],ne[N],h[M],t[N],idx=2,cnt[M];
+int sz[M],hav[M];
+void dfs1(int x,int pa)&#123;
+    sz[x]=1;
+    for(int i=h[x];i;i=ne[i])&#123;
+        int y=t[i];
+        if(y==pa)continue;
+        dfs1(y,x);
+        sz[x]+=sz[y];
+        if(sz[hav[x]]&lt;sz[y])hav[x]=y;
+    &#125;
+&#125;
+ll ma,tmp;
+void update(int x,int pa,int sign,int nop)&#123;
+    cnt[a[x]]+=sign;
+    if(cnt[a[x]]==ma)tmp+=a[x];
+    if(cnt[a[x]]&gt;ma)tmp=a[x],ma=cnt[a[x]];
+    for(int i=h[x];i;i=ne[i])&#123;
+        int y=t[i];
+        if(y!=nop&amp;&amp;y!=pa)
+            update(y,x,sign,nop);
+    &#125;
+&#125;
+void dfs2(int x,int pa,int op)&#123;
+    for(int i=h[x];i;i=ne[i])&#123;
+        if(t[i]!=hav[x]&amp;&amp;t[i]!=pa)dfs2(t[i],x,0);
+    &#125;;
+    if(hav[x])dfs2(hav[x],x,1);
+    update(x,pa,1,hav[x]);
+    ans[x]=tmp;
+    if(!op)update(x,pa,-1,0),ma=0,tmp=0;
+&#125;
+int main()&#123;
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)&#123;
+        scanf(&quot;%d&quot;,&amp;a[i]);
+    &#125;
+    int u,v;
+    for(int i=1;i&lt;n;i++)&#123;
+        scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
+        ne[idx]=h[u];
+        t[idx]=v;
+        h[u]=idx++;
+        ne[idx]=h[v];
+        t[idx]=u;
+        h[v]=idx++;
+    &#125;
+    dfs1(1,0);
+    dfs2(1,0,1);
+    for(int i=1;i&lt;=n;i++)printf(&quot;%lld &quot;,ans[i]);
+    return 0;
+&#125; 
+</code></pre>
+<p>再探再报</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/14/%E5%A5%87%E5%A6%99%E7%9A%84%E5%B0%8F%E7%BB%93%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/14/%E5%A5%87%E5%A6%99%E7%9A%84%E5%B0%8F%E7%BB%93%E8%AE%BA/" class="post-title-link" itemprop="url">奇妙的小结论</a>
+        </h2>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+
+              <time title="创建时间：2022-11-14 19:46:47" itemprop="dateCreated datePublished" datetime="2022-11-14T19:46:47+08:00">2022-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-16 22:23:12" itemprop="dateModified" datetime="2022-11-16T22:23:12+08:00">2022-11-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>匹配括号（可添加括号）的最小贡献<br>设其有 LL 个左括号，RR 个右括号，XX 对已经匹配的括号。<br>max(L,R)−X<br>max(L,R) &#x3D; [(R+L)+|L-R|]&#x2F;2<br>对于一个序列，求所有子序列的值的总和，每个元素会被计算a[i]<em>i</em>(n-i+1)次<br>对于∑|L-R| ，L作为1，R作为负一，求前缀排序再∑<br>i&#x3D;1<br>n<br>​<br> ∑<br>j&#x3D;i<br>n<br>​<br> s<br>j<br>​<br> −s<br>i<br>​</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/11/16/dd8ffbcc2aa27015.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/02/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%20tarjan/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -495,7 +1259,7 @@
             <span class="post-meta-item">
               
 
-              <time title="创建时间：2022-11-02 00:14:40 / 修改时间：01:14:50" itemprop="dateCreated datePublished" datetime="2022-11-02T00:14:40+08:00">2022-11-02</time>
+              <time title="创建时间：2022-11-02 00:14:40 / 修改时间：18:24:18" itemprop="dateCreated datePublished" datetime="2022-11-02T00:14:40+08:00">2022-11-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -519,7 +1283,7 @@
 
       
           <p>威海站补题<br><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102798">https://codeforces.com/gym/102798</a></p>
-<h3 id="A-Golden-Spirit"><a href="#A-Golden-Spirit" class="headerlink" title="A. Golden Spirit"></a>A. Golden Spirit</h3><p>讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。</p>
+<h1 id="A-Golden-Spirit"><a href="#A-Golden-Spirit" class="headerlink" title="A. Golden Spirit"></a>A. Golden Spirit</h1><p>讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。</p>
 <p>先把所有老人都扶到对岸显然是最优的，并且第一个到当前岸边的老人休息完后，即视为休息完毕<br>然后分为两种情况考虑：</p>
 <blockquote>
 <p>1，把所有老人扶到对岸，然后等当前岸边第一个过来的老人（全部老人中第二个过桥的）休息完再走，此时的贡献是</p>
@@ -531,8 +1295,8 @@
 </blockquote>
 <pre><code>2*2*n*t-(2*(n-1))*t+t
 </code></pre>
-<p>两个情况取max即可<br>代码实现：</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
+<p>两个情况取max即可  </p>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 typedef long long ll;
 
@@ -551,8 +1315,7 @@ int main()&#123;
 </code></pre>
 <h1 id="C-Rencontre"><a href="#C-Rencontre" class="headerlink" title="C. Rencontre"></a>C. Rencontre</h1><p>讲一棵树，n个节点，读入u，v，w，表示u和v之间有双向边，距离为w，在树上有三次选项，第i次选择会等概率的从Mi个给定的点中选，然后找一个点，到三次选择的点距离和最小，求这个距离和的期望值  </p>
 <p>我们考虑算出三个点的简单路径，相加再除以二就是到三个的最小距离和的点的距离和，然后再算期望<br>直接算肯定不行，但是注意到本题是很多种可能求期望<br>我们可以利用换根dp求出每个点到其他所有点的距离和，这样可以求出在枚举任意三个点为根时的所有简单路径和，除以二便是所有到三次选择的点距离和最小的点的距离的总和<br>然后考虑哪些点可以给出贡献，我们只需要在树形dp计算路径时候，只记录被某次选择包含的点到根节点的路径（三次选择分别计算），然后换根求出所有点作为根时，三次选择的所有点分别到该根节点的的距离和。然后枚举三次选择，将维护好的另外两种选择的值直接累加过来，再除以对应选择的节点数算出期望即可  </p>
-<p>代码实现：</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
+<h2 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h2><pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 const int N=2e5+1000,M=4e5+100;
 typedef double db;
@@ -630,512 +1393,51 @@ int main()&#123;
     return 0;
 &#125;
 </code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/30/CCPC%E5%8C%BA%E5%9F%9F%E8%B5%9B%E9%9B%86%E9%94%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/30/CCPC%E5%8C%BA%E5%9F%9F%E8%B5%9B%E9%9B%86%E9%94%A6/" class="post-title-link" itemprop="url">CCPC区域赛集锦</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-
-              <time title="创建时间：2022-10-30 20:13:09" itemprop="dateCreated datePublished" datetime="2022-10-30T20:13:09+08:00">2022-10-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-02 01:14:53" itemprop="dateModified" datetime="2022-11-02T01:14:53+08:00">2022-11-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9B%86%E9%94%A6/" itemprop="url" rel="index"><span itemprop="name">集锦</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="2020绵阳"><a href="#2020绵阳" class="headerlink" title="2020绵阳"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102822">2020绵阳</a></h1><h1 id="2020威海"><a href="#2020威海" class="headerlink" title="2020威海"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102798">2020威海</a></h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/28/%E6%95%A3%E9%A2%9810-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/28/%E6%95%A3%E9%A2%9810-28/" class="post-title-link" itemprop="url">散题10/28</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-10-28 17:50:22 / 修改时间：22:58:10" itemprop="dateCreated datePublished" datetime="2022-10-28T17:50:22+08:00">2022-10-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">信息学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="P2856-USACO06FEB-Cellphones-G"><a href="#P2856-USACO06FEB-Cellphones-G" class="headerlink" title="P2856 [USACO06FEB]Cellphones G"></a>P2856 [USACO06FEB]Cellphones G</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2856">USACO06FEB]Cellphones G - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
-<p><strong>【题目翻译】：</strong> 奶牛的名字都是由英文字母表的前L(1 \leq L \leq 26)<em>L</em>(1≤<em>L</em>≤26)个字母构成的（全部为<strong>大写字母</strong>且长度\leq 10≤10）。现在奶牛们想设计一种手机， 有B<em>B</em>个按键。请你把这<em>L</em>个字母<strong>按顺序</strong>分配给<em>B</em>个按键，使能够通过按这些键而唯一确定的奶牛数尽量多。求最多可以唯一确定多少头奶牛，输出方案。如果有多种方案，输出编号小的按键容纳字母最多的方案。</p>
-<p>没想到是个暴力求解</p>
-<p>暴力枚举每个按键包含的字母，时间复杂度O（能过），由于每个字符串长度最多只有10，我们用哈希进行储存，每次处理n个串的哈希值，然后排序，只出现一次的哈希值的串贡献为1，对所有枚举情况的值取最大值即可。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
+<h1 id="H-Message-Bomb"><a href="#H-Message-Bomb" class="headerlink" title="H Message Bomb"></a>H Message Bomb</h1><p>讲有n个聊天群，m个人，s次操作，s行读入t，x，y，操作分三种t&#x3D;1 第x人加入y组，t&#x3D;2，第x人退出y组，t&#x3D;3 第x人在y组发一条信息，此时在组内所有人都收到这条信息，求最终每个人收到多少信息</p>
+<p>我们把结束时候看作所有人都出群了，我们用该人出群时间群内信息减去他入群时候信息数和他在这个群发的消息数便是他这次进群收到的所有信息数<br>对于每次操作，维护每个群内当前的信息总数<br>维护n个数据结构（我用的map）代表第i个组内现在有哪些人，以及他入群时候的群内的信息数，该人入过发一条消息，视作他入群时的信息多一条即可，然后在退群时候记录答案  </p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
-const int N=1010;
-int b,l,n;
-int num[N],tmd[30],hs[30],ans;
-char s[N][15],an[30];
-long long has[N];
+const int N=2e5+1000,M=4e5+100;
+typedef double db;
+typedef long long ll;
 
-void anss()&#123;
-    for(int i=1;i&lt;=n;i++)&#123;
-        has[i]=0;
-        for(int j=1;j&lt;=num[i];j++)&#123;
-            has[i]=has[i]*(b+1)+tmd[(int)s[i][j]-(int)&#39;A&#39;+1];
-        &#125;
-    &#125;
-    sort(has+1,has+1+n);
-    int tmp=0;
-    for(int i=1;i&lt;=n;i++)&#123;
-        if(has[i]!=has[i-1]&amp;&amp;has[i]!=has[i+1])tmp++;
-    &#125;
-    if(tmp&gt;=ans)&#123;
-        ans=tmp;
-        for(int i=1;i&lt;=l;i++)&#123;
-            an[i]=tmd[i];
-        &#125;
-    &#125;
-&#125;
-
-void dfs(int i,int j)&#123;
-    if(j&gt;l)&#123;
-        if(i&gt;b)anss();
-        return ;
-    &#125;
-    if(i&gt;b)return;
-    if(i&lt;=b)&#123;
-        tmd[j+1]=i+1;
-        dfs(i+1,j+1);
-    &#125;
-    if(l-j+i&gt;=b)&#123;
-        tmd[j+1]=i;
-        dfs(i,j+1);
-    &#125;
-&#125;
+int mes[N],n,m,s,anss[N];
+map&lt; int,int &gt;mp[N];
 
 int main()&#123;
-    scanf(&quot;%d%d%d&quot;,&amp;b,&amp;l,&amp;n);
+    #ifdef LOCAL
+    freopen(&quot;input.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;output.out&quot;,&quot;w&quot;,stdout);
+    #endif
+    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;s);
+    int t,x,y;
+    for(int i=1;i&lt;=n;i++)mes[i]=1;
+    for(int i=1;i&lt;=s;i++)&#123;
+        scanf(&quot;%d%d%d&quot;,&amp;t,&amp;x,&amp;y);
+        if(t==1)&#123;
+            mp[y][x]=mes[y];
+        &#125;
+        else if(t==2)&#123;
+            anss[x]+=mes[y]-mp[y][x];
+            mp[y][x]=0;
+        &#125;
+        else if(t==3)&#123;
+            mes[y]++;
+            mp[y][x]++;
+        &#125;
+    &#125;
     for(int i=1;i&lt;=n;i++)&#123;
-        scanf(&quot;%s&quot;,s[i]+1);
-        num[i]=strlen(s[i]+1);
+        for(auto x:mp[i])&#123;
+            if(x.second !=0)&#123;
+                anss[x.first]+=mes[i]-x.second;
+            &#125;
+        &#125;
     &#125;
-    tmd[1]=1;
-    dfs(1,1);
-    cout&lt;&lt;ans&lt;&lt;&quot;\n&quot;;
-    for(int i=1;i&lt;=l;i++)&#123;
-        printf(&quot;%c&quot;,i+&#39;A&#39;-1);
-        if(an[i+1]!=an[i])cout&lt;&lt;&quot;\n&quot;;
+    for(int i=1;i&lt;=m;i++)&#123;
+        printf(&quot;%d\n&quot;,anss[i]);
     &#125;
-
     return 0;
 &#125;
-        
-</code></pre>
-<h1 id="P3668-USACO17OPEN-Modern-Art-2-G"><a href="#P3668-USACO17OPEN-Modern-Art-2-G" class="headerlink" title="P3668 [USACO17OPEN]Modern Art 2 G"></a>P3668 [USACO17OPEN]Modern Art 2 G</h1><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3668">题目链接</a><br>小TY的同学HF也想创作艺术</p>
-<p>HF只有一块长条状的画布(画条)，所以每一次涂色只能涂上连续几个单位的颜料，同样新的颜料可以完全覆盖旧的颜料</p>
-<p>由于他的颜料同样非常傲娇，每次涂完要等上1day才能完全干，只有旧颜料干了以后才能用新颜料覆盖</p>
-<p>现在小HF用了2017个年头终于画出了一个大作品，自己非常满意</p>
-<p>现在他想复制这份作品</p>
-<p>每种颜色刷上去时候一定都是连续的，如果后刷的颜色被先刷上去的区间包含，证明后刷上去的颜色先结束。<br>先预处理出所有颜色最早出现的位置和最晚出现的位置，然后我们考虑用一个栈来维护当前状态  </p>
-<p>如果当前颜色与栈顶颜色不同，且未曾入栈，则该颜色的天数等栈顶颜色天数加一，该颜色入栈，并标记为已经入栈<br>如果该颜色第二次出现，并且已经是最后一次出现，那该颜色出栈<br>如果当前颜色与栈顶颜色不同，且已经入过栈，则当前状态不合法输出负一，程序结束<br>如果循环结束，且不存在不合法情况，那过程中记录的颜色的天数即为最终答案  </p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int N=1e5+100;
-int n,a[N],num[N],st[N],t;
-int fr[N],ed[N];
-bool b[N];
-int main()&#123;
-    cin&gt;&gt;n;
-    int z=0;
-    memset(fr,0x3f,sizeof(fr));
-    for(int i=1;i&lt;=n;i++)&#123;
-        cin&gt;&gt;a[i];
-        fr[a[i]]=min(i,fr[a[i]]);
-        ed[a[i]]=max(i,ed[a[i]]);
-        if(a[i]==0)z++;
-    &#125;
-    if(z==n)&#123;
-        printf(&quot;0&quot;);
-        return 0;
-    &#125;
-    int anss=0;
-    for(int i=1;i&lt;=n;i++)&#123;
-        if(!t||st[t]!=a[i])&#123;
-            if(!b[a[i]])&#123;
-                b[a[i]]=1;
-                if(i==ed[a[i]])&#123;
-                    anss=max(anss,num[t]+1);
-                    continue;
-                &#125;
-                st[++t]=a[i];
-                if(a[i]!=0)num[t]=num[t-1]+1;
-                else num[t]=num[t-1];
-                anss=max(anss,num[t]);
-                continue;
-            &#125;
-            else &#123;
-                printf(&quot;-1&quot;);
-                return 0;
-            &#125;
-        &#125;
-        if(st[t]==a[i])&#123;
-            if(i==ed[a[i]])t--;
-            continue;
-        &#125;
-    &#125;
-    printf(&quot;%d&quot;,anss);
-    return 0;
-&#125; 
-</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/28/%E5%A4%8D%E4%B9%A0%C2%B7%E4%BA%8C%E5%88%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/28/%E5%A4%8D%E4%B9%A0%C2%B7%E4%BA%8C%E5%88%86/" class="post-title-link" itemprop="url">复习·二分</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-
-              <time title="创建时间：2022-10-28 11:07:56" itemprop="dateCreated datePublished" datetime="2022-10-28T11:07:56+08:00">2022-10-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/upload-lab%E6%B7%B7%E5%85%B3%E8%AE%B0%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/01/upload-lab%E6%B7%B7%E5%85%B3%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">upload-lab混关记录</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-08-01 12:22:01 / 修改时间：21:14:38" itemprop="dateCreated datePublished" datetime="2022-08-01T12:22:01+08:00">2022-08-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%B6%E5%9C%BA%EF%BC%9B/" itemprop="url" rel="index"><span itemprop="name">靶场；</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="upload-lab"><a href="#upload-lab" class="headerlink" title="upload-lab"></a>upload-lab</h1><p>upload-labs是收集ctf和渗透测试中文件上传遇到的各种漏洞的靶场，旨在通过关卡的形式来帮助大家对文件上传有个全面的了解。</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/c0ny1/upload-labs">https://github.com/c0ny1/upload-labs</a></p>
-<h2 id="pass-1"><a href="#pass-1" class="headerlink" title="pass-1"></a>pass-1</h2><p>第一题是前端限制，要求上传的文件类型为三种图片格式</p>
-<p>由于是前端限制，直接f12删除代码端即可</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/8ccc62fbe7279a04.png"></p>
-<h2 id="pass-2"><a href="#pass-2" class="headerlink" title="pass-2"></a>pass-2</h2><p>Content-Type绕过</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/c16a3417463775cf.png"></p>
-<p>可以看出，他限制了上传文件的类型，但是没有限制后缀名</p>
-<p>把php一句话木马后缀改成.jpg，然后用bp抓上传的包</p>
-<p>把里面的filename中的.jpg改回.php即可</p>
-<p>或者直接上传.php，bp抓包，把文件类型改为image&#x2F;jpeg</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/4b3ad466e5033e90.png"></p>
-<h2 id="pass-3"><a href="#pass-3" class="headerlink" title="pass-3"></a>pass-3</h2><p>特殊名字绕过</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/9f9500cc3b490631.png"></p>
-<p>可以看到，他加了黑名单，过滤大写，过滤末尾的点，过滤::$DATA以及去掉了末尾的空格</p>
-<p>但是黑名单不太严谨，我们可以用php1php2 php3 php4 php5 来进行黑名单绕过</p>
-<p>上传这种后缀的马就行</p>
-<h2 id="pass-4"><a href="#pass-4" class="headerlink" title="pass-4"></a>pass-4</h2><p>.htaccess文件绕过</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/08/01/cab1e9b6278c928d.png"></p>
-<p>这一题比较高明一点，限制的比较死，但是也有办法</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E9%9A%BE%E5%BA%A62/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.png">
-      <meta itemprop="name" content="youxiao">
-      <meta itemprop="description" content="摆烂是人类进步的阶梯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb%E9%9A%BE%E5%BA%A62/" class="post-title-link" itemprop="url">难度2</a>
-        </h2>
-
-        <div class="post-meta">
-
-              <span class="post-meta-item-icon">
-
-                <i class="far fa-calendar"></i>
-              </span>
-
-              <span class="post-meta-item-text">发表于</span>
-
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间：2022-07-14 13:49:00 / 修改时间：22:36:59" itemprop="dateCreated datePublished" datetime="2022-07-14T13:49:00+08:00">2022-07-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>web嘛，不就是研究怎么偷自行车吗（逃  </p>
-<h1 id="upload1"><a href="#upload1" class="headerlink" title="upload1"></a>upload1</h1><p>看题目，是一个文件上传题目，还是最简单那种（逃<br>那就摸出我们的一句话木马来<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/52aee8f1105f2858.png"><br>f12看到文件后缀限制<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/e5c13d8109436b45.png"><br>也就是说需要绕过，post请求还是可以轻松绕过的<br>先把php马改成jpg后缀，bp抓包，然后直接上传<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/473e049611680f6a.png"><br><img src="https://s3.bmp.ovh/imgs/2022/07/14/c01503a67a8105a2.png"><br>把这个改成php，然后发送请求<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/81bc73bf7601079b.png"><br>可以看到，上传成功了<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/2bb74a4ef9f79257.png"><br>访问一下这个路径，可以访问<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/8aec18e389cff6bb.png"><br>摸出咱的蚁剑进行登录<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/9220270af546d6b2.png"><br>然后就可以进入靶机的后台，拿到flag  </p>
-<pre><code>cyberpeace&#123;9df2577798cc26b31c2c208f0730b82d&#125;
-</code></pre>
-<h1 id="xff与referer"><a href="#xff与referer" class="headerlink" title="xff与referer"></a>xff与referer</h1><p>伪造xff和伪造referer<br>添加xff和referer的头文件即可<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/630eb9bbb609e8dd.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/huhu1020387597/p/11479468.html">关于referer</a><br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/X-Forwarded-For/3593639?fr=aladdin">关于xff</a>  </p>
-<h1 id="command-execution"><a href="#command-execution" class="headerlink" title="command_execution"></a>command_execution</h1><p>我一进来就看见一个ping查询界面（逃<br>题目都说了，没写waf，说了就是妹写<br>那就把执行代码拼接在ping的ip后面，<br>利用后台的运行代码给咱们找找自行车在哪儿<br>输入127.0.0.1;find &#x2F; -name “flag*”<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/7248b042b27d9962.png"></p>
-<p>然后看到一个flag.txt<br>这就是咱要的了，同样的方法，这次把自行车给他骑走<br>127.0.0.1;cat &#x2F;home&#x2F;flag.txt  </p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/07/14/c7e715ea389ce749.png"></p>
-<pre><code>cyberpeace&#123;2750c16d03c412e3381a356d4a5d9ecc&#125;
-</code></pre>
-<p>难一点的话，会把空格过滤掉，遇见再说  </p>
-<h1 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h1><p>他的代码都在上面写了，按顺序反向解密一下就可<br>rot13（和凯撒密码key&#x3D;13一样）解密<a target="_blank" rel="noopener" href="https://www.xiao84.com/tools/103175.html">凯撒解密</a><br><a target="_blank" rel="noopener" href="http://tool.huixiang360.com/str/reverse.php">反转</a><br><a target="_blank" rel="noopener" href="https://base64.supfree.net/">base64解密</a><br>然后手动写个代码，给每一位ascll减一<br><img src="https://s3.bmp.ovh/imgs/2022/07/14/6c48158efaf570cc.png"><br>拿到的结果再反转即可</p>
-<pre><code>flag:&#123;NSCTF_b73d5adfb819c64603d7237fa0d52977&#125;
 </code></pre>
 
       
@@ -1223,20 +1525,20 @@ int main()&#123;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1272,7 +1574,7 @@ int main()&#123;
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

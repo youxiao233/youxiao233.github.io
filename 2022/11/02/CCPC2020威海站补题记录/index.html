@@ -28,7 +28,7 @@
 <meta property="og:description" content="威海站补题https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;102798 A. Golden Spirit讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。 先把所有老人都扶到对岸显然是最优的，并且第一个到当前岸边的老人休息完后，即视为休息完毕然后分为两种情况考虑：  1，把所有老">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-01T16:14:40.000Z">
-<meta property="article:modified_time" content="2022-11-01T17:14:50.201Z">
+<meta property="article:modified_time" content="2022-11-02T10:24:18.788Z">
 <meta property="article:author" content="youxiao">
 <meta property="article:tag" content="补题">
 <meta name="twitter:card" content="summary">
@@ -214,7 +214,7 @@
             <span class="post-meta-item">
               
 
-              <time title="创建时间：2022-11-02 00:14:40 / 修改时间：01:14:50" itemprop="dateCreated datePublished" datetime="2022-11-02T00:14:40+08:00">2022-11-02</time>
+              <time title="创建时间：2022-11-02 00:14:40 / 修改时间：18:24:18" itemprop="dateCreated datePublished" datetime="2022-11-02T00:14:40+08:00">2022-11-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,7 +238,7 @@
 
       
         <p>威海站补题<br><a target="_blank" rel="noopener" href="https://codeforces.com/gym/102798">https://codeforces.com/gym/102798</a></p>
-<h3 id="A-Golden-Spirit"><a href="#A-Golden-Spirit" class="headerlink" title="A. Golden Spirit"></a>A. Golden Spirit</h3><p>讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。</p>
+<h1 id="A-Golden-Spirit"><a href="#A-Golden-Spirit" class="headerlink" title="A. Golden Spirit"></a>A. Golden Spirit</h1><p>讲河两岸各有n个老人，他们需要过桥玩X分钟，休息完再回来，你需要帮他们过桥，你自己过桥或者扶老人过桥均需要t分钟，给定一组n，x，t（1e9范围），求所需最短时间。</p>
 <p>先把所有老人都扶到对岸显然是最优的，并且第一个到当前岸边的老人休息完后，即视为休息完毕<br>然后分为两种情况考虑：</p>
 <blockquote>
 <p>1，把所有老人扶到对岸，然后等当前岸边第一个过来的老人（全部老人中第二个过桥的）休息完再走，此时的贡献是</p>
@@ -250,8 +250,8 @@
 </blockquote>
 <pre><code>2*2*n*t-(2*(n-1))*t+t
 </code></pre>
-<p>两个情况取max即可<br>代码实现：</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
+<p>两个情况取max即可  </p>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 typedef long long ll;
 
@@ -270,8 +270,7 @@ int main()&#123;
 </code></pre>
 <h1 id="C-Rencontre"><a href="#C-Rencontre" class="headerlink" title="C. Rencontre"></a>C. Rencontre</h1><p>讲一棵树，n个节点，读入u，v，w，表示u和v之间有双向边，距离为w，在树上有三次选项，第i次选择会等概率的从Mi个给定的点中选，然后找一个点，到三次选择的点距离和最小，求这个距离和的期望值  </p>
 <p>我们考虑算出三个点的简单路径，相加再除以二就是到三个的最小距离和的点的距离和，然后再算期望<br>直接算肯定不行，但是注意到本题是很多种可能求期望<br>我们可以利用换根dp求出每个点到其他所有点的距离和，这样可以求出在枚举任意三个点为根时的所有简单路径和，除以二便是所有到三次选择的点距离和最小的点的距离的总和<br>然后考虑哪些点可以给出贡献，我们只需要在树形dp计算路径时候，只记录被某次选择包含的点到根节点的路径（三次选择分别计算），然后换根求出所有点作为根时，三次选择的所有点分别到该根节点的的距离和。然后枚举三次选择，将维护好的另外两种选择的值直接累加过来，再除以对应选择的节点数算出期望即可  </p>
-<p>代码实现：</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
+<h2 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h2><pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 const int N=2e5+1000,M=4e5+100;
 typedef double db;
@@ -346,6 +345,52 @@ int main()&#123;
         &#125;
     &#125;
     printf(&quot;%.10lf&quot;,anss/2);
+    return 0;
+&#125;
+</code></pre>
+<h1 id="H-Message-Bomb"><a href="#H-Message-Bomb" class="headerlink" title="H Message Bomb"></a>H Message Bomb</h1><p>讲有n个聊天群，m个人，s次操作，s行读入t，x，y，操作分三种t&#x3D;1 第x人加入y组，t&#x3D;2，第x人退出y组，t&#x3D;3 第x人在y组发一条信息，此时在组内所有人都收到这条信息，求最终每个人收到多少信息</p>
+<p>我们把结束时候看作所有人都出群了，我们用该人出群时间群内信息减去他入群时候信息数和他在这个群发的消息数便是他这次进群收到的所有信息数<br>对于每次操作，维护每个群内当前的信息总数<br>维护n个数据结构（我用的map）代表第i个组内现在有哪些人，以及他入群时候的群内的信息数，该人入过发一条消息，视作他入群时的信息多一条即可，然后在退群时候记录答案  </p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=2e5+1000,M=4e5+100;
+typedef double db;
+typedef long long ll;
+
+int mes[N],n,m,s,anss[N];
+map&lt; int,int &gt;mp[N];
+
+int main()&#123;
+    #ifdef LOCAL
+    freopen(&quot;input.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;output.out&quot;,&quot;w&quot;,stdout);
+    #endif
+    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;s);
+    int t,x,y;
+    for(int i=1;i&lt;=n;i++)mes[i]=1;
+    for(int i=1;i&lt;=s;i++)&#123;
+        scanf(&quot;%d%d%d&quot;,&amp;t,&amp;x,&amp;y);
+        if(t==1)&#123;
+            mp[y][x]=mes[y];
+        &#125;
+        else if(t==2)&#123;
+            anss[x]+=mes[y]-mp[y][x];
+            mp[y][x]=0;
+        &#125;
+        else if(t==3)&#123;
+            mes[y]++;
+            mp[y][x]++;
+        &#125;
+    &#125;
+    for(int i=1;i&lt;=n;i++)&#123;
+        for(auto x:mp[i])&#123;
+            if(x.second !=0)&#123;
+                anss[x.first]+=mes[i]-x.second;
+            &#125;
+        &#125;
+    &#125;
+    for(int i=1;i&lt;=m;i++)&#123;
+        printf(&quot;%d\n&quot;,anss[i]);
+    &#125;
     return 0;
 &#125;
 </code></pre>
@@ -432,7 +477,7 @@ int main()&#123;
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Golden-Spirit"><span class="nav-number">1.</span> <span class="nav-text">A. Golden Spirit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Rencontre"><span class="nav-number"></span> <span class="nav-text">C. Rencontre</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#A-Golden-Spirit"><span class="nav-number">1.</span> <span class="nav-text">A. Golden Spirit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">代码实现：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Rencontre"><span class="nav-number">2.</span> <span class="nav-text">C. Rencontre</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="nav-number">2.1.</span> <span class="nav-text">代码实现：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#H-Message-Bomb"><span class="nav-number">3.</span> <span class="nav-text">H Message Bomb</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -448,20 +493,20 @@ int main()&#123;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -497,7 +542,7 @@ int main()&#123;
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

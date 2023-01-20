@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":"ture"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"ture","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这是玄学那么什么是启发式合并呢？我们假设有一列集合，我们需要按照某种规则将其合并，如果我们直接暴力的去合并，直接拿起两个集合进行枚举合并，那我们将得到一个n方的复杂度，这显然是坏的我们考虑合并时是用一个集合向另一个集合合并，时间花费是当前集合的元素总数，那如果我们每次都用小的集合向大的集合合并，那我们就可以简化掉一些合并的时间花销而这个简化会将nn的复杂度优化至nlogn粗浅的意识流证明：   当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="启发式合并">
+<meta property="og:url" content="http://example.com/2022/11/16/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/index.html">
+<meta property="og:site_name" content="河南农业大学摆烂摸鱼划水阵线">
+<meta property="og:description" content="这是玄学那么什么是启发式合并呢？我们假设有一列集合，我们需要按照某种规则将其合并，如果我们直接暴力的去合并，直接拿起两个集合进行枚举合并，那我们将得到一个n方的复杂度，这显然是坏的我们考虑合并时是用一个集合向另一个集合合并，时间花费是当前集合的元素总数，那如果我们每次都用小的集合向大的集合合并，那我们就可以简化掉一些合并的时间花销而这个简化会将nn的复杂度优化至nlogn粗浅的意识流证明：   当">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-16T13:54:38.000Z">
+<meta property="article:modified_time" content="2022-11-16T15:04:56.228Z">
+<meta property="article:author" content="youxiao">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/11/16/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>启发式合并 | 河南农业大学摆烂摸鱼划水阵线</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">河南农业大学摆烂摸鱼划水阵线</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">指战中心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签QAQ</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档QAQ</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/16/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="youxiao">
+      <meta itemprop="description" content="摆烂是人类进步的阶梯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="河南农业大学摆烂摸鱼划水阵线">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          启发式合并
+        </h1>
+
+        <div class="post-meta">
+
+              <span class="post-meta-item-icon">
+
+                <i class="far fa-calendar"></i>
+              </span>
+
+              <span class="post-meta-item-text">发表于</span>
+
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间：2022-11-16 21:54:38 / 修改时间：23:04:56" itemprop="dateCreated datePublished" datetime="2022-11-16T21:54:38+08:00">2022-11-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">信息学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="这是玄学"><a href="#这是玄学" class="headerlink" title="这是玄学"></a>这是玄学</h1><h2 id="那么什么是启发式合并呢？"><a href="#那么什么是启发式合并呢？" class="headerlink" title="那么什么是启发式合并呢？"></a>那么什么是启发式合并呢？</h2><p>我们假设有一列集合，我们需要按照某种规则将其合并，如果我们直接暴力的去合并，直接拿起两个集合进行枚举合并，那我们将得到一个n方的复杂度，这显然是坏的<br>我们考虑合并时是用一个集合向另一个集合合并，时间花费是当前集合的元素总数，那如果我们每次都用小的集合向大的集合合并，那我们就可以简化掉一些合并的时间花销<br>而这个简化会将n<em>n的复杂度优化至n</em>logn<br>粗浅的意识流证明：  </p>
+<pre><code>当你在选取区间进行合并时，用小的集合向大的集合进行合并，这样做的话，
+对于每次被合并的集合都存在一个集合比该集合的元素更多，这样的最有情况只需要合并n次，
+即每次都选取新的集合向同一个集合合并，而最坏情况则是每次合并前后的集合大小相同，
+这样就是n*log2(n)的复杂度，美滋滋  
+</code></pre>
+<h1 id="HNOI2009-梦幻布丁"><a href="#HNOI2009-梦幻布丁" class="headerlink" title="[HNOI2009]梦幻布丁"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3201">[HNOI2009]梦幻布丁</a></h1><p>用链表维护每个颜色的布丁所在的所有位置，然后每次修改时对每个颜色进行枚举，其左侧是目标颜色的或右侧是目标颜色的，分别贡献1（总段数减一），对于颜色修改，用一个映射即可将没次修改的“一个颜色换成另一个颜色”转化成“数量少的颜色换成多的颜色”，最后将少的集合的链表接在元素多的集合即可，特别地，注意x&#x3D;&#x3D;y这种情况  </p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+using namespace std;
+const int N=1e5+100,M=2e6+100;
+int a[M],b[M];
+int n,m;
+int h[M],ne[M],to[M],idx=1,sz[M],ed[M],ar[M];
+int anss=0;
+void add(int u,int v)&#123;
+    ne[idx]=h[u];
+    to[idx]=v;
+    if(!ed[u])ed[u]=idx;
+    h[u]=idx++;
+&#125;
+int main()&#123;
+    #ifdef LOCAL
+    freopen(&quot;input.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;output.out&quot;,&quot;w&quot;,stdout);
+    #endif
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    int ma=0;
+    for(int i=1;i&lt;=n;i++)&#123;
+        scanf(&quot;%d&quot;,&amp;a[i]);
+        if(a[i]!=a[i-1])anss++;
+        add(a[i],i);sz[a[i]]++;
+        ar[a[i]]=a[i];
+    &#125;
+    for(int i=1;i&lt;=1e6;i++)ar[i]=i;
+    for(int i=1;i&lt;=m;i++)&#123;
+        int k;
+        scanf(&quot;%d&quot;,&amp;k);
+        if(k==1)&#123;
+            int x,y;
+            scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+            if(x==y)continue;
+            if(sz[ar[x]]&gt;sz[ar[y]])swap(ar[x],ar[y]);
+            x=ar[x],y=ar[y];
+            for(int j=h[x];j;j=ne[j])&#123;
+                int k=to[j];
+                if(a[k-1]==y)anss--;
+                if(a[k+1]==y)anss--;                
+            &#125;
+            for(int j=h[x];j;j=ne[j])&#123;
+                a[to[j]]=y;
+                if(!ne[j])&#123;
+                    ne[j]=h[y];
+                    h[y]=h[x];
+                    sz[y]+=sz[x];
+                    sz[x]=0;
+                    h[x]=0;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+        else&#123;
+            printf(&quot;%d\n&quot;,anss);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="CF600E-Lomsat-gelral"><a href="#CF600E-Lomsat-gelral" class="headerlink" title="[CF600E]Lomsat gelral"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF600E">[CF600E]Lomsat gelral</a></h1><p>此处引入树上启发式合并<br>以每个节点为根子树都可以看作一个集合（看作二元组吧，key和value），我们向上贡献答案时候就可以采取合并的思路<br>根据最开始的思路，我们在选择合并时候，可以让小的子树向大的子树合并，但是这样有一个问题： </p>
+<pre><code>我们在合并过程中怎么维护每个节点的子树中所有的颜色和出现次数？
+</code></pre>
+<p>面对题目的刁难，我们的选择是，不维护啊不维护<br>我们将子树规模最大的子节点成为重儿子，将其作为当前最大的集合与其他进行合并显然不会更劣，但是没法维护，那我们就把重儿子的子树染色状态保留，直接作为父母节点的当前已经计算过的子树，而轻儿子则直接遍历一边求出染色状态，然后清除它的贡献，只保留重儿子的。这样就很怪，但是很快。<br>时间复杂度看起来很玄学，一个节点如果在轻链上，他会被计算轻链的长度次 ，也即log(轻链长度)次（因为对于轻儿子来说，一定有一个比他大的重儿子存在），而作为一个重链上的节点，也只会被算1+log(重链前的轻链长度)次，均摊下来是个n*long(n)的复杂的，所以是极好的。  </p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int N=2e5+10,M=1e5+10;
+int n;
+ll ans[M];
+int a[M],ne[N],h[M],t[N],idx=2,cnt[M];
+int sz[M],hav[M];
+void dfs1(int x,int pa)&#123;
+    sz[x]=1;
+    for(int i=h[x];i;i=ne[i])&#123;
+        int y=t[i];
+        if(y==pa)continue;
+        dfs1(y,x);
+        sz[x]+=sz[y];
+        if(sz[hav[x]]&lt;sz[y])hav[x]=y;
+    &#125;
+&#125;
+ll ma,tmp;
+void update(int x,int pa,int sign,int nop)&#123;
+    cnt[a[x]]+=sign;
+    if(cnt[a[x]]==ma)tmp+=a[x];
+    if(cnt[a[x]]&gt;ma)tmp=a[x],ma=cnt[a[x]];
+    for(int i=h[x];i;i=ne[i])&#123;
+        int y=t[i];
+        if(y!=nop&amp;&amp;y!=pa)
+            update(y,x,sign,nop);
+    &#125;
+&#125;
+void dfs2(int x,int pa,int op)&#123;
+    for(int i=h[x];i;i=ne[i])&#123;
+        if(t[i]!=hav[x]&amp;&amp;t[i]!=pa)dfs2(t[i],x,0);
+    &#125;;
+    if(hav[x])dfs2(hav[x],x,1);
+    update(x,pa,1,hav[x]);
+    ans[x]=tmp;
+    if(!op)update(x,pa,-1,0),ma=0,tmp=0;
+&#125;
+int main()&#123;
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)&#123;
+        scanf(&quot;%d&quot;,&amp;a[i]);
+    &#125;
+    int u,v;
+    for(int i=1;i&lt;n;i++)&#123;
+        scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
+        ne[idx]=h[u];
+        t[idx]=v;
+        h[u]=idx++;
+        ne[idx]=h[v];
+        t[idx]=u;
+        h[v]=idx++;
+    &#125;
+    dfs1(1,0);
+    dfs2(1,0,1);
+    for(int i=1;i&lt;=n;i++)printf(&quot;%lld &quot;,ans[i]);
+    return 0;
+&#125; 
+</code></pre>
+<p>再探再报</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/14/%E5%A5%87%E5%A6%99%E7%9A%84%E5%B0%8F%E7%BB%93%E8%AE%BA/" rel="prev" title="奇妙的小结论">
+      <i class="fa fa-chevron-left"></i> 奇妙的小结论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/23/2022CCPC%E7%BB%B5%E9%98%B3/" rel="next" title="2022CCPC绵阳">
+      2022CCPC绵阳 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%99%E6%98%AF%E7%8E%84%E5%AD%A6"><span class="nav-number">1.</span> <span class="nav-text">这是玄学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%A3%E4%B9%88%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">那么什么是启发式合并呢？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HNOI2009-%E6%A2%A6%E5%B9%BB%E5%B8%83%E4%B8%81"><span class="nav-number">2.</span> <span class="nav-text">[HNOI2009]梦幻布丁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CF600E-Lomsat-gelral"><span class="nav-number">3.</span> <span class="nav-text">[CF600E]Lomsat gelral</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="youxiao"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">youxiao</p>
+  <div class="site-description" itemprop="description">摆烂是人类进步的阶梯</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/1796574343@qq.com" title="E-Mail → 1796574343@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youxiao</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,255,255' opacity='1' zIndex='-1' count='20' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
